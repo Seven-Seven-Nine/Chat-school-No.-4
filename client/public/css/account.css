@@ -1,0 +1,187 @@
+#account {
+    width: 100%;
+    height: 100%;
+    animation: new-frame 0.5s normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Список чатов */
+.account-list-div-chats {
+    width: 28%;
+    min-width: 20em;
+    max-width: 25em;
+    height: 100%;
+    border-right: 1px solid var(--color-border);
+    animation: show-chat 0.4s normal;
+}
+
+.account-list-chat-div-top-panel {
+    width: 100%;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.account-list-chat-div-top-panel svg {
+    cursor: pointer;
+
+    &:hover rect {
+        fill: var(--color-focus) !important;
+    }
+
+    &:active {
+        transition: all 0s;
+        transform: scale(0.9);
+    }
+}
+
+.account-list-chats-div-chats {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+/* Чат */
+.account-div-chat {
+    width: 100%;
+    height: 100%;
+    padding: 0 3em;
+    animation: show-chat 0.6s normal;
+}
+
+#account-chat-div-top-panel {
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 3.2em;
+    padding: 0 15px;
+}
+
+#account-chat-div-top-panel h2 {
+    font-size: 18pt;
+}
+
+#account-chat-div-top-panel svg {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+
+    &:hover circle {
+        fill: var(--color-focus) !important;
+    }
+
+    &:active {
+        transition: all 0s;
+        transform: scale(0.9);
+    }
+}
+
+.account-chat-top-div-panel-name {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+#account-chat-top-div-panel-menu {
+    width: 1em;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#account-chat-div-main-panel {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Левое боковое меню */
+#account-div-main-side-menu {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#account-main-side-menu {
+    position: absolute;
+    overflow-y: auto;
+    top: 0px;
+    min-width: 20em;
+    width: 30%;
+    max-width: 30em;
+    height: 100%;
+    border-right: 1px solid var(--color-border);
+    box-shadow: 0 10px 20px var(--color-border);
+    background-color: var(--main-bg);
+    animation: start-main-menu 0.4s normal;
+    padding: 0 1.5em;
+
+}
+
+#account-main-side-menu-dead-zone {
+    width: 100%;
+    height: 100%;
+    background-color: #000000a6;
+    animation: start-dead-zone 0.2s normal;
+}
+
+/* Верхняя часть левого бокового меню - данные пользователя */
+.account-main-side-menu-div-data-user {
+    width: 100%;
+    height: 8em;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding: 1em 0;
+}
+
+#account-main-side-menu-avatar {
+    width: 30%;
+    height: 100%;
+}
+
+#account-main-side-menu-avatar svg {
+    width: 80%;
+    height: auto;
+}
+
+.account-main-side-menu-div-login-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.account-main-side-menu-div-login-status p {
+    margin: 0em 0;
+}
+
+#account-main-side-menu-login {
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+#account-main-side-menu-status {
+    font-size: 12pt;
+    color: green;
+}

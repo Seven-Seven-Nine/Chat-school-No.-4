@@ -1,0 +1,78 @@
+#loading-app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: new-frame 0.5s normal;
+}
+
+/* Лого загрузки */
+.loading-app-div-logo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Загрузка */
+.loading-app-div-element-loading {
+    width: 100%;
+    height: 20em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-app-elements-loading {
+    display: flex;
+    flex-direction: row;
+}
+
+.loading-app-elements-loading div {
+    width: 30px;
+    height: 50px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    margin: 0 0.5em;
+
+    &:nth-child(1) {
+        animation: change-loading-div 0.5s forwards;
+    }
+
+    &:nth-child(2) {
+        animation: change-loading-div 0.6s forwards;
+    }
+
+    &:nth-child(3) {
+        animation: change-loading-div 0.8s forwards;
+    }
+
+    &:nth-child(4) {
+        animation: change-loading-div 0.9s forwards;
+    }
+
+    &:nth-child(5) {
+        animation: change-loading-div 1s forwards;
+    }
+
+    &:nth-child(6) {
+        animation: change-loading-div 1s forwards;
+    }
+
+    &:nth-child(7) {
+        animation: change-loading-div 0.9s forwards;
+    }
+
+    &:nth-child(8) {
+        animation: change-loading-div 0.8s forwards;
+    }
+
+    &:nth-child(9) {
+        animation: change-loading-div 0.6s forwards;
+    }
+
+    &:nth-child(10) {
+        animation: change-loading-div 0.5s forwards;
+    }
+}

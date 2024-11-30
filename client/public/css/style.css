@@ -1,0 +1,86 @@
+@import url("./animation.css");
+@import url("./form.css");
+@import url("./svg-theme.css");
+@import url("./loading-app.css");
+@import url("./authorization.css");
+@import url("./registration.css");
+@import url("./password-recovery.css");
+@import url("./account.css");
+
+* {
+    transition: all 0.1s;
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --main-bg: #ECECEC;
+        --color-focus: blue;
+        --color-border: black;
+        --color-text: black;
+        --button-hover-bg: black;
+        --button-hover-color-text: white;
+        --chat-bg: #E4E4E4;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg: #121111;
+        --color-focus: orange;
+        --color-border: white;
+        --color-text: white;
+        --button-hover-bg: white;
+        --button-hover-color-text: black;
+        --chat-bg: #1a1a1a;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 14pt;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
+    background-color: var(--main-bg);
+}
+
+/* Текст виде ссылки */
+.link {
+    text-decoration: underline;
+    user-select: none;
+    cursor: pointer;
+}
+
+/* Общий для контроллеров с формой */
+.controller-form {
+    width: 100%;
+    height: 100%;
+    animation: new-frame 0.5s normal;
+    overflow-y: auto;
+}
+
+/* Текст ошибки с анимацией */
+.error-text {
+    animation: new-frame 0.5s normal;
+    color: red;
+}

@@ -1,0 +1,22 @@
+/* Лого контроллера */
+.registration-div-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#registration svg {
+    cursor: pointer;
+    display: block;
+}
+
+/* Форма контроллера */
+.registration-div-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5em;
+}

@@ -1,0 +1,18 @@
+{
+  "name": "public-chat-school4",
+  "version": "1.0.0",
+  "description": "Клиентская часть проекта Chat school No. 4",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
+  },
+  "keywords": [
+    "frontend"
+  ],
+  "author": "Danila Um.",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

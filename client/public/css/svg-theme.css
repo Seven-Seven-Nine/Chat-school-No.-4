@@ -1,0 +1,39 @@
+@media (prefers-color-scheme: dark) {
+    /* Лого с текстом */
+    .logo-svg path {
+        stroke: var(--color-border) !important;
+    }
+
+    .logo-svg #text2 {
+        fill: var(--color-border) !important;
+    }
+
+    /* Лого без текста */
+    .logo-no-text-svg path {
+        stroke: var(--color-border) !important;
+    }
+
+    /* Бургер меню */
+    .burger-menu-svg rect {
+        fill: var(--color-border) !important;
+    }
+
+    /* Меню точки */
+    .menu-points-svg circle {
+        fill: var(--color-border) !important;
+    }
+
+    /* Человек */
+    .human path {
+        stroke: var(--color-border) !important;
+    }
+
+    .human rect {
+        fill: var(--color-border) !important;
+    }
+
+    .human circle {
+        stroke: var(--color-border) !important;
+    }
+
+}

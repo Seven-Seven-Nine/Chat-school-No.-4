@@ -1,0 +1,25 @@
+/* Лого контроллера */
+.authorization-div-logo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#authorization svg {
+    transition: all 1s;
+    cursor: pointer;
+    display: block;
+}
+
+/* Форма контроллера */
+.authorization-div-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+

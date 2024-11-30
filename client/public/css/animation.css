@@ -1,0 +1,72 @@
+/* Анимация появления новых контроллеров на экране */
+@keyframes new-frame {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Изменение состояния элементов загрузки */
+@keyframes change-loading-div {
+    0% {
+        background-color: none;
+    }
+    100% {
+        background-color: var(--color-border);
+        box-shadow: 0 0 10px var(--color-border);
+    }
+}
+
+/* Анимация полей ввода при фокусе на них */
+@keyframes input-focus {
+    0% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимация открытия и закрытия бокового меню */
+@keyframes start-main-menu {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes close-main-menu {
+    0% {
+        left: 0px;
+        background-color: var(--main-bg);
+    }
+    100% {
+        left: -100%;
+        background-color: var(--main-bg);
+    }
+}
+
+/* Анимация для мёртвой зоны меню */
+@keyframes start-dead-zone {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes close-dead-zone {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
