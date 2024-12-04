@@ -1,82 +1,45 @@
-<?php
-header('Content-type: application/json');
-
-class Server {
-    public function get_method(): void {
-        switch ($_GET['request']) {
-            case 'get_html_data':
-                require_once '../src/GetHtml.php';
-                new GetHtml($_GET['path_file']);
-                break;
-            default:
-                $json_data = ['status' => 'unknown get request'];
-                echo json_encode($json_data);
-                http_response_code(403);
-                break;
-        }
-    }
-
-    public function post_method(array $input): void {
-        switch ($input['request']) {
-            case 'registration':
-                require_once '../src/Registration.php';
-                new Registration($input['login'], $input['email'], $input['password'], 'none');
-                break;
-            case 'authorization':
-                require_once '../src/Authorization.php';
-                if (isset($input['token'])) {
-                    new Authorization('none', 'none', $input['token']);
-                } else {
-                    new Authorization($input['login'], $input['password'], 'none');
-                }
-                break;
-            case 'get_all_user_data':
-                require_once '../src/GetUserData.php';
-                new GetUserData($input['token']);
-                break;
-            default:
-                $json_data = ['status' => 'unknown post request'];
-                echo json_encode($json_data);
-                http_response_code(403);
-                break;
-        }
-    }
-
-    public function update_method(): void {
-        $json_data = ['status' => 'in development',];
-        echo json_encode($json_data);
-    }
-
-    public function delete_method(): void {
-        $json_data = ['status' => 'in development',];
-        echo json_encode($json_data);
-    }
-
-    public function unknown_method(): void {
-        $json_data = ['status' => 'unknown request method',];
-        echo json_encode($json_data);
-        
-        http_response_code(403);
-    }
-}
-
-$server = new Server();
-
-switch ($_SERVER['REQUEST_METHOD']) {
-    case 'GET':
-        $server->get_method();
-        break;
-    case 'POST':
-        $server->post_method(json_decode(file_get_contents('php://input'), true));
-        break;
-    case 'UPDATE':
-        $server->update_method();
-        break;
-    case 'DELETE':
-        $server->delete_method();
-        break;
-    default:
-        $server->unknown_method();
-        break;
-
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="dist/Main.js"></script>
+    <title>Server Chat school No. 4</title>
+</head>
+<body>
+    <main>
+        <div class="header-api">
+            <div class="header-api-help">
+                <button title="Дополнительная информация" class="button-help" type="button">?</button>
+            </div>
+            <div class="header-api-name">
+                <h2><s>Подвал</s> API Chat school No. 4</h2>
+            </div>
+        </div>
+        <div class="main-information">
+            <div class="div-holy-crutch">
+                <svg id="holy-crutch" fill="#000000" version="1.1" id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="400px" height="400px" viewBox="-145 -145 500 500" xml:space="preserve">
+                    <g>
+                        <path d="M117.251,0C52.598,0,0,52.597,0,117.251c0,64.651,52.598,117.251,117.251,117.251c64.653,0,117.251-52.6,117.251-117.251
+                        C234.502,52.597,181.904,0,117.251,0z M117.251,15.562c18.649,0,36.125,5.071,51.167,13.867l-50.527,38.416L66.118,29.407
+                        C81.151,20.624,98.617,15.562,117.251,15.562z M79.94,62.268l22.915,17.01L88.542,89.687L79.94,62.268z M84.023,137.314
+                        l-30.605,0.301l25.226-18.317L84.023,137.314z M113.22,94.19l4.647-3.378l13.971,9.981l8.721,6.476l-9.281,29.581l-27.853,0.274
+                        l-8.99-28.655L113.22,94.19z M133.061,79.105l21.447-16.308l-8.175,26.062l-3.649-2.608L133.061,79.105z M156.294,118.271
+                        l25.304,18.086l-30.798,0.302L156.294,118.271z M15.563,117.251c0-31.893,14.77-60.389,37.814-79.047l19.68,62.728l-54.738,39.751
+                        C16.535,133.154,15.563,125.314,15.563,117.251z M23.274,156.055l66.153-0.646l18.854,63.113
+                        C69.834,215.143,37.464,190.295,23.274,156.055z M117.308,181.374l-8.208-26.161l16.466-0.161L117.308,181.374z M126.337,218.514
+                        l19.024-63.656l66.598-0.653C198.195,189.357,165.421,215.031,126.337,218.514z M161.867,99.958l19.35-61.68
+                        c22.994,18.658,37.723,47.122,37.723,78.973c0,7.481-0.834,14.771-2.375,21.795L161.867,99.958z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="div-content">
+                
+            </div>
+        </div>
+    </main>
+</body>
+</html>

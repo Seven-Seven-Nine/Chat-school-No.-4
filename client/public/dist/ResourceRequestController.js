@@ -2,7 +2,7 @@
  * Класс для контроля запросов к серверу.
  */
 export default class ResourceRequestController {
-    url = 'http://chat.school4.localhost/server/public/index.php';
+    url = 'http://chat.school4.localhost/server/public/Server.php';
     constructor() {
         this.debugInfo();
     }

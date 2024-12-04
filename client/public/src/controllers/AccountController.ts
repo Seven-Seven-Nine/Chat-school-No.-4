@@ -58,7 +58,7 @@ export default class AccountController extends Controller {
      * Закрытие и удаление основного бокового меню.
      */
     private onclickDeleteSideMainMenu(divSideMenu: HTMLDivElement, sideMenu: HTMLDivElement, deadZoneMenu: HTMLDivElement): void {
-        sideMenu.style.animation = 'close-main-menu 1s forwards';
+        sideMenu.style.animation = 'close-main-menu 0.8s forwards';
         deadZoneMenu.style.animation = 'close-dead-zone 0.4s forwards';
         
         setTimeout(() => {
@@ -82,6 +82,5 @@ export default class AccountController extends Controller {
             paragraphStatusInMainSideMenu.style.color = 'red';
         }
         paragraphStatusInMainSideMenu.innerHTML = `${this.controllerManagement.getUserData('status')}`;
-        console.log(this.controllerManagement.getUserData('token'));
     } 
 }

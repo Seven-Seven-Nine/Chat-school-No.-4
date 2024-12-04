@@ -36,4 +36,21 @@
         stroke: var(--color-border) !important;
     }
 
+    /* Шестерня */
+    .gear-svg path {
+        stroke: var(--color-border) !important;
+    }
+
+    /* Уведомление */
+    .notification-svg path {
+        stroke: var(--color-border) !important;
+    }
+
+    .notification-svg #path2 {
+        fill: var(--color-border) !important;
+    }
+
+    .notification-svg #rect2 {
+        fill: var(--color-border) !important;
+    }
 }
