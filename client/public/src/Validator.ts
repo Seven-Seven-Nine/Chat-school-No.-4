@@ -124,13 +124,18 @@ export default class Validator {
         }
     }
 
+    /**
+     * Проверка валидации форма для восстановления пароля, возвращает true или false.
+     * @param inputEmail html-элемент, поле почты.
+     * @returns 
+     */
     public passwordRecoveryValidation(inputEmail: HTMLInputElement): boolean {
         let email = inputEmail.value;
         let emailVerification: boolean = false;
 
         if (email.length > 36 || email.length < 4 || email === '') {
             emailVerification = false;
-            this.inputError(inputEmail, 'Слишком длинный или короткий логин');
+            this.inputError(inputEmail, 'Слишком длинная или короткая почта');
         } else {
             emailVerification = true;
             this.inputRight(inputEmail, 'Почта');

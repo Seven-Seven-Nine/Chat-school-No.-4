@@ -66,6 +66,7 @@ export default class RegistrationController extends Controller {
             'password': inputPassword.value,
         };
         try {
+            this.resourceRequestController.startDownloadLine();
             let response = await fetch(this.resourceRequestController.getUrl, {
                 method: 'POST',
                 headers: {
@@ -107,6 +108,9 @@ export default class RegistrationController extends Controller {
         }
         catch (error) {
             throw new Error('Ошибка fetch запроса.');
+        }
+        finally {
+            this.resourceRequestController.finishDownloadLine();
         }
     }
     outputError(message) {

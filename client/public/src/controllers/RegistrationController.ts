@@ -75,6 +75,8 @@ export default class RegistrationController extends Controller {
         }
 
         try {
+            this.resourceRequestController.startDownloadLine();
+
             let response: Response = await fetch(this.resourceRequestController.getUrl, {
                 method: 'POST',
                 headers: {
@@ -115,6 +117,8 @@ export default class RegistrationController extends Controller {
             }
         } catch (error) {
             throw new Error('Ошибка fetch запроса.');
+        } finally {
+            this.resourceRequestController.finishDownloadLine();
         }
     }
 

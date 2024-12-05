@@ -43,6 +43,7 @@ export default class User {
                 'token': this.token
             };
             try {
+                this.resourceRequestController.startDownloadLine();
                 let response = await fetch(this.resourceRequestController.getUrl, {
                     method: 'POST',
                     headers: {
@@ -85,6 +86,9 @@ export default class User {
             }
             catch (error) {
                 throw new Error('Ошибка fetch запроса.');
+            }
+            finally {
+                this.resourceRequestController.finishDownloadLine();
             }
         }
         else {

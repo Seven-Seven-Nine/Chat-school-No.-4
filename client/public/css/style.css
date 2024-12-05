@@ -84,3 +84,17 @@ main {
     animation: new-frame 0.5s normal;
     color: red;
 }
+
+/* Полоса прокрутки */
+#download-line {
+    opacity: 0;
+    box-shadow: 0 0 10px var(--color-focus);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    height: 1px;
+    width: 0px;
+    background-color: var(--color-focus);
+    transition: width normal 0.3s, opacity normal 0.2s;
+}

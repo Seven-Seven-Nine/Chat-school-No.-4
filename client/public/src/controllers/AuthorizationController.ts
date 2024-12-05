@@ -90,6 +90,8 @@ export default class AuthorizationController extends Controller {
         }
 
         try {
+            this.resourceRequestController.startDownloadLine();
+
             let response: Response = await fetch(this.resourceRequestController.getUrl, {
                 method: 'POST',
                 headers: {
@@ -132,6 +134,8 @@ export default class AuthorizationController extends Controller {
             }
         } catch (error) {
             throw new Error('Ошибка Fetch запроса!');
+        } finally {
+            this.resourceRequestController.finishDownloadLine();
         }
     }
 
@@ -158,6 +162,8 @@ export default class AuthorizationController extends Controller {
         }
 
         try {
+            this.resourceRequestController.startDownloadLine();
+
             let response: Response = await fetch(this.resourceRequestController.getUrl, {
                 method: 'POST',
                 headers: {
@@ -185,15 +191,17 @@ export default class AuthorizationController extends Controller {
                     }
                 } else if (result.status === '200 error') {
                     console.debug('Токены пользователя не совпадают.');
-                    this.outputError('Токены пользователя не совпадают.');
+                    this.outputError('Сохранённый токен пользователя был изменён!');
                 } else {
                     console.error('Неизвестная ошибка авторизации пользователя.');
                 }
             } else {
                 throw new Error('Ошибка сети.');
-            }   
+            }
         } catch (error) {
             throw new Error('Ошибка fetch запроса.');
+        } finally {
+            this.resourceRequestController.finishDownloadLine();
         }
     }
 

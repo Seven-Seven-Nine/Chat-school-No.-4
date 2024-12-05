@@ -184,5 +184,5 @@
 
 #account-main-side-menu-status {
     font-size: 12pt;
-    color: green;
+    color: var(--color-focus);
 }
