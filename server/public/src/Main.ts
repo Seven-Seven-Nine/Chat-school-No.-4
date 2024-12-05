@@ -1,10 +1,13 @@
 import ControllerManager from "./ControllerManager.js";
+import ResourceRequestController from "./ResourceRequestController.js";
 
 class Main {
+    private resourceRequestController: ResourceRequestController;
     private controllerManager: ControllerManager;
     
     constructor() {
-        this.controllerManager = new ControllerManager();
+        this.resourceRequestController = new ResourceRequestController();
+        this.controllerManager = new ControllerManager(this.resourceRequestController);
     }
 
     public main(): void {

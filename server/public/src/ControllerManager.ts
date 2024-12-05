@@ -1,9 +1,13 @@
+import ApiStructure from "./controllers/ApiStructure.js";
 import Controller from "./Controller.js";
+import ResourceRequestController from "./ResourceRequestController.js";
 
 export default class ControllerManager {
+    private resourceRequestController: ResourceRequestController;
     private arrayControllers: Controller[];
 
-    constructor() {
+    constructor(resourceRequestController: ResourceRequestController) {
+        this.resourceRequestController = resourceRequestController;
         this.arrayControllers = [];
     }
     
@@ -17,6 +21,6 @@ export default class ControllerManager {
      * Инициализация контроллеров и добавление их в массив контроллеров.
      */
     private initializerControllers(): void {
-        this.arrayControllers.push();
+        this.arrayControllers.push(new ApiStructure(this.resourceRequestController, this, 'apiStructure', 'server/apiStructure.html'));
     }
 }

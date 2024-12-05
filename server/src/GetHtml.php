@@ -18,7 +18,7 @@ class GetHtml {
     }
 
     private function readHtmlFile(): void {
-        $this->dataFile = file_get_contents('../public/html/' . $this->path);
+        $this->dataFile = file_get_contents('../src/html/' . $this->path);
     }
 
     private function echo_200(): void {

@@ -32,17 +32,17 @@ export default class ControllerManagement {
         let authorizationController: Controller | undefined = this.controllersArray.find(controller => controller.nameController === 'authorizationController');
         setTimeout(() => {
             authorizationController?.showLayout();
-        }, 1500);
+        }, 1000);
     }
 
     /**
      * Добавление контроллеров в массив менеджера контроллеров.
      */
-    public initializerControllers(): void {
-        this.controllersArray.push(new AuthorizationController(this.resourceRequestController, this, 'authorizationController'));
-        this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
-        this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
-        this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
+    public async initializerControllers(): Promise<void> {
+        await this.controllersArray.push(new AuthorizationController(this.resourceRequestController, this, 'authorizationController'));
+        await this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
+        await this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
+        await this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
 
         this.initializerAuthorizationController();
     }
