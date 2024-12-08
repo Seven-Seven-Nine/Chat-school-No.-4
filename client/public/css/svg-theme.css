@@ -53,4 +53,9 @@
     .notification-svg #rect2 {
         fill: var(--color-border) !important;
     }
+
+    /* Выход */
+    .exit-svg path {
+        stroke: var(--color-border) !important;
+    }
 }

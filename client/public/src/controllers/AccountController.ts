@@ -11,19 +11,26 @@ export default class AccountController extends Controller {
         let iconPointsMenu: HTMLElement = document.getElementById('account-chat-top-div-panel-menu') as HTMLElement;
 
         if (iconBurgerMenu !== null) {
-            iconBurgerMenu.onclick = () => this.createSideMainMenu();
+            iconBurgerMenu.onclick = () => this.onclickCreateSideMainMenu();
         }
         if (iconPointsMenu !== null) {
-            iconPointsMenu.onclick = () => this.createChatMenu();
+            iconPointsMenu.onclick = () => this.onclickCreateChatMenu();
         }
     }
 
     /**
      * Создание бокового основного меню контроллера.
      */
-    private async createSideMainMenu(): Promise<void> {
+    private async onclickCreateSideMainMenu(): Promise<void> {
         await this.createHtmlSideMainMenu();
         this.capturingSideMainMenuElements();
+    }
+
+    /**
+     * Создание меню чата.
+     */
+    private onclickCreateChatMenu(): void {
+        alert('В разработке...');
     }
 
     /**
@@ -42,12 +49,21 @@ export default class AccountController extends Controller {
         let divSideMenu: HTMLDivElement = document.getElementById('account-div-main-side-menu') as HTMLDivElement;
         let sideMenu: HTMLDivElement = document.getElementById('account-main-side-menu') as HTMLDivElement;
         let deadZoneMenu: HTMLDivElement = document.getElementById('account-main-side-menu-dead-zone') as HTMLDivElement;
+        let btnSetting: HTMLDivElement = document.getElementById('main-menu-button-setting') as HTMLDivElement;
+        let btnExit: HTMLDivElement = document.getElementById('main-menu-button-exit') as HTMLDivElement;
         
+        // Эти элементы передаются дальше в метод initializingDataUserInMainSideMenu().
         let paragraphLoginInMainSideMenu: HTMLParagraphElement = document.getElementById('account-main-side-menu-login') as HTMLParagraphElement;
         let paragraphStatusInMainSideMenu: HTMLParagraphElement = document.getElementById('account-main-side-menu-status') as HTMLParagraphElement;
 
         if (deadZoneMenu !== null) {
             deadZoneMenu.onclick = () => this.onclickDeleteSideMainMenu(divSideMenu, sideMenu, deadZoneMenu);
+        }
+        if (btnSetting !== null) {
+            btnSetting.onclick = () => this.onclickSettingBtn();
+        }
+        if (btnExit !== null) {
+            btnExit.onclick = () => this.onclickExitBtn();
         }
         if (paragraphLoginInMainSideMenu !== null && paragraphStatusInMainSideMenu !== null) {
             this.initializingDataUserInMainSideMenu(paragraphLoginInMainSideMenu, paragraphStatusInMainSideMenu);
@@ -67,8 +83,19 @@ export default class AccountController extends Controller {
         }, 500);
     }
 
-    private createChatMenu(): void {
+    /**
+     * Событие на кнопку настроек в основном меню.
+     */
+    private onclickSettingBtn(): void {
         alert('В разработке...');
+    }
+
+    /**
+     * Событие на кнопку выхода в основном меню.
+     */
+    private onclickExitBtn(): void {
+        this.controllerManagement.logOutOfAccountUser();
+        this.controllerManagement.initializerSpecificController('authorizationController');
     }
 
     /**

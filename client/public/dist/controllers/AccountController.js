@@ -8,18 +8,24 @@ export default class AccountController extends Controller {
         let iconBurgerMenu = document.getElementById('account-list-icon-main-menu');
         let iconPointsMenu = document.getElementById('account-chat-top-div-panel-menu');
         if (iconBurgerMenu !== null) {
-            iconBurgerMenu.onclick = () => this.createSideMainMenu();
+            iconBurgerMenu.onclick = () => this.onclickCreateSideMainMenu();
         }
         if (iconPointsMenu !== null) {
-            iconPointsMenu.onclick = () => this.createChatMenu();
+            iconPointsMenu.onclick = () => this.onclickCreateChatMenu();
         }
     }
     /**
      * Создание бокового основного меню контроллера.
      */
-    async createSideMainMenu() {
+    async onclickCreateSideMainMenu() {
         await this.createHtmlSideMainMenu();
         this.capturingSideMainMenuElements();
+    }
+    /**
+     * Создание меню чата.
+     */
+    onclickCreateChatMenu() {
+        alert('В разработке...');
     }
     /**
      * Загрузка html данных основного бокового меню из серверной части.
@@ -36,10 +42,19 @@ export default class AccountController extends Controller {
         let divSideMenu = document.getElementById('account-div-main-side-menu');
         let sideMenu = document.getElementById('account-main-side-menu');
         let deadZoneMenu = document.getElementById('account-main-side-menu-dead-zone');
+        let btnSetting = document.getElementById('main-menu-button-setting');
+        let btnExit = document.getElementById('main-menu-button-exit');
+        // Эти элементы передаются дальше в метод initializingDataUserInMainSideMenu().
         let paragraphLoginInMainSideMenu = document.getElementById('account-main-side-menu-login');
         let paragraphStatusInMainSideMenu = document.getElementById('account-main-side-menu-status');
         if (deadZoneMenu !== null) {
             deadZoneMenu.onclick = () => this.onclickDeleteSideMainMenu(divSideMenu, sideMenu, deadZoneMenu);
+        }
+        if (btnSetting !== null) {
+            btnSetting.onclick = () => this.onclickSettingBtn();
+        }
+        if (btnExit !== null) {
+            btnExit.onclick = () => this.onclickExitBtn();
         }
         if (paragraphLoginInMainSideMenu !== null && paragraphStatusInMainSideMenu !== null) {
             this.initializingDataUserInMainSideMenu(paragraphLoginInMainSideMenu, paragraphStatusInMainSideMenu);
@@ -56,8 +71,18 @@ export default class AccountController extends Controller {
             divSideMenu.style.display = 'none';
         }, 500);
     }
-    createChatMenu() {
+    /**
+     * Событие на кнопку настроек в основном меню.
+     */
+    onclickSettingBtn() {
         alert('В разработке...');
+    }
+    /**
+     * Событие на кнопку выхода в основном меню.
+     */
+    onclickExitBtn() {
+        this.controllerManagement.logOutOfAccountUser();
+        this.controllerManagement.initializerSpecificController('authorizationController');
     }
     /**
      * Добавление логина и статуса пользователя в вёрстку основного бокового меню.

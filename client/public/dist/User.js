@@ -96,6 +96,19 @@ export default class User {
         }
     }
     /**
+     * Удаление всех данных пользователя.
+     */
+    deleteDataUser() {
+        console.debug('Объект User инициализировал метод удаления всех данных пользователя.');
+        this.deleteTokenInMemory();
+        this.role = null;
+        this.login = null;
+        this.email = null;
+        this.avatar = null;
+        this.token = null;
+        this.status = null;
+    }
+    /**
      * Сохраняет имеющийся токен пользователя в память браузера.
      */
     saveTokenInMemory() {

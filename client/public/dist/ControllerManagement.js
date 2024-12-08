@@ -119,4 +119,10 @@ export default class ControllerManagement {
             this.user.requestReceiveAllUserData();
         }
     }
+    /**
+     * Выйти из аккаунта пользователя.
+     */
+    logOutOfAccountUser() {
+        this.user.deleteDataUser();
+    }
 }
