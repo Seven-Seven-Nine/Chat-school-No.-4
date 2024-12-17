@@ -2,20 +2,32 @@
 Дипломный проект веб-дизайна по тематике отдельного ресурса для общения для учеников, родителей учеников и работников школы.
 
 ## Установка
-**Пустота...**
+Для компиляции TypeScript для клиента:
+- `cd client/public` *Перейти в директорию клиента*
+- `npm i` *Установить все зависимости проекта*
+- `npx tsc` *Скомпилировать TypeScript-код в JavaScript в директорию dist*
+
+Для компиляции TypeScript для сервера:
+- `cd server/public`
+- `npm i`
+- `npx tsc` 
 
 ## Файловая структура
 - chat.school.4:
-    - client: *Используется TypeSCript*
+    - client:
         - public:
             - css
-            - dist *Директория для JavaScript*
+            - dist
             - node_modules
-            - src *TypeScript файлы*
+            - src
             - index.html
-    - server: *Сервер написан на PHP*
+    - server:
         - public:
-            - html *Директория для хранения html файлов, для последующей отправки клиенту*
-            - index.php *Принимает все RESt API запросы и обрабатывает их*
-        - src *Все*
+            - index.php
+        - src:
+            - html 
     - index.php
+
+## Логика
+*Придумать логику потом*
+**Когда-нибудь**
