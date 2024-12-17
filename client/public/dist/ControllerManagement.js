@@ -2,6 +2,7 @@ import AccountController from "./controllers/AccountController.js";
 import AuthorizationController from "./controllers/AuthorizationController.js";
 import PasswordRecoveryController from "./controllers/PasswordRecoveryController.js";
 import RegistrationController from "./controllers/RegistrationController.js";
+import SettingsControllers from "./controllers/SettingsControllers.js";
 /**
  * Класс управления контроллерами, хранит массив всех контроллеров.
  */
@@ -29,11 +30,12 @@ export default class ControllerManagement {
     /**
      * Добавление контроллеров в массив менеджера контроллеров.
      */
-    async initializerControllers() {
-        await this.controllersArray.push(new AuthorizationController(this.resourceRequestController, this, 'authorizationController'));
-        await this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
-        await this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
-        await this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
+    initializerControllers() {
+        this.controllersArray.push(new AuthorizationController(this.resourceRequestController, this, 'authorizationController'));
+        this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
+        this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
+        this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
+        this.controllersArray.push(new SettingsControllers(this.resourceRequestController, this, 'settingController'));
         this.initializerAuthorizationController();
     }
     /**

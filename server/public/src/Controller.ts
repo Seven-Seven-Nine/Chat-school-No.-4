@@ -23,8 +23,13 @@ export default abstract class Controller {
      * Асинхронная инициализации вёрстки и захвата HTML элементов.
      */
     public async initializerController(): Promise<void> {
+        console.debug(`Призыв демона-контролёра ${this.name}`);
         await this.createHtmlLayout();
         await this.captureHtmlElements();
+    }
+
+    public get getName(): string {
+        return this.name;
     }
 
     /**

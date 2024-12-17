@@ -18,6 +18,7 @@ class Main {
 
     private initializerControllerManager(): void {
         this.controllerManager.main();
+        this.controllerManager.initializerLayoutController('authorizationController');
     }
 }
 

@@ -1,0 +1,44 @@
+form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+form input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid red;
+    background: none;
+    height: 2em;
+    margin: 2em;
+    color: rgb(255, 75, 84);
+    font-size: 14pt;
+    outline: none;
+}
+
+form input::placeholder {
+    font-size: 14pt;
+    text-shadow: 0 0 10px red;
+    padding: 2px;
+}
+
+form button {
+    border: 1px solid red;
+    background: none;
+    padding: 1em 2em;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 10px red);
+    transition: transform normal 0.1s;
+
+    &:hover {
+        background-color: red;
+        color: white;
+    }
+
+    &:active {
+        transition: all 0s;
+        transform: scale(0.9);
+    }
+}

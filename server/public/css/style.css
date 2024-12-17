@@ -1,4 +1,7 @@
 @import url("./main.css");
+@import url("./login.css");
+@import url("./form.css");
+@import url("./animation.css");
 
 * {
     transition: all 0.1s;

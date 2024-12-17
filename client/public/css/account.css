@@ -181,6 +181,7 @@
 
 #account-main-side-menu-status {
     font-size: 12pt;
+    user-select: none;
     color: var(--color-focus);
 }
 
@@ -207,7 +208,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.200);
+        background-color: var(--color-hover-bg);
     }
 }
 
