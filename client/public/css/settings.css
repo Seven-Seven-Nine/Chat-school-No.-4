@@ -1,0 +1,163 @@
+.settings-page {
+    padding: 1em 2.5em;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    animation: new-frame 0.5s normal;
+}
+
+/* Верхняя панель */
+.settings-page .top-panel {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+}
+
+.settings-page h2 {
+    font-weight: normal;
+    font-size: 20pt;
+}
+
+.settings-page .top-panel svg {
+    width: 125px;
+    height: 125px;
+    cursor: pointer;
+}
+
+/* Настройки */
+.settings-page .settings {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+/* Выбор акцентного цвета */
+.settings-page .focus-color {
+    width: 100%;
+    height: 125px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--color-focus);
+    transition: border-bottom 0.5s normal;
+}
+
+.settings-page .focus-color .text-color-setting {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16pt;
+}
+
+.settings-page .focus-color .colors {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.color {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 40px;
+    cursor: pointer;
+    transition: transform 0.05s normal;
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.settings-page .focus-color .colors .blue-color {
+    box-shadow: 0 0 20px blue;
+    background-color: blue;
+    animation: click-color 0.3s ease-in-out;
+}
+
+.settings-page .focus-color .colors .orange-color {
+    box-shadow: 0 0 20px orange;
+    background-color: orange;
+    animation: click-color 0.4s ease-in-out;
+}
+
+.settings-page .focus-color .colors .violet-color {
+    box-shadow: 0 0 20px violet;
+    background-color: violet;
+    animation: click-color 0.5s ease-in-out;
+}
+
+.settings-page .focus-color .colors .red-color {
+    box-shadow: 0 0 20px red;
+    background-color: red;
+    animation: click-color 0.6s ease-in-out;
+}
+
+.settings-page .focus-color .colors .black-color {
+    box-shadow: 0 0 20px black;
+    background-color: black;
+    animation: click-color 0.7s ease-in-out;
+}
+
+.settings-page .focus-color .colors .green-color {
+    box-shadow: 0 0 20px green;
+    background-color: green;
+    animation: click-color 0.8s ease-in-out;
+}
+
+.settings-page .focus-color .colors .yellow-color {
+    box-shadow: 0 0 20px yellow;
+    background-color: yellow;
+    animation: click-color 0.9s ease-in-out;
+}
+
+/* Ссылка на настройки аккаунта */
+.settings-page .link-account-settings {
+    width: 100%;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Сброс настроек */
+.settings-page .reset-settings {
+    width: 100%;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-page .reset-settings div {
+    cursor: pointer;
+
+    &:hover svg path {
+        stroke: var(--color-focus) !important;
+    }
+
+    &:active svg {
+        transform: scale(0.9);
+        transition: all 0s;
+    }
+}

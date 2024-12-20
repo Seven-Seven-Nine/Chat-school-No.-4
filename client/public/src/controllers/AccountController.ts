@@ -87,7 +87,7 @@ export default class AccountController extends Controller {
      * Событие на кнопку настроек в основном меню.
      */
     private onclickSettingBtn(): void {
-        alert('В разработке...');
+        this.controllerManagement.initializerSpecificController('settingsController');
     }
 
     /**

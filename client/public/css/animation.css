@@ -70,3 +70,19 @@
         opacity: 0;
     }
 }
+
+/* Анимация выбора акцентного цвета */
+@keyframes click-color {
+    0% {
+        width: 5px;
+        height: 5px;
+    }
+    50% {
+        width: 60px;
+        height: 60px;
+    }
+    100% {
+        width: 50px;
+        height: 50px;
+    }
+}

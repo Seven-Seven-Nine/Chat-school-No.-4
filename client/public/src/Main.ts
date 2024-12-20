@@ -1,5 +1,6 @@
 import ControllerManagement from "./ControllerManagement.js";
 import ResourceRequestController from "./ResourceRequestController.js";
+import Settings from "./Settings.js";
 import User from "./User.js";
 
 /**
@@ -9,13 +10,15 @@ class Main {
     private resourceRequestController: ResourceRequestController;
     private controllerManagement: ControllerManagement;
     private user: User;
+    private settings: Settings;
 
     constructor() {
         this.infoDebug();
 
         this.resourceRequestController = new ResourceRequestController();
         this.user = new User(this.resourceRequestController);
-        this.controllerManagement = new ControllerManagement(this.resourceRequestController, this.user);
+        this.settings = new Settings();
+        this.controllerManagement = new ControllerManagement(this.resourceRequestController, this.user, this.settings);
     }
 
     private infoDebug(): void {

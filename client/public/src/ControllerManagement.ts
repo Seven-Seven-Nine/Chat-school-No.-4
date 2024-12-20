@@ -3,8 +3,9 @@ import AccountController from "./controllers/AccountController.js";
 import AuthorizationController from "./controllers/AuthorizationController.js";
 import PasswordRecoveryController from "./controllers/PasswordRecoveryController.js";
 import RegistrationController from "./controllers/RegistrationController.js";
-import SettingsControllers from "./controllers/SettingsControllers.js";
+import SettingsController from "./controllers/SettingsController.js";
 import ResourceRequestController from "./ResourceRequestController.js";
+import Settings from "./Settings.js";
 import User from "./User.js";
 
 /**
@@ -13,11 +14,13 @@ import User from "./User.js";
 export default class ControllerManagement {
     private resourceRequestController: ResourceRequestController;
     private user: User;
+    private settings: Settings;
     private controllersArray: Controller[] = [];
 
-    constructor(resourceRequestController: ResourceRequestController, user: User) {
+    constructor(resourceRequestController: ResourceRequestController, user: User, settings: Settings) {
         this.resourceRequestController = resourceRequestController;
         this.user = user;
+        this.settings = settings;
 
         this.debugInfo();
     }
@@ -44,7 +47,7 @@ export default class ControllerManagement {
         this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
         this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
         this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
-        this.controllersArray.push(new SettingsControllers(this.resourceRequestController, this, 'settingController'));
+        this.controllersArray.push(new SettingsController(this.resourceRequestController, this, 'settingsController'));
 
         this.initializerAuthorizationController();
     }
@@ -143,5 +146,28 @@ export default class ControllerManagement {
      */
     public logOutOfAccountUser(): void {
         this.user.deleteDataUser();
+    }
+
+    /**
+     * Сохранить настройки приложения.
+     */
+    public saveSettings(): void {
+        this.settings.saveSettings();
+    }
+
+    /**
+     * Удаление всех настроек приложения из локального хранилища.
+     */
+    public deleteAllSettings(): void {
+        this.settings.deleteAllSettings();
+    }
+
+    /**
+     * Изменение определённой настройки.
+     * @param setting - название настройки.
+     * @param value - значение настройки.
+     */
+    public changeSetting(setting: string, value: string): void {
+        this.settings.changeSettings(setting, value);
     }
 }

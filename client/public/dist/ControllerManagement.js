@@ -2,17 +2,19 @@ import AccountController from "./controllers/AccountController.js";
 import AuthorizationController from "./controllers/AuthorizationController.js";
 import PasswordRecoveryController from "./controllers/PasswordRecoveryController.js";
 import RegistrationController from "./controllers/RegistrationController.js";
-import SettingsControllers from "./controllers/SettingsControllers.js";
+import SettingsController from "./controllers/SettingsController.js";
 /**
  * Класс управления контроллерами, хранит массив всех контроллеров.
  */
 export default class ControllerManagement {
     resourceRequestController;
     user;
+    settings;
     controllersArray = [];
-    constructor(resourceRequestController, user) {
+    constructor(resourceRequestController, user, settings) {
         this.resourceRequestController = resourceRequestController;
         this.user = user;
+        this.settings = settings;
         this.debugInfo();
     }
     debugInfo() {
@@ -35,7 +37,7 @@ export default class ControllerManagement {
         this.controllersArray.push(new RegistrationController(this.resourceRequestController, this, 'registrationController'));
         this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
         this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
-        this.controllersArray.push(new SettingsControllers(this.resourceRequestController, this, 'settingController'));
+        this.controllersArray.push(new SettingsController(this.resourceRequestController, this, 'settingsController'));
         this.initializerAuthorizationController();
     }
     /**
@@ -126,5 +128,25 @@ export default class ControllerManagement {
      */
     logOutOfAccountUser() {
         this.user.deleteDataUser();
+    }
+    /**
+     * Сохранить настройки приложения.
+     */
+    saveSettings() {
+        this.settings.saveSettings();
+    }
+    /**
+     * Удаление всех настроек приложения из локального хранилища.
+     */
+    deleteAllSettings() {
+        this.settings.deleteAllSettings();
+    }
+    /**
+     * Изменение определённой настройки.
+     * @param setting - название настройки.
+     * @param value - значение настройки.
+     */
+    changeSetting(setting, value) {
+        this.settings.changeSettings(setting, value);
     }
 }

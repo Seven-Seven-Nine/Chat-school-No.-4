@@ -58,4 +58,9 @@
     .exit-svg path {
         stroke: var(--color-border) !important;
     }
+
+    /* Иконка сброса */
+    .reset-svg path {
+        stroke: var(--color-border) !important;
+    }
 }
