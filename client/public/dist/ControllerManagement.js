@@ -1,4 +1,5 @@
 import AccountController from "./controllers/AccountController.js";
+import SettingsAccountController from "./controllers/SettingsAccountController.js";
 import AuthorizationController from "./controllers/AuthorizationController.js";
 import PasswordRecoveryController from "./controllers/PasswordRecoveryController.js";
 import RegistrationController from "./controllers/RegistrationController.js";
@@ -38,6 +39,7 @@ export default class ControllerManagement {
         this.controllersArray.push(new PasswordRecoveryController(this.resourceRequestController, this, 'passwordRecoveryController'));
         this.controllersArray.push(new AccountController(this.resourceRequestController, this, 'accountController'));
         this.controllersArray.push(new SettingsController(this.resourceRequestController, this, 'settingsController'));
+        this.controllersArray.push(new SettingsAccountController(this.resourceRequestController, this, 'settingsAccountController'));
         this.initializerAuthorizationController();
     }
     /**

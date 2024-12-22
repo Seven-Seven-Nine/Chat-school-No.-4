@@ -113,7 +113,7 @@ main {
 
 /* Стрелка возвращения */
 .back-arrow {
-    font-size: 38pt;
+    font-size: 28pt;
     user-select: none;
     cursor: pointer;
     font-weight: bold;

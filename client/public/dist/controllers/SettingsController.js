@@ -5,7 +5,7 @@ import Controller from "../Controller.js";
 export default class SettingsController extends Controller {
     async createHtmlLayout() {
         let main = document.getElementById('main');
-        main.innerHTML = await this.resourceRequestController.getHtml('setting.html');
+        main.innerHTML = await this.resourceRequestController.getHtml('settings.html');
     }
     capturingHtmlElements() {
         let backArrow = document.getElementById('back-arrow-settings');
@@ -17,6 +17,7 @@ export default class SettingsController extends Controller {
         let blackColor = document.getElementById('black-color');
         let greenColor = document.getElementById('green-color');
         let yellowColor = document.getElementById('yellow-color');
+        let linkAccountSettings = document.getElementById('link-account-settings');
         let resetIcon = document.getElementById('reset-icon');
         if (backArrow !== null) {
             backArrow.onclick = () => this.onclickBackArrow();
@@ -44,6 +45,9 @@ export default class SettingsController extends Controller {
         }
         if (yellowColor !== null) {
             yellowColor.onclick = () => this.onclickFocusColor('yellow');
+        }
+        if (linkAccountSettings !== null) {
+            linkAccountSettings.onclick = () => this.onclickLinkAccountSettings();
         }
         if (resetIcon !== null) {
             resetIcon.onclick = () => this.onclickResetIcon();
@@ -105,6 +109,12 @@ export default class SettingsController extends Controller {
             default:
                 throw new Error('Неизвестное название цвета!');
         }
+    }
+    /**
+     * Обработчик события для ссылки на настройки аккаунта.
+     */
+    onclickLinkAccountSettings() {
+        this.controllerManagement.initializerSpecificController('settingsAccountController');
     }
     /**
      * Обработчик события для иконки сброса настроек.

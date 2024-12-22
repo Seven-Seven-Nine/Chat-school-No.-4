@@ -6,6 +6,7 @@ export default class Settings {
     constructor() {
         this.settingsMap = new Map();
         this.settingsMap.set('focusColor', 'blue');
+        this.checkingSettingsValueInLocalStorage();
         console.debug('Инициализирован объект Settings.');
     }
     /**
@@ -25,6 +26,7 @@ export default class Settings {
         for (let key of this.settingsMap.keys()) {
             window.localStorage.removeItem(key);
         }
+        this.applyDefaultSettings();
     }
     /**
      * Изменение настройки в settingMap.
@@ -38,6 +40,51 @@ export default class Settings {
                 this.settingsMap.set(setting, value);
                 this.saveSettings();
             }
+        }
+    }
+    /**
+     * Применить настройки по умолчанию.
+     */
+    applyDefaultSettings() {
+        console.debug('Изменение настроек по умолчанию.');
+        let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (isDarkMode) {
+            this.settingsMap.set('focusColor', 'orange');
+            document.documentElement.style.setProperty('--color-focus', 'orange');
+        }
+        else {
+            this.settingsMap.set('focusColor', 'blue');
+            document.documentElement.style.setProperty('--color-focus', 'blue');
+        }
+    }
+    /**
+     * Проверка значения настроек в локальном хранилище.
+     */
+    checkingSettingsValueInLocalStorage() {
+        try {
+            for (let key of this.settingsMap.keys()) {
+                let valueInLocalStorage = window.localStorage.getItem(key);
+                if (valueInLocalStorage !== null) {
+                    console.debug(`В локальном хранилище найден сохранённый параметр ${key}: ${valueInLocalStorage}`);
+                    this.applySavedSetting(key);
+                }
+            }
+        }
+        catch (error) {
+            throw new Error('Ошибка проверки значений настроек в памяти!');
+        }
+    }
+    /**
+     * Применить сохранённую настройку из локального хранилища.
+     * @param ketSetting - ключ параметра настройки.
+     */
+    applySavedSetting(ketSetting) {
+        switch (ketSetting) {
+            case 'focusColor':
+                document.documentElement.style.setProperty('--color-focus', window.localStorage.getItem(ketSetting));
+                break;
+            default:
+                throw new Error('Неизвестный ключ параметра настройки!');
         }
     }
 }
