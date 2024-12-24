@@ -11,11 +11,13 @@ export default class ControllerManagement {
     resourceRequestController;
     user;
     settings;
+    chatManager;
     controllersArray = [];
-    constructor(resourceRequestController, user, settings) {
+    constructor(resourceRequestController, user, settings, chatManager) {
         this.resourceRequestController = resourceRequestController;
         this.user = user;
         this.settings = settings;
+        this.chatManager = chatManager;
         this.debugInfo();
     }
     debugInfo() {
@@ -117,12 +119,13 @@ export default class ControllerManagement {
     /**
      * Получить все данные недостающие данные пользователя через токен.
      */
-    getAllUserDataUsingToken() {
+    async getAllUserDataUsingToken() {
         if (this.user.getToken === null) {
             throw new Error('Пустой токен для получения недостающих данных пользователя!');
         }
         else {
-            this.user.requestReceiveAllUserData();
+            await this.user.requestReceiveAllUserData();
+            await this.chatManager.checkingAvailabilityUserChats();
         }
     }
     /**

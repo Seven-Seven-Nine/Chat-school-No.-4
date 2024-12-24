@@ -8,6 +8,7 @@ import SettingsController from "./controllers/SettingsController.js";
 import ResourceRequestController from "./ResourceRequestController.js";
 import Settings from "./Settings.js";
 import User from "./User.js";
+import ChatManager from "./ChatManager.js";
 
 /**
  * Класс управления контроллерами, хранит массив всех контроллеров.
@@ -16,12 +17,14 @@ export default class ControllerManagement {
     private resourceRequestController: ResourceRequestController;
     private user: User;
     private settings: Settings;
+    private chatManager: ChatManager;
     private controllersArray: Controller[] = [];
 
-    constructor(resourceRequestController: ResourceRequestController, user: User, settings: Settings) {
+    constructor(resourceRequestController: ResourceRequestController, user: User, settings: Settings, chatManager: ChatManager) {
         this.resourceRequestController = resourceRequestController;
         this.user = user;
         this.settings = settings;
+        this.chatManager = chatManager;
 
         this.debugInfo();
     }
@@ -135,11 +138,12 @@ export default class ControllerManagement {
     /**
      * Получить все данные недостающие данные пользователя через токен.
      */
-    public getAllUserDataUsingToken() {
+    public async getAllUserDataUsingToken(): Promise<void> {
         if (this.user.getToken === null) {
             throw new Error('Пустой токен для получения недостающих данных пользователя!');
         } else {
-            this.user.requestReceiveAllUserData();
+            await this.user.requestReceiveAllUserData();
+            await this.chatManager.checkingAvailabilityUserChats();
         }
     }
 

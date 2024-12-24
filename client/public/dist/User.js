@@ -9,6 +9,7 @@ export default class User {
     avatar;
     token;
     status;
+    listChats;
     constructor(resourceRequestController) {
         this.infoDebug();
         this.resourceRequestController = resourceRequestController;
@@ -18,6 +19,7 @@ export default class User {
         this.avatar = null;
         this.token = null;
         this.status = null;
+        this.listChats = null;
         this.checkingTokenInMemory();
     }
     infoDebug() {
@@ -58,6 +60,9 @@ export default class User {
                         this.login = result.body.user.login;
                         this.email = result.body.user.email;
                         this.avatar = result.body.user.avatar_src;
+                        this.listChats = result.body.user.list_chats;
+                        console.debug(`Результат по списку чатов от сервера: ${typeof (result.body.user.list_chats)} ${result.body.user.list_chats}.`);
+                        console.debug(`Полученный результат в итоге: ${typeof (this.listChats)} ${this.listChats}.`);
                         if (this.role === 'user') {
                             this.status = 'Пользователь';
                         }
@@ -178,5 +183,8 @@ export default class User {
     }
     get getStatus() {
         return this.status;
+    }
+    get getListChats() {
+        return this.listChats;
     }
 }

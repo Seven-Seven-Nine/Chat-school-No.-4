@@ -8,5 +8,6 @@ export default class SettingsAccountController extends Controller {
         main.innerHTML = await this.resourceRequestController.getHtml('settingsAccount.html');
     }
     capturingHtmlElements() {
+        // Нахуя!?
     }
 }

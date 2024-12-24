@@ -8,6 +8,7 @@ class GetUserData {
     private string $login;
     private string $email;
     private string $avatar_src;
+    private string $list_chats;
     private DataBase $data_base;
     private mysqli $mysqli;
     private array $json_data;
@@ -34,7 +35,7 @@ class GetUserData {
     }
 
     private function get_user_data(): void {
-        $sql = "SELECT `role`, `login`, `email`, `avatar_src` FROM `users` WHERE `token` = ?";
+        $sql = "SELECT `role`, `login`, `email`, `avatar_src`, `list_chats` FROM `users` WHERE `token` = ?";
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param('s', $this->token);
         $stmt->execute();
@@ -46,6 +47,7 @@ class GetUserData {
             $this->login = $row['login'];
             $this->email = $row['email'];
             $this->avatar_src = $row['avatar_src'];
+            $this->list_chats = $row['list_chats'];
             $this->echo_200();
         } else {
             $this->echo_error_user_undefined();
@@ -58,6 +60,7 @@ class GetUserData {
         $this->json_data['body']['user']['login'] = $this->login;
         $this->json_data['body']['user']['email'] = $this->email;
         $this->json_data['body']['user']['avatar_src'] = $this->avatar_src;
+        $this->json_data['body']['user']['list_chats'] = $this->list_chats;
         echo json_encode($this->json_data);
         http_response_code(200);
         exit(0);

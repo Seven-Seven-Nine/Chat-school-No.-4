@@ -13,7 +13,17 @@ export default class AccountController extends Controller {
         if (iconPointsMenu !== null) {
             iconPointsMenu.onclick = () => this.onclickCreateChatMenu();
         }
+        // this.checkChatsUser();
     }
+    // private async checkChatsUser(): Promise<void> {
+    //     let checkUserInChats: boolean = await this.controllerManagement.checkingUserChats();
+    //     console.debug(`Контроллер AccountController получил результат проверки наличии чатов пользователя: ${checkUserInChats}.`);
+    //     if (checkUserInChats === true) {
+    //         console.debug('Чаты пользователя успешно найдены.');
+    //     } else {
+    //         console.debug(`Чаты пользователя не найдены.`);
+    //     }
+    // }
     /**
      * Создание бокового основного меню контроллера.
      */
