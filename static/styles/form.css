@@ -1,0 +1,28 @@
+.form {
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 5px;
+
+  & input {
+      margin: 30px 0;
+      width: 90%;
+      height: 40px;
+      outline: none;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14pt;
+      transition: border-bottom 300ms normal ease, color 200ms normal ease
+  }
+
+  & .error-input {
+      border-bottom: 1px solid red !important;
+      transition: border-bottom 500ms normal ease, color 300ms normal ease !important;
+
+      &::placeholder {
+          color: red;
+          text-shadow: 0 0 10px red;
+      }
+  }
+}

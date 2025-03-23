@@ -1,0 +1,12 @@
+main {
+  height: 100vh;
+  padding: 100px;
+
+  & div {
+    padding: 200px;
+    background-image: url("/static/svg/icon-not-file.svg");
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: top;
+  } 
+}

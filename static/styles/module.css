@@ -1,0 +1,34 @@
+@keyframes open-module {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes close-module {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.module {
+  width: 100%;
+  min-height: 100px;
+}
+
+.open-module {
+  animation: open-module 250ms normal ease;
+}
+
+.close-module {
+  animation: close-module 200ms forwards normal ease;
+}

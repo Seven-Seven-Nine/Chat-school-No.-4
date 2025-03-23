@@ -1,0 +1,381 @@
+@keyframes open-left-menu {
+  0% {
+      left: -100%;
+  }
+  100% {
+      left: 0;
+  }
+}
+
+@keyframes close-left-menu {
+  0% {
+      left: 0;
+  }
+  100% {
+      left: -100%;
+  }
+}
+
+@keyframes open-darkening-area {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@keyframes close-darkening-area {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+@keyframes open-block-content-information-data {
+  0% {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes close-block-content-information-data {
+  0% {
+      opacity: 1;
+      transform: scale(1);
+  }
+  100% {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+}
+
+main {
+  height: 100vh;
+
+  /* Блок списка чата */
+  & .block-list-chats {
+    width: 500px;
+    height: 100%;
+    border-right: 1px solid var(--border-color);
+  
+    & .block-icon-menu {
+      width: 95%;
+      height: 60px;
+    }
+  
+    & .block-chats {
+      width: 100%;
+      height: 100%;
+      padding: 10px 20px;
+      overflow-y: auto !important;
+  
+      & .block-chat {
+        user-select: none;
+        width: 100%;
+        min-height: 100px;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 100ms normal ease, transform 50ms normal ease;
+  
+        &:hover {
+          background-color: var(--icon-hover-bg);
+        }
+  
+        &:active {
+          transform: scale(0.95);
+        }
+  
+        & .block-icon-chat {
+          width: 30%;
+          height: 100%;
+  
+          & .icon-chat {
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            padding: 25px 8px;
+          }
+        }
+  
+        & .block-title-chat {
+          width: 70%;
+          height: 100%;
+  
+          & h3 {
+            width: 100%;
+            text-align: left;
+            margin: 10px 0;
+            font-size: 14pt;
+          }
+  
+          & p {
+            width: 100%;
+            text-emphasis: left;
+            font-size: 12pt;
+            margin: 5px 0;
+          }
+        }
+      }
+    }
+  }
+  
+  /* Блок чата */
+  & .block-data-chat {
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+  
+    & .block-header-chat {
+      border-bottom: 1px solid var(--border-color);
+      width: 100%;
+      min-height: 50px;
+      padding: 10px 20px;
+  
+      & .block-title-chat {
+        width: 80%;
+        height: 100%;
+  
+        & h2 {
+          margin: 0;
+        }
+      }
+  
+      & .block-menu-chat {
+        width: 20%;
+        height: 100%;
+      }
+    }
+  
+    & .block-main-body-chat {
+      width: 100%;
+      height: 100%;
+      background-image: url("../../svg/logo-no-text-dark.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 20%;
+      filter: brightness(40%);
+    }
+  }
+  
+  /* Блок слоя левого меню */
+  & .block-left-menu-layer {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  
+    /* Блок левого меню */
+    & .block-left-menu {
+      position: relative;
+      width: 25%;
+      min-width: 370px;
+      max-width: 450px;
+      height: 100%;
+      box-shadow: 0 0 10px var(--border-color);
+      background-color: var(--body-bg);
+      z-index: 3;
+      overflow-y: auto;
+  
+      & .block-menu {
+        width: 100%;
+        height: auto;
+        min-height: 90%;
+        padding: 10px 45px;
+  
+        & a {
+          text-decoration: none;
+          margin: 20px 0;
+  
+          &:hover {
+            color: var(--text-color);
+          }
+        }
+  
+        & .menu-button {
+          width: 100%;
+          height: 60px;
+          border-radius: 10px;
+          user-select: none;
+          cursor: pointer;
+          transition: background-color 200ms normal ease, transform 40ms normal ease;
+          margin: 20px 0;
+          padding: 0 10px;
+  
+          &:hover {
+            background-color: var(--icon-hover-bg);
+          }
+  
+          &:active {
+            transform: scale(0.9);
+          }
+  
+          & .block-icon-menu-button {
+            width: 14%;
+            height: 100%;
+          }
+  
+          & .block-text-menu-button {
+            width: 86%;
+            height: 100%;
+            font-size: 14pt;
+          }
+        }
+      }
+  
+      & .block-copyright {
+        width: 100%;
+        height: auto;
+        min-height: 50px;
+      }
+    }
+  
+    /* Блок области затемнения */
+    & .block-darkening-area {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.600);
+      backdrop-filter: blur(5px);
+    }
+  
+    & .block-information-data {
+      width: 75%;
+      height: 100%;
+      z-index: 3;
+      padding: 20px 90px;
+  
+      & .block-content {
+        background-color: var(--body-bg);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px var(--border-color);
+      }
+  
+      & .top-block-information-data {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        margin: 0 0 30px 0;
+  
+        & .block-icons {
+          & .block-main-icons {
+            width: 90%;
+            height: 100%;
+          }
+  
+          & .block-close-icon {
+            width: 10%;
+            min-width: 50px;
+            height: 100%;
+          }
+        }
+      }
+  
+      & .bottom-block-information-data {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        overflow-y: auto;
+  
+        & .left-block-information-data {
+          width: 30%;
+          height: 100%;
+          padding: 10px;
+  
+          & .block-user {
+            padding: 20px 40px;
+            margin: 20px 0;
+  
+            & img {
+              width: 100px;
+              margin-bottom: 10px;
+            }
+  
+            & p {
+              font-weight: bold;
+              margin: 10px 0;
+            }
+          }
+  
+          & .block-update {
+            padding: 20px;
+            margin: 20px 0;
+  
+            & h3 {
+              margin: 20px 0;
+            }
+  
+            & ul {
+              width: 100%;
+  
+              & li {
+                width: 100%;
+                margin: 10px 0;
+              }
+            }
+  
+          }
+        }
+  
+        & .right-block-information-data {
+          width: 70%;
+          height: 100%;
+          padding: 10px 10px 10px 80px;
+  
+          & .block-news {
+            padding: 20px;
+            margin: 20px 0;
+  
+            & p {
+              width: 100%;
+              min-height: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* Анимация открытия левого меню */
+  & .open-block-left-menu {
+    animation: open-left-menu 350ms forwards normal ease !important;
+  }
+  
+  /* Анимация закрытия левого меню */
+  & .close-block-left-menu {
+    animation: close-left-menu 400ms forwards normal ease !important;
+  }
+  
+  /* Анимация появления области затемнения */
+  & .open-block-darkening-area {
+    animation: open-darkening-area 500ms forwards normal ease !important;
+  }
+  
+  /* Анимация исчезновения области затемнения */
+  & .close-block-darkening-area {
+    animation: close-darkening-area 500ms forwards normal ease !important;
+  }
+  
+  /* Анимация появления контента информационного блока */
+  & .open-block-content-information-data {
+    animation: open-block-content-information-data 560ms forwards normal ease !important;
+  }
+  
+  /* Анимация закрытия контента информационного блока */
+  & .close-block-content-information-data {
+    animation: close-block-content-information-data 260ms forwards normal ease !important;
+  }
+}

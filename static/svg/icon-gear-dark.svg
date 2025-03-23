@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="24" height="24" viewBox="0 0 6.3500004 6.3500004" version="1.1" id="svg1" xml:space="preserve" inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)" sodipodi:docname="icon-gear-dark.svg"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: white !important;
+      }
+    }
+  </style>
+  <sodipodi:namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" inkscape:zoom="11.588215" inkscape:cx="18.510184" inkscape:cy="19.157394" inkscape:window-width="1403" inkscape:window-height="876" inkscape:window-x="424" inkscape:window-y="57" inkscape:window-maximized="0" inkscape:current-layer="layer-gears" />
+  <defs id="defs1" />
+  <g inkscape:label="Слой 1" inkscape:groupmode="layer" id="layer-gears">
+    <path id="gears" style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.245807;stroke-dasharray:none;stroke-opacity:1" d="M 2.940769,0.31196479 2.7182819,0.93085654 2.7212237,0.966425 2.8291557,1.5036319 2.2038861,1.7624233 1.9004501,1.3064107 1.8771469,1.2791822 1.2822945,0.99880434 0.95310196,1.3282421 1.2334798,1.9230945 1.2607084,1.9461526 1.716721,2.2498339 1.4576842,2.8748582 0.92047732,2.7669262 0.88490886,2.7642259 0.26601708,2.9864676 V 3.4522922 L 0.88490886,3.674534 0.92047736,3.671834 1.4576842,3.5639016 1.716721,4.1891712 1.2607084,4.4926073 1.2334798,4.5159109 0.95310196,5.1107632 1.2822945,5.4399558 1.8771469,5.1595779 1.9004501,5.1323493 2.2038861,4.6763367 2.8291557,4.9353735 2.7212237,5.4725804 2.7182819,5.5081488 2.940769,6.1270406 H 3.4065935 L 3.6288353,5.5081535 3.6258917,5.4725851 3.518205,4.9353781 4.1432293,4.6763414 4.4469106,5.132354 4.4699688,5.1595823 5.0648212,5.4399602 5.394259,5.1107677 5.1138812,4.5159153 5.0866529,4.4926118 4.6306403,4.1891757 4.8894317,3.5639061 l 0.5372069,0.107932 0.035569,0.0027 0.6188918,-0.2222418 V 2.9864684 L 5.4622071,2.7642267 5.4266386,2.766927 4.8894317,2.8748589 4.6306403,2.2498347 5.0866529,1.9461534 5.1138814,1.9230953 5.3942593,1.3282429 5.0648214,0.99880511 4.4699691,1.2791829 4.446911,1.3064115 4.1432297,1.7624241 3.5182053,1.5036327 3.625892,0.9664258 3.6288338,0.93085734 3.4065921,0.31196553 Z M 3.1735586,2.3030645 A 0.91635116,0.91635116 0 0 1 4.0899992,3.219505 0.91635116,0.91635116 0 0 1 3.1735586,4.1357004 0.91635116,0.91635116 0 0 1 2.2573633,3.219505 0.91635116,0.91635116 0 0 1 3.1735586,2.3030645 Z" inkscape:label="gears" />
+  </g>
+</svg>
