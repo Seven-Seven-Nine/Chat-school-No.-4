@@ -15,11 +15,14 @@
     color-scheme: dark;
     --body-bg: #111;
 
+    --accent-color: white;
+
     --text-color: white;
 
     --border-color: white;
 
     --button-hover-bg: white;
+    --button-hover-border-color: white;
     --button-hover-text-color: black;
 
     --link-hover-color: rgb(232, 61, 255);
@@ -37,19 +40,25 @@
 
     --border-color: black;
 
-    --button-hover-bg: black;
+    --button-hover-bg: rgb(0, 140, 255);
+    --button-hover-border-color: rgb(0, 140, 255);
     --button-hover-text-color: white;
     
-    --link-hover-color: rgb(232, 61, 255);
+    --input-hover-border-color: rgb(0, 140, 255);
+
+    --link-hover-color: rgb(225, 60, 247);
+
+    --icon-hover-bg: rgba(168, 168, 168, 0.589);
   }
 }
 
 html, body {
   width: 100%;
   height: auto;
-  overflow: hidden;
+  overflow: auto;
   padding: 0;
   margin: 0;
+  /* overflow: hidden; */
   font-family: monospace;
   font-size: 14pt;
   background-color: var(--body-bg);

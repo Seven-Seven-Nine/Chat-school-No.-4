@@ -103,6 +103,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
             <img src="./static/svg/human-dark.svg" alt="icon-user">
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
+            <p id="paragraph-role"><?php echo $_SESSION['role'] ?></p>
           </div>
           <div class="flex flex-column flex-center block-content block-update">
             <h3>Updates | Hot-fix</h3>

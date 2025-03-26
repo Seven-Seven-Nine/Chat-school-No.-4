@@ -26,11 +26,12 @@
   margin: 20px 10px;
   font-size: 14pt;
   cursor: pointer;
-  transition: background-color 300ms ease, color 400ms ease, transform 50ms ease, box-shadow 100ms ease;
+  transition: background-color 300ms ease, color 400ms ease, transform 50ms ease, box-shadow 100ms ease, border-color 300ms ease;
 
   &:hover {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text-color);
+    border-color: var(--button-hover-border-color);
     box-shadow: 0 0 15px var(--button-hover-bg);
   }
 

@@ -13,12 +13,16 @@
       border: none;
       border-bottom: 1px solid var(--border-color);
       font-size: 14pt;
-      transition: border-bottom 300ms normal ease, color 200ms normal ease
+      transition: border-color 300ms ease, border-bottom 300ms ease, color 200ms ease;
+
+      &:hover {
+        border-color: var(--input-hover-border-color);
+      }
   }
 
   & .error-input {
       border-bottom: 1px solid red !important;
-      transition: border-bottom 500ms normal ease, color 300ms normal ease !important;
+      transition: border-bottom 500ms ease, color 300ms ease, text-shadow 200ms ease !important;
 
       &::placeholder {
           color: red;
