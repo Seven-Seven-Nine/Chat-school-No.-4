@@ -53,3 +53,17 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .screensaver {
+    & .faces {
+      & .face-first {
+        display: none !important;
+      }
+
+      & .face-third {
+        display: none !important;
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import moduleTransition from "../../static/scripts/moduleTransition.js";
 
+const module = document.getElementById('module');
+
 function account() {
   bindEvent();
 }
@@ -10,6 +12,11 @@ function bindEvent() {
 
   document.getElementById('btn-icon-notification-left-menu').onclick = () => handlerIconWindowNotification();
   document.getElementById('btn-icon-close-left-menu').onclick = () => handlerCloseLeftMenu();
+
+  document.getElementById('btn-close').onclick = () => handlerCloseLeftMenu();
+  if (document.getElementById('btn-admin-panel')) {
+    document.getElementById('btn-admin-panel').onclick = () => handlerBtnAdminPanel();
+  }
   document.getElementById('btn-user').onclick = () => handlerBtnUser();
   document.getElementById('btn-settings').onclick = () => handlerBtnSettings();
   document.getElementById('btn-exit').onclick = () => handlerBtnExit();
@@ -54,12 +61,16 @@ function handlerIconRightMenuChat() {
   alert('Кнопка открытия правого меню чата.');
 }
 
+function handlerBtnAdminPanel() {
+  moduleTransition(module, '');
+}
+
 function handlerBtnUser() {
-  moduleTransition(document.getElementById('module'), '');
+  moduleTransition(module, '');
 }
 
 function handlerBtnSettings() {
-  moduleTransition(document.getElementById('module'), '');
+  moduleTransition(module, '');
 }
 
 function handlerBtnExit() {

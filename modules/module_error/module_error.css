@@ -76,3 +76,22 @@ main {
     }
   }
 }
+
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 45px;
+
+    & .warning {
+      & p {
+        font-size: 60pt;
+        margin: 10px;
+      }
+    }
+
+    & .error-module {
+      text-align: center;
+      padding: 20px 10px;
+    }
+  }
+}

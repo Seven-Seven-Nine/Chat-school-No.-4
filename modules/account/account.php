@@ -40,10 +40,18 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
     <!-- Левое меню -->
     <div id="block-left-menu" class="flex flex-column flex-start block-left-menu">
       <div id="block-menu" class="block-menu">
+      <div class="flex flex-row flex-center menu-button menu-button-close" id="btn-close">
+          <div class="flex flex-row flex-center block-icon-menu-button">
+            <img src="./static/svg/icon-close-dark.svg" alt="icon-button">
+          </div>
+          <div class="flex flex-row flex-start block-text-menu-button">
+            <p>Закрыть</p>
+          </div>
+        </div>
         <?php
           if ($_SESSION['role'] == 'administrator') {
             echo '
-              <div class="flex flex-row flex-center menu-button">
+              <div class="flex flex-row flex-center menu-button" id="btn-admin-panel">
                 <div class="flex flex-row flex-center block-icon-menu-button">
                   <img src="./static/svg/icon-message-dark.svg" alt="icon-button">
                 </div>
@@ -103,7 +111,6 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
             <img src="./static/svg/human-dark.svg" alt="icon-user">
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
-            <p id="paragraph-role"><?php echo $_SESSION['role'] ?></p>
           </div>
           <div class="flex flex-column flex-center block-content block-update">
             <h3>Updates | Hot-fix</h3>

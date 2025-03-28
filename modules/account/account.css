@@ -102,6 +102,10 @@ main {
             border-radius: 100px;
             width: 80px;
             height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
           }
         }
   
@@ -202,6 +206,10 @@ main {
           }
         }
   
+        & .menu-button-close {
+          display: none;
+        }
+
         & .menu-button {
           width: 100%;
           height: 60px;
@@ -256,6 +264,7 @@ main {
       height: 100%;
       z-index: 3;
       padding: 20px 90px;
+      overflow-y: scroll;
   
       & .block-content {
         background-color: var(--body-bg);
@@ -378,5 +387,54 @@ main {
   /* Анимация закрытия контента информационного блока */
   & .close-block-content-information-data {
     animation: close-block-content-information-data 260ms forwards normal ease !important;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    & .block-list-chats {
+      border-right: none !important;
+    }
+
+    & .block-data-chat {
+      display: none !important;
+    }
+
+    & .block-left-menu-layer {
+      & .block-left-menu {
+        width: 100% !important;
+        box-shadow: none;
+
+        & .menu-button-close {
+          display: flex !important;
+        }
+      }
+
+      & .block-information-data {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  main {
+    & .block-left-menu-layer {
+      & .block-information-data {
+        & .bottom-block-information-data {
+          display: flex !important;
+          flex-direction: column !important;
+
+          & .left-block-information-data {
+            width: 100% !important;
+          }
+
+          & .right-block-information-data {
+            width: 100% !important;
+            padding: 10px;
+          }
+        }
+      }
+    }
   }
 }
