@@ -94,3 +94,30 @@
     width: 60px; 
   }
 }
+
+.block-news {
+  width: 100%;
+  padding: 10px 50px;
+
+  .block-list-cards-news {
+    width: 100%;
+    min-height: 100px;
+
+    & .card-news {
+      cursor: pointer;
+      width: 400px;
+      height: 500px;
+      border-radius: 10px;
+      margin: 10px 20px;
+      border: 1px solid var(--border-color);
+      user-select: none;
+      transition: box-shadow 200ms ease, background-color 200ms ease;
+
+      &:hover {
+        background-color: var(--card-hover-bg);
+        box-shadow: 0 0 20px var(--card-hover-bg);
+        border: none;
+      }
+    }
+  }
+}

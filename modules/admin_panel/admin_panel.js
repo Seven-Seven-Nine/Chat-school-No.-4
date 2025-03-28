@@ -2,6 +2,8 @@
 
 import moduleTransition from '../../static/scripts/moduleTransition.js';
 
+const module = document.getElementById('module');
+
 function admin_panel() {
   bindEvent();
 }
@@ -16,11 +18,13 @@ function bindEvent() {
   document.getElementById('icon-working-with-news').onclick = () => handlerIconNews();
   document.getElementById('icon-working-with-updates').onclick = () => handlerIconUpdates();
   document.getElementById('icon-working-with-users').onclick = () => handlerIconUsers();
+
+  document.getElementById('card-add-news').onclick = () => handlerCardAddNews();
 }
 
 // Обработчики
 function handlerBtnReturn() {
-  moduleTransition(document.getElementById('module'), 'account');
+  moduleTransition(module, 'account');
 }
 
 function handlerBtnNews() {
@@ -63,6 +67,10 @@ function handlerIconUsers() {
   closeBlock('block-news', 300);
   closeBlock('block-updates', 300);
   setTimeout(() => { openBlock('block-users') }, 300);
+}
+
+function handlerCardAddNews() {
+  moduleTransition(module, '');
 }
 
 // Анимации блоков

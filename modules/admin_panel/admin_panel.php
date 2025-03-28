@@ -43,8 +43,13 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   </div>
 
   <!-- Новости -->
-  <div id="block-news" class="display-none flex flex-column flex-start">
+  <div id="block-news" class="display-none flex flex-column flex-start block-news">
     <h2>Новости</h2>
+    <div class="block-list-cards-news flex flex-row flex-start flex-wrap">
+      <div class="card-news flex flex-column flex-center" id="card-add-news">
+        <img src="./static/svg/icon-plus-dark.svg" alt="icon">
+      </div>
+    </div>
   </div>
 
   <!-- Обновления -->
