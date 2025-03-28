@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Плавный переход к следующему модулю.
  * @param {HTMLDivElement} module 

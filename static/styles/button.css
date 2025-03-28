@@ -1,26 +1,7 @@
-.button-error {
-  border: 1px solid var(--border-color);
-  background: none;
-  margin: 20px 15px;
-  padding: 15px 40px;
-  border-radius: 5px;
-  font-size: 14pt;
-  transition: background-color 200ms ease, color 300ms ease, box-shadow 250ms ease, transform 50ms ease;
-
-  &:hover {
-    background-color: var(--button-hover-bg);
-    color: var(--button-hover-text-color);
-    box-shadow: 0 0 20px var(--button-hover-bg);
-  }
-
-  &:active {
-    transform: scale(0.9);
-  }
-}
-
 .button-default {
   border: 1px solid var(--border-color);
   background: none;
+  user-select: none;
   border-radius: 5px;
   padding: 15px 35px;
   margin: 20px 10px;
@@ -43,6 +24,7 @@
 .icon-button {
   cursor: pointer;
   text-decoration: none;
+  user-select: none;
   padding: 10px;
   border-radius: 10px;
   transition: background-color 200ms normal ease, transform 50ms normal ease;

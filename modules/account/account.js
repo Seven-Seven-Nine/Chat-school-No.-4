@@ -1,3 +1,5 @@
+'use strict';
+
 import moduleTransition from "../../static/scripts/moduleTransition.js";
 
 const module = document.getElementById('module');
@@ -62,7 +64,7 @@ function handlerIconRightMenuChat() {
 }
 
 function handlerBtnAdminPanel() {
-  moduleTransition(module, '');
+  moduleTransition(module, 'admin_panel');
 }
 
 function handlerBtnUser() {

@@ -1,3 +1,5 @@
+'use strict';
+
 import moduleTransition from '../../static/scripts/moduleTransition.js';
 
 function module_error() {
