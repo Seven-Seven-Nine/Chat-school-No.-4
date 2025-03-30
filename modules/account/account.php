@@ -105,7 +105,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
           </div>
         </div>
       </div>
-      <div class="flex flex-row flex-start flex-wrap bottom-block-information-data">
+      <div class="flex flex-row flex-center flex-wrap bottom-block-information-data">
         <div class="flex flex-column flex-start left-block-information-data">
           <div class="flex flex-column flex-center block-content block-user">
             <img src="./static/svg/human-dark.svg" alt="icon-user">
@@ -122,14 +122,10 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
           </div>
         </div>
         <div class="flex flex-column flex-start right-block-information-data">
-          <div class="flex flex-column flex-center block-content block-news">
-            <h3>Новость 1 | 2025-02-25</h3>
-            <p>Текст новости 1.</p>
-          </div>
-          <div class="flex flex-column flex-center block-content block-news">
-            <h3>Новость 2 | 2025-02-25</h3>
-            <p>Текст новости 2.</p>
-          </div>
+          <?php
+          require_once $_SERVER['DOCUMENT_ROOT'] . '/models/News.php';
+          News::display_all_news_list();
+          ?>
         </div>
       </div>
     </div>

@@ -62,7 +62,7 @@ class News {
     $stmt->execute();
   }
 
-  public function display_all_news(): void {
+  public static function display_all_news_card(): void {
     try {
       $connection = get_connection_database();
       $stmt = $connection->prepare('SELECT `id_news`, `id_user`, `title`, `date`, `text` FROM `news`');
@@ -91,5 +91,32 @@ class News {
     } catch (\Throwable $th) {
       echo '<p class="text-error">Ошибка запроса: '. $th .'</p>';
     }
+  }
+
+  public static function display_all_news_list(): void {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('SELECT `title`, `date`, `text` FROM `news`');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 0) {
+      echo '
+        <div class="flex flex-column flex-center block-content block-news">
+          <p>Админ ленивая жопка и не выкладывает обновления :<</p>
+        </div>
+      ';
+    } else {
+      while($row = $result->fetch_assoc()) {
+        echo '
+          <div class="flex flex-column flex-center block-content block-news">
+            <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
+            <p>'. $row['text'] .'</p>
+          </div>
+        ';
+      }
+    }
+
+    $stmt->close();
+    $connection->close();
   }
 }

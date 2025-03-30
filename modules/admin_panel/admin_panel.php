@@ -114,8 +114,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       </div>
       <?php
       require_once $_SERVER['DOCUMENT_ROOT'] . '/models/News.php';
-      $news = new News(null, null, null, null, null);
-      $news->display_all_news();
+      News::display_all_news_card();
       ?>
     </div>
   </div>

@@ -299,6 +299,7 @@ main {
         height: auto;
         min-height: 200px;
         overflow-y: auto;
+        align-items: flex-start;
   
         & .left-block-information-data {
           width: 30%;
