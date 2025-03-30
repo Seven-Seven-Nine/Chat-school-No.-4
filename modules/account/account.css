@@ -327,17 +327,13 @@ main {
   
             & h3 {
               margin: 20px 0;
+              text-align: center;
             }
   
-            & ul {
+            & h3, p {
               width: 100%;
-  
-              & li {
-                width: 100%;
-                margin: 10px 0;
-              }
             }
-  
+
           }
         }
   

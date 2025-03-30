@@ -112,14 +112,10 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
           </div>
-          <div class="flex flex-column flex-center block-content block-update">
-            <h3>Updates | Hot-fix</h3>
-            <ul>
-              <li>Добавленно что-то.</li>
-              <li>Измененно вот это.</li>
-              <li>Удалено это.</li>
-            </ul>
-          </div>
+          <?php
+          require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Update.php';
+          Update::display_all_update_list();
+          ?>
         </div>
         <div class="flex flex-column flex-start right-block-information-data">
           <?php

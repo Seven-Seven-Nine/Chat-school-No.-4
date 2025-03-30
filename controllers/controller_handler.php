@@ -2,38 +2,42 @@
 
 session_start();
 
+require_once './UserController.php';
+require_once './NewsController.php';
+require_once './UpdateController.php';
+
 if (isset($_GET['create_user'])) {
-  require_once './UserController.php';
-  $user_controller = new UserController();
-  $user_controller->create();
+  UserController::create();
 }
 
 if (isset($_GET['login_user'])) {
-  require_once './UserController.php';
-  $user_controller = new UserController();
-  $user_controller->login();
+  UserController::login();
 }
 
 if (isset($_GET['logout_user'])) {
-  require_once './UserController.php';
-  $user_controller = new UserController();
-  $user_controller->logout();
+  UserController::logout();
 }
 
 if (isset($_GET['add_news'])) {
-  require_once './NewsController.php';
-  $news_controller = new NewsController();
-  $news_controller->add_news();
+  NewsController::add_news();
 }
 
 if (isset($_GET['edit_news'])) {
-  require_once './NewsController.php';
-  $news_controller = new NewsController();
-  $news_controller->edit_news();
+  NewsController::edit_news();
 }
 
 if (isset($_GET['delete_news'])) {
-  require_once './NewsController.php';
-  $news_controller = new NewsController();
-  $news_controller->delete_news();
+  NewsController::delete_news();
 }
+
+if (isset($_GET['add_update'])) {
+  UpdateController::add_update();
+}
+
+if (isset($_GET['edit_update'])) {
+  UpdateController::changing_update();
+}
+
+if (isset($_GET['delete_update'])) {
+  UpdateController::delete_update();
+} 

@@ -18,6 +18,7 @@
         'account' => require_once './modules/account/account.php',
         'admin_panel' => require_once './modules/admin_panel/admin_panel.php',
         'edit_news' => require_once './modules/edit_news/edit_news.php',
+        'edit_update' => require_once './modules/edit_update/edit_update.php',
         default => require_once './modules/module_error/module_error.php',
       };
     } else {

@@ -38,7 +38,7 @@ if (!empty($data_news)) {
       <input type="text" placeholder="Дата" value="<?php echo $date_news ?>">
       <input type="date" name="date">
     </div>
-    <textarea name="text"><?php echo $text_news ?></textarea>
+    <textarea name="text"  placeholder="Текст"><?php echo $text_news ?></textarea>
     <div class="flex flex-row flex-center">
       <button class="button-default" type="submit">Изменить</button>
       <button id="btn-delete" class="button-default button-delete" type="button">Удалить</button>

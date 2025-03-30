@@ -3,7 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/User.php';
 
 class UserController {
-  public function create(): void {
+  public static function create(): void {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $login = $_POST['login'];
       $email = $_POST['email'];
@@ -22,7 +22,7 @@ class UserController {
     }
   }
 
-  public function login(): void {
+  public static function login(): void {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $login = $_POST['login'];
       $password = $_POST['password'];
@@ -45,7 +45,7 @@ class UserController {
     }
   }
 
-  public function logout(): void {
+  public static function logout(): void {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $user = new User(null, null, null, null, null);
       $user->delete_session();

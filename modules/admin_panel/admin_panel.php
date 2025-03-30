@@ -25,6 +25,15 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       case 'successful_news_deletion':
         echo '<p class="notification notification-green">Успешное удаление новости!</p>';
         break;
+      case 'successful_addition_updates':
+        echo '<p class="notification notification-green">Успешное добавление обновлений!</p>';
+        break;
+      case 'successful_update_deletion':
+        echo '<p class="notification notification-green">Успешное удаление обновлений!</p>';
+        break;
+      case 'successful_update_update':
+        echo '<p class="notification notification-green">Успешное обновление обновлений!</p>';
+        break;
       default:
         echo '<p class="notification notification-red">Неизвестный результат!</p>';
         break;
@@ -42,6 +51,15 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       case 'news_deletion_error':
         echo '<p class="notification notification-red">Ошибка редактирования новости!</p>';
         break;
+      case 'error_adding_updates':
+        echo '<p class="notification notification-red">Ошибка добавления обновления!</p>';
+        break;
+      case 'error_deletion_updates':
+        echo '<p class="notification notification-red">Ошибка удаления обновления!</p>';
+        break;
+      case 'error_update_update':
+        echo '<p class="notification notification-red">Ошибка обновления обновления!</p>';
+        break;
       default:
         echo '<p class="notification notification-red">Неизвестная ошибка!</p>';
         break;
@@ -52,7 +70,8 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <!-- Меню админ панели -->
   <div id="block-menu-admin-panel" class="flex flex-column flex-center block-admin-panels">
     <h2>Модуль админ-панели.</h2>
-    <p>Данные администратора: <span class="green-text"><?php echo $_SESSION['id'] ?></span> | <span class="green-text"><?php echo $_SESSION['login'] ?></span> | <span
+    <p>Данные администратора: <span class="green-text"><?php echo $_SESSION['id'] ?></span> | <span
+        class="green-text"><?php echo $_SESSION['login'] ?></span> | <span
         class="red-text"><?php echo $_SESSION['role'] ?></span> | <span
         class="yellow-text"><?php echo $_SESSION['token'] ?></span></p>
     <div class="flex flex-row flex-center block-menu-panel">
@@ -83,8 +102,8 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <!-- Новости -->
   <div id="block-news" class="display-none flex flex-column flex-start block-news">
     <h2>Новости</h2>
-    <div class="block-list-cards-news flex flex-row flex-center flex-wrap">
-      <div class="card-news image-plus flex flex-column flex-center" id="card-add-news">
+    <div class="block-list-cards flex flex-row flex-center flex-wrap">
+      <div class="card image-plus flex flex-column flex-center" id="card-add-news">
         <svg width="90" height="90" viewBox="0 0 23.8125 23.8125" version="1.1" id="svg1" xml:space="preserve"
           inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)" sodipodi:docname="icon-plus-dark.svg"
           xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -122,6 +141,40 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <!-- Обновления -->
   <div id="block-updates" class="display-none flex flex-column flex-start">
     <h2>Записи обновлений</h2>
+    <div class="block-list-cards flex flex-row flex-center">
+      <div class="card image-plus flex flex-column flex-center" id="card-add-updates">
+        <svg width="90" height="90" viewBox="0 0 23.8125 23.8125" version="1.1" id="svg1" xml:space="preserve"
+          inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)" sodipodi:docname="icon-plus-dark.svg"
+          xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+          xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
+          xmlns:svg="http://www.w3.org/2000/svg">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              path {
+                stroke: white !important;
+              }
+            }
+          </style>
+          <sodipodi:namedview id="namedview1" pagecolor="#212121" bordercolor="#000000" borderopacity="0.25"
+            inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0"
+            inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" inkscape:zoom="5.7941076" inkscape:cx="29.85792"
+            inkscape:cy="47.807189" inkscape:window-width="1403" inkscape:window-height="876" inkscape:window-x="237"
+            inkscape:window-y="62" inkscape:window-maximized="0" inkscape:current-layer="layer1" />
+          <defs id="defs1" />
+          <g inkscape:label="Слой 1" inkscape:groupmode="layer" id="layer1">
+            <path
+              d="m 23.00508,13.615299 h -9.099567 v 9.446877 H 9.9230059 V 13.615299 H 0.82343917 V 10.095874 H 9.9230059 V 0.71845897 H 13.905513 V 10.095874 h 9.099567 z"
+              id="text19"
+              style="font-size:44.0239px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:none;stroke:#000000;stroke-width:0.854975;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+              aria-label="+" />
+          </g>
+        </svg>
+      </div>
+      <?php
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Update.php';
+      Update::display_all_updates_card();
+      ?>
+    </div>
   </div>
 
   <!-- Пользователи -->
@@ -130,13 +183,24 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   </div>
 
   <!-- Форма добавления новости -->
-  <div id="block-add-news" class="display-none flex flex-column flex-start block-add-news">
-    <h2>Добавить новость</h2>
+  <div id="block-add-news" class="display-none flex flex-column flex-start block-form-add">
+    <h2>Опубликовать новость</h2>
     <form class="form flex flex-column flex-center" action="/controllers/controller_handler.php?add_news" method="post">
       <input type="text" name="title" placeholder="Заголовок" required>
       <input type="date" name="date" required>
       <textarea name="text" placeholder="Текст" required></textarea>
-      <button class="button-default" type="submit">Добавить</button>
+      <button class="button-default" type="submit">Опубликовать</button>
+    </form>
+  </div>
+
+  <!-- Форма добавления списка обновлений -->
+  <div id="block-add-updates" class="display-none flex flex-column flex-start block-form-add">
+    <h2>Опубликовать обновления</h2>
+    <form class="form flex flex-column flex-center" action="/controllers/controller_handler.php?add_update" method="post">
+      <input type="text" name="title" placeholder="Заголовок">
+      <input type="date" name="date" required>
+      <textarea name="text" placeholder="Текст" required></textarea>
+      <button class="button-default" type="submit">Опубликовать</button>
     </form>
   </div>
 </main>

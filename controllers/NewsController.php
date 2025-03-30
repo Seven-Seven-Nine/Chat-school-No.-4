@@ -3,7 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/News.php';
 
 class NewsController {
-  public function add_news(): void {
+  public static function add_news(): void {
     $title = $_POST['title'];
     $date = $_POST['date'];
     $text = $_POST['text'];
@@ -19,7 +19,7 @@ class NewsController {
     }
   }
 
-  public function edit_news(): void {
+  public static function edit_news(): void {
     $id_news = $_GET['id_news'];
     $title = $_POST['title'];
 
@@ -42,7 +42,7 @@ class NewsController {
     }
   }
 
-  public function delete_news(): void {
+  public static function delete_news(): void {
     $id_news = $_GET['id_news'];
 
     try {

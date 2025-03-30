@@ -69,17 +69,13 @@ class News {
       $stmt->execute();
       $result = $stmt->get_result();
   
-      if ($result->num_rows == 0) {
-        echo '
-          <p>:(</p>
-        ';
-      } else {
+      if ($result->num_rows != 0) {
         while($row = $result->fetch_assoc()) {
           echo '
             <a href="/?module=edit_news&id_news='. $row['id_news'] .'">
-              <div class="card-news flex flex-column flex-center">
+              <div class="card flex flex-column flex-center">
                 <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-                <p class="flex flex-column flex-center">'. $row['text'] .'</p>
+                <p class="flex flex-column flex-center">'. nl2br($row['text']) .'</p>
               </div>
             </a>
           ';
@@ -110,7 +106,7 @@ class News {
         echo '
           <div class="flex flex-column flex-center block-content block-news">
             <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-            <p>'. $row['text'] .'</p>
+            <p>'. nl2br($row['text']) .'</p>
           </div>
         ';
       }

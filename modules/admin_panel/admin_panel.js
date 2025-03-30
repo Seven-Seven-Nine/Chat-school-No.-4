@@ -20,6 +20,7 @@ function bindEvent() {
   document.getElementById('icon-working-with-users').onclick = () => handlerIconUsers();
 
   document.getElementById('card-add-news').onclick = () => handlerCardAddNews();
+  document.getElementById('card-add-updates').onclick = () => handlerCardAddUpdates();
 }
 
 // Обработчики
@@ -55,6 +56,7 @@ function handlerIconNews() {
   closeBlock('block-updates', 300);
   closeBlock('block-users', 300);
   closeBlock('block-add-news', 300);
+  closeBlock('block-add-updates', 300);
   setTimeout(() => { openBlock('block-news') }, 300);
 }
 
@@ -62,6 +64,7 @@ function handlerIconUpdates() {
   closeBlock('block-news', 300);
   closeBlock('block-users', 300);
   closeBlock('block-add-news', 300);
+  closeBlock('block-add-updates', 300);
   setTimeout(() => { openBlock('block-updates') }, 300);
 }
 
@@ -69,12 +72,18 @@ function handlerIconUsers() {
   closeBlock('block-news', 300);
   closeBlock('block-updates', 300);
   closeBlock('block-add-news', 300);
+  closeBlock('block-add-updates', 300);
   setTimeout(() => { openBlock('block-users') }, 300);
 }
 
 function handlerCardAddNews() {
   closeBlock('block-news', 300);
   setTimeout(() => { openBlock('block-add-news') }, 300);
+}
+
+function handlerCardAddUpdates() {
+  closeBlock('block-updates', 300);
+  setTimeout(() => { openBlock('block-add-updates') }, 300);
 }
 
 // Анимации блоков

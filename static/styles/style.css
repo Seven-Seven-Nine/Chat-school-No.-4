@@ -16,7 +16,7 @@
     color-scheme: dark;
     --body-bg: #111;
 
-    --accent-color: white;
+    --accent-color: rgb(14, 120, 241);
 
     --text-color: white;
 
@@ -47,8 +47,6 @@
     --button-hover-bg: rgb(0, 140, 255);
     --button-hover-border-color: rgb(0, 140, 255);
     --button-hover-text-color: white;
-    
-    --input-hover-border-color: rgb(0, 140, 255);
 
     --link-hover-color: rgb(225, 60, 247);
 
