@@ -55,6 +55,13 @@ class News {
     $connection->close();
   }
 
+  public function delete(): void {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('DELETE FROM `news` WHERE `id_news` = ?');
+    $stmt->bind_param('i', $this->id);
+    $stmt->execute();
+  }
+
   public function display_all_news(): void {
     try {
       $connection = get_connection_database();

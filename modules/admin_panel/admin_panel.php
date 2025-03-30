@@ -22,6 +22,9 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       case 'successful_news_editing':
         echo '<p class="notification notification-green">Успешное редактирование новости!</p>';
         break;
+      case 'successful_news_deletion':
+        echo '<p class="notification notification-green">Успешное удаление новости!</p>';
+        break;
       default:
         echo '<p class="notification notification-red">Неизвестный результат!</p>';
         break;
@@ -34,6 +37,9 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
         echo '<p class="notification notification-red">Ошибка добавления новости!</p>';
         break;
       case 'error_editing_news':
+        echo '<p class="notification notification-red">Ошибка редактирования новости!</p>';
+        break;
+      case 'news_deletion_error':
         echo '<p class="notification notification-red">Ошибка редактирования новости!</p>';
         break;
       default:
@@ -77,7 +83,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <!-- Новости -->
   <div id="block-news" class="display-none flex flex-column flex-start block-news">
     <h2>Новости</h2>
-    <div class="block-list-cards-news flex flex-row flex-start flex-wrap">
+    <div class="block-list-cards-news flex flex-row flex-center flex-wrap">
       <div class="card-news image-plus flex flex-column flex-center" id="card-add-news">
         <svg width="90" height="90" viewBox="0 0 23.8125 23.8125" version="1.1" id="svg1" xml:space="preserve"
           inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)" sodipodi:docname="icon-plus-dark.svg"

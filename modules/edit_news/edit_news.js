@@ -18,7 +18,9 @@ function handlerBtnReturn() {
 }
 
 function handlerBtnDelete() {
-  window.location = '/controllers/controller_handler.php?delete_news';
+  const urlParams = new URLSearchParams(window.location.href);
+  const idNews = urlParams.get('id_news');
+  window.location = `/controllers/controller_handler.php?delete_news&id_news=${idNews}`;
 }
 
 editNews();
