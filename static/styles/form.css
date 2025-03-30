@@ -5,28 +5,47 @@
   border-radius: 5px;
 
   & input {
-      margin: 30px 0;
-      width: 90%;
-      height: 40px;
-      outline: none;
-      background: none;
-      border: none;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 14pt;
-      transition: border-color 300ms ease, border-bottom 300ms ease, color 200ms ease;
+    margin: 30px 0;
+    width: 90%;
+    height: 40px;
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14pt;
+    transition: border-color 300ms ease, border-bottom 300ms ease, color 200ms ease;
 
-      &:hover {
-        border-color: var(--input-hover-border-color);
-      }
+    &:hover {
+      border-color: var(--input-hover-border-color);
+    }
   }
 
   & .error-input {
-      border-bottom: 1px solid red !important;
-      transition: border-bottom 500ms ease, color 300ms ease, text-shadow 200ms ease !important;
+    border-bottom: 1px solid red !important;
+    transition: border-bottom 500ms ease, color 300ms ease, text-shadow 200ms ease !important;
 
-      &::placeholder {
-          color: red;
-          text-shadow: 0 0 10px red;
-      }
+    &::placeholder {
+        color: red;
+        text-shadow: 0 0 10px red;
+    }
+  }
+
+  & textarea {
+    margin: 30px 0;
+    width: 90%;
+    height: 300px;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    border: none;
+    border: 1px solid var(--border-color);
+    font-size: 14pt;
+  }
+
+  & .double-field {
+    & input {
+      width: 50%;
+      margin: 30px 15px;
+    }
   }
 }

@@ -19,3 +19,21 @@ if (isset($_GET['logout_user'])) {
   $user_controller = new UserController();
   $user_controller->logout();
 }
+
+if (isset($_GET['add_news'])) {
+  require_once './NewsController.php';
+  $news_controller = new NewsController();
+  $news_controller->add_news();
+}
+
+if (isset($_GET['edit_news'])) {
+  require_once './NewsController.php';
+  $news_controller = new NewsController();
+  $news_controller->edit_news();
+}
+
+if (isset($_GET['delete_news'])) {
+  require_once './NewsController.php';
+  $news_controller = new NewsController();
+  $news_controller->delete_news();
+}

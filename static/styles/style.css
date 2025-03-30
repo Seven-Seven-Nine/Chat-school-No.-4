@@ -4,6 +4,7 @@
 @import url("./button.css");
 @import url("./form.css");
 @import url("./flex.css");
+@import url("./notification.css");
 
 * {
   transition: all 150ms ease;
@@ -29,7 +30,8 @@
 
     --icon-hover-bg: rgb(43, 43, 43);
 
-    --card-hover-bg: rgb(0, 127, 136);
+    --card-hover-bg: white;
+    --card-hover-color-text: black;
   }
 }
 

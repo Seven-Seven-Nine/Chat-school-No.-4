@@ -21,6 +21,13 @@
   }
 }
 
+.button-delete:hover {
+    background-color: red !important;
+    color: white !important;
+    border-color: red !important;
+    box-shadow: 0 0 15px red !important;
+}
+
 .icon-button {
   cursor: pointer;
   text-decoration: none;

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/User.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/User.php';
 
 class UserController {
   public function create(): void {
@@ -34,6 +34,8 @@ class UserController {
           $user->create_session($user->get_login(), $user->get_role());
 
           header('Location: /?module=account');
+        } else {
+          header('Location: /?module=login&error=password_not_equal');
         }
       } catch (\Throwable $th) {
         header('Location: /?module=login&error=user_does_not_exist');

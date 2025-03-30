@@ -14,6 +14,9 @@ if (isset($_SESSION['login']) && isset($_SESSION['role']) && isset($_SESSION['to
         case 'user_does_not_exist':
           echo '<p class="text-error">Пользователь не зарегистрирован!</p>';
           break;
+        case 'password_not_equal':
+          echo '<p class="text-error">Неправильный пароль!</p>';
+          break;
         default:
           echo '<p class="text-error">Неизвестная ошибка!</p>';
           break;

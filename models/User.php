@@ -1,16 +1,16 @@
 <?php
 
-require_once '../config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 
 class User {
-  private $id;
-  private $login;
-  private $role;
-  private $email;
-  private $password;
-  private $token;
+  private int | null $id;
+  private string | null $login;
+  private string | null $role;
+  private string | null $email;
+  private string | null $password;
+  private string | null $token;
 
-  public function __construct($id, $login, $role, $email, $password) {
+  public function __construct(int | null $id, string | null $login, string | null $role, string | null $email, string | null $password) {
     $this->id = $id;
     $this->login = $login;
     $this->role = $role;
@@ -45,6 +45,7 @@ class User {
   }
 
   public function create_session(string $login, string $role): void {
+    $_SESSION['id'] = $this->id;
     $_SESSION['login'] = $login;
     $_SESSION['role'] = $role;
     $_SESSION['token'] = $this->token;
@@ -72,7 +73,7 @@ class User {
     $result = $stmt->get_result();
     
     while ($row = $result->fetch_assoc()) {
-      $this->id = $row['id'];
+      $this->id = $row['id_user'];
       $this->login = $row['login'];
       $this->role = $row['role'];
       $this->email = $row['email'];
