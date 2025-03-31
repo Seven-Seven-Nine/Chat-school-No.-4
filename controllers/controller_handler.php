@@ -43,7 +43,7 @@ if (isset($_GET['add_update'])) {
 }
 
 if (isset($_GET['edit_update'])) {
-  UpdateController::changing_update();
+  UpdateController::edit_update();
 }
 
 if (isset($_GET['delete_update'])) {
