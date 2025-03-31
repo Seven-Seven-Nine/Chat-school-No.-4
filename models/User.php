@@ -30,12 +30,10 @@ class User {
     $stmt->close();
     $connection->close();
 
-    $this->create_session($this->login, 'user');
+    $this->create_session();
   }
 
   public function check_password(string $password): bool {
-    $this->get_all_data();
-
     if (password_verify($password, $this->password)) {
       $this->update_token();
       return true;
@@ -44,10 +42,10 @@ class User {
     }
   }
 
-  public function create_session(string $login, string $role): void {
+  public function create_session(): void {
     $_SESSION['id'] = $this->id;
-    $_SESSION['login'] = $login;
-    $_SESSION['role'] = $role;
+    $_SESSION['login'] = $this->login;
+    $_SESSION['role'] = $this->role;
     $_SESSION['token'] = $this->token;
   }
 
@@ -64,7 +62,7 @@ class User {
     $connection->close();
   }
 
-  private function get_all_data(): void {
+  public function get_all_data(): void {
     $connection = get_connection_database();
     $stmt = $connection->prepare('SELECT `id_user`, `login`, `role`, `email`, `password` FROM `users` WHERE `login` = ?');
     $stmt->bind_param('s', $this->login);
@@ -82,25 +80,5 @@ class User {
 
     $stmt->close();
     $connection->close();
-  }
-
-  public function get_id(): int {
-    return $this->id;
-  }
-
-  public function get_login(): string {
-    return $this->login;
-  }
-
-  public function get_role(): string {
-    return $this->role;
-  }
-
-  public function get_email(): string {
-    return $this->email;
-  }
-
-  public function get_password(): string {
-    return $this->password;
   }
 }

@@ -9,7 +9,7 @@ class UserController {
       $email = $_POST['email'];
       $password = $_POST['password'];
 
-      $user = new User(null,$login, null, $email, $password);
+      $user = new User(null,$login, 'user', $email, $password);
 
       try {
         $user->save();
@@ -29,9 +29,11 @@ class UserController {
 
       $user = new User(null,$login, null, null, $password);
 
+      $user->get_all_data();
+
       try {
         if ($user->check_password($password)) {
-          $user->create_session($user->get_login(), $user->get_role());
+          $user->create_session();
 
           header('Location: /?module=account');
         } else {
