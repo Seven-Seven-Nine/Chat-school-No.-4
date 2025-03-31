@@ -20,6 +20,10 @@
   }
 }
 
+main {
+  overflow-y: scroll;
+}
+
 .block-arrow-back {
   width: 100%;
 
@@ -30,20 +34,20 @@
   }
 }
 
+& .green-text {
+  color: lightgreen;
+}
+
+& .red-text {
+  color: rgb(255, 63, 63);
+}
+
+& .yellow-text   {
+  color: yellow;
+}
+
 .block-admin-panels {
   height: 80vh;
-
-  & .green-text {
-    color: lightgreen;
-  }
-  
-  & .red-text {
-    color: rgb(255, 63, 63);
-  }
-  
-  & .yellow-text   {
-    color: yellow;
-  }
 
   & .block-menu-panel {
     border: 1px solid var(--border-color);
@@ -139,6 +143,23 @@
 .block-news {
   width: 100%;
   padding: 10px 50px;
+}
+
+.block-users {
+  width: 100%;
+
+  & .block-list-user {
+    padding: 10px 50px;
+    align-items: baseline;
+
+    & .element-list {
+      margin: 20px 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .block-form-add {

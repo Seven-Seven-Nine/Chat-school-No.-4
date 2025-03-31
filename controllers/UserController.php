@@ -54,4 +54,43 @@ class UserController {
       header('Location: /');
     } 
   }
+
+  public static function edit_user(): void {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $id = $_GET['id_user'];
+      $login = $_POST['login'];
+      $role = $_POST['role'];
+      $email = $_POST['email'];
+
+      $user = new User($id, $login, $role, $email, null);
+
+      try {
+        $user->update();
+        header('Location: /?module=admin_panel&result=successful_user_update');
+      } catch (\Throwable $th) {
+        echo $th;
+        header('Location: /?module=admin_panel&error=error_updating_user');
+      }
+    } else {
+      header('Location: /?module=error');
+    }
+  }
+
+  public static function delete_user(): void {
+    if ($_SESSION['role'] == 'administrator') {
+      $id = $_GET['id_user'];
+
+      $user = new User($id, null, null, null, null);
+
+      try {
+        $user->delete();
+        header('Location: /?module=admin_panel&result=successful_user_deletion');
+      } catch (\Throwable $th) {
+        echo $th;
+        header('Location: /?module=admin_panel&error=error_deletion_user');
+      }
+    } else {
+      header('Location: /module=not_an_administrator');
+    }
+  }
 }

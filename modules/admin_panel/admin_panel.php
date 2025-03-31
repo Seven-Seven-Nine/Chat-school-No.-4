@@ -6,6 +6,10 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
     header('Location: /?module=error');
   }
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/News.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Update.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/User.php';
 ?>
 <link rel="stylesheet" href="/modules/admin_panel/admin_panel.css">
 <main id="module" class="module open-module flex flex-column flex-start">
@@ -34,6 +38,12 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       case 'successful_update_update':
         echo '<p class="notification notification-green">Успешное обновление обновлений!</p>';
         break;
+      case 'successful_user_update':
+        echo '<p class="notification notification-green">Успешное обновление пользователя!</p>';
+        break;
+      case 'successful_user_deletion':
+        echo '<p class="notification notification-green">Успешное удаления пользователя!</p>';
+        break;
       default:
         echo '<p class="notification notification-red">Неизвестный результат!</p>';
         break;
@@ -60,6 +70,12 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       case 'error_update_update':
         echo '<p class="notification notification-red">Ошибка обновления обновления!</p>';
         break;
+      case 'error_updating_user':
+        echo '<p class="notification notification-red">Ошибка обновления пользователя!</p>';
+        break;
+      case 'error_deletion_user':
+        echo '<p class="notification notification-red">Ошибка удаления пользователя!</p>';
+        break;
       default:
         echo '<p class="notification notification-red">Неизвестная ошибка!</p>';
         break;
@@ -83,7 +99,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
         class="flex flex-column flex-center button-admin-panel">
         <img src="./static/svg/icon-fix-dark.svg" alt="Иконка обновления">
       </div>
-      <div id="btn-working-with-users" title="Просмотр | редактирование | бан пользователей"
+      <div id="btn-working-with-users" title="Просмотр | редактирование | удаление пользователей"
         class="flex flex-column flex-center button-admin-panel">
         <img src="./static/svg/icon-user-dark.svg" alt="Иконка пользователей">
       </div>
@@ -132,7 +148,6 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
         </svg>
       </div>
       <?php
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/models/News.php';
       News::display_all_news_card();
       ?>
     </div>
@@ -171,15 +186,19 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
         </svg>
       </div>
       <?php
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Update.php';
       Update::display_all_updates_card();
       ?>
     </div>
   </div>
 
   <!-- Пользователи -->
-  <div id="block-users" class="display-none flex flex-column flex-start">
+  <div id="block-users" class="block-users display-none flex flex-column flex-start">
     <h2>Пользователи</h2>
+    <div class="block-list-user flex flex-column flex-center">
+      <?php
+      User::display_list_all_users();
+      ?>
+    </div>
   </div>
 
   <!-- Форма добавления новости -->

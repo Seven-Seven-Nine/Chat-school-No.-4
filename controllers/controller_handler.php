@@ -18,6 +18,14 @@ if (isset($_GET['logout_user'])) {
   UserController::logout();
 }
 
+if (isset($_GET['edit_user'])) {
+  UserController::edit_user();
+}
+
+if (isset($_GET['delete_user'])) {
+  UserController::delete_user();
+}
+
 if (isset($_GET['add_news'])) {
   NewsController::add_news();
 }
