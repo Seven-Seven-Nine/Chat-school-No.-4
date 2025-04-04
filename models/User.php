@@ -84,7 +84,7 @@ class User {
 
   public function get_all_data(): void {
     $connection = get_connection_database();
-    $stmt = $connection->prepare('SELECT `id_user`, `login`, `role`, `email`, `password` FROM `users` WHERE `login` = ?');
+    $stmt = $connection->prepare('SELECT `id_user`, `login`, `role`, `email`, `password`, `path_to_image` FROM `users` WHERE `login` = ?');
     $stmt->bind_param('s', $this->login);
     $stmt->execute();
 
@@ -96,6 +96,7 @@ class User {
       $this->role = $row['role'];
       $this->email = $row['email'];
       $this->password = $row['password'];
+      $this->path_to_image = $row['path_to_image'];
     }
 
     $stmt->close();

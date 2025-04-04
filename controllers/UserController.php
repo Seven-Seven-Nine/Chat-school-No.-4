@@ -33,6 +33,7 @@ class UserController {
 
       try {
         if ($user->check_password($password)) {
+          $user->get_all_data();
           $user->create_session();
 
           header('Location: /?module=account');
