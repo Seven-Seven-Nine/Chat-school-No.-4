@@ -68,11 +68,11 @@ function handlerBtnAdminPanel() {
 }
 
 function handlerBtnUser() {
-  moduleTransition(module, '');
+  moduleTransition(module, 'user');
 }
 
 function handlerBtnSettings() {
-  moduleTransition(module, '');
+  moduleTransition(module, 'settings');
 }
 
 function handlerBtnExit() {

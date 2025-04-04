@@ -20,6 +20,8 @@
         'edit_news' => require_once './modules/edit_news/edit_news.php',
         'edit_update' => require_once './modules/edit_update/edit_update.php',
         'edit_user' => require_once './modules/edit_user/edit_user.php',
+        'user' => require_once './modules/user/user.php',
+        'settings' => require_once './modules/settings/settings.php',
         default => require_once './modules/module_error/module_error.php',
       };
     } else {
