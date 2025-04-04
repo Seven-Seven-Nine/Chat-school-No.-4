@@ -8,14 +8,16 @@ class User {
   private string | null $role;
   private string | null $email;
   private string | null $password;
+  private string | null $path_to_image;
   private string | null $token;
 
-  public function __construct(int | null $id, string | null $login, string | null $role, string | null $email, string | null $password) {
+  public function __construct(int | null $id, string | null $login, string | null $role, string | null $email, string | null $password, string | null $path_to_image) {
     $this->id = $id;
     $this->login = $login;
     $this->role = $role;
     $this->email = $email;
     $this->password = $password;
+    $this->path_to_image = $path_to_image;
     $this->token = bin2hex(openssl_random_pseudo_bytes(16));
   }
 
@@ -35,8 +37,8 @@ class User {
 
   public function update(): void {
     $connection = get_connection_database();
-    $stmt = $connection->prepare('UPDATE `users` SET `login` = ?, `role` = ?, `email` = ? WHERE `id_user` = ?');
-    $stmt->bind_param('sssi', $this->login, $this->role, $this->email, $this->id);
+    $stmt = $connection->prepare('UPDATE `users` SET `login` = ?, `role` = ?, `email` = ?, `path_to_image` = ? WHERE `id_user` = ?');
+    $stmt->bind_param('ssssi', $this->login, $this->role, $this->email, $this->path_to_image, $this->id);
     $stmt->execute(); 
     $stmt->close(); 
     $connection->close();
@@ -62,6 +64,8 @@ class User {
     $_SESSION['id'] = $this->id;
     $_SESSION['login'] = $this->login;
     $_SESSION['role'] = $this->role;
+    $_SESSION['email'] = $this->email;
+    $_SESSION['path_to_image'] = $this->path_to_image;
     $_SESSION['token'] = $this->token;
   }
 

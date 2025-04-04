@@ -314,6 +314,14 @@ main {
               width: 100px;
               margin-bottom: 10px;
             }
+
+            & .image-user {
+              object-fit: cover;
+              width: 100%;
+              border: 1px solid var(--border-color);
+              border-radius: 5px;
+              box-shadow: 0 0 10px var(--border-color);
+            }
   
             & p {
               font-weight: bold;

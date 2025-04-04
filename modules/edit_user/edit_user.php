@@ -9,7 +9,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/User.php';
 
-$user = new User($_GET['id_user'], null, null, null, null);
+$user = new User($_GET['id_user'], null, null, null, null, null);
 $data_user = $user->get_user_by_id();
 
 $login_user = '';

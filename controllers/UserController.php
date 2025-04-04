@@ -9,7 +9,7 @@ class UserController {
       $email = $_POST['email'];
       $password = $_POST['password'];
 
-      $user = new User(null,$login, 'user', $email, $password);
+      $user = new User(null,$login, 'user', $email, $password, null);
 
       try {
         $user->save();
@@ -27,7 +27,7 @@ class UserController {
       $login = $_POST['login'];
       $password = $_POST['password'];
 
-      $user = new User(null,$login, null, null, $password);
+      $user = new User(null,$login, null, null, $password, null);
 
       $user->get_all_data();
 
@@ -49,7 +49,7 @@ class UserController {
 
   public static function logout(): void {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-      $user = new User(null, null, null, null, null);
+      $user = new User(null, null, null, null, null, null);
       $user->delete_session();
       header('Location: /');
     } 
@@ -61,15 +61,37 @@ class UserController {
       $login = $_POST['login'];
       $role = $_POST['role'];
       $email = $_POST['email'];
+      $file_error = $_FILES['image']['error'];
 
-      $user = new User($id, $login, $role, $email, null);
+      if (!is_uploaded_file($_FILES['image']['tmp_name'])) {
+        $user = new User($id, $login, $role, $email, null, null);
+        try {
+          $user->update();
+          header('Location: /?module=admin_panel&result=successful_user_update');
+        } catch (\Throwable $th) {
+          echo $th;
+          header('Location: /?module=admin_panel&error=error_updating_user');
+        }
+      } else {
+        $file_name = $_FILES['image']['name'];
+        $file_tmp_name = $_FILES['image']['tmp_name'];
 
-      try {
-        $user->update();
-        header('Location: /?module=admin_panel&result=successful_user_update');
-      } catch (\Throwable $th) {
-        echo $th;
-        header('Location: /?module=admin_panel&error=error_updating_user');
+        $path_to_save = '/user_images/' . $file_name;
+
+        if (!move_uploaded_file($file_tmp_name, $_SERVER['DOCUMENT_ROOT'] . '/user_images/' . $file_name)) {
+          die('<p>Ошибка сохранения файла!</p>');
+        } else {
+          $user = new User($id, $login, $role, $email, null, $path_to_save);
+
+          try {
+            $user->update();
+            $user->create_session();
+            header('Location: /?module=user&result=successful_user_update');
+          } catch (\Throwable $th) {
+            echo $th;
+            header('Location: /?module=user&error=error_user_update');
+          }
+        }
       }
     } else {
       header('Location: /?module=error');
@@ -80,7 +102,7 @@ class UserController {
     if ($_SESSION['role'] == 'administrator') {
       $id = $_GET['id_user'];
 
-      $user = new User($id, null, null, null, null);
+      $user = new User($id, null, null, null, null, null);
 
       try {
         $user->delete();

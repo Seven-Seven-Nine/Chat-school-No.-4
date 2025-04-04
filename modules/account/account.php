@@ -108,7 +108,13 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       <div class="flex flex-row flex-center flex-wrap bottom-block-information-data">
         <div class="flex flex-column flex-start left-block-information-data">
           <div class="flex flex-column flex-center block-content block-user">
-            <img src="./static/svg/human-dark.svg" alt="icon-user">
+            <?php
+            if (isset($_SESSION['path_to_image'])) {
+              echo '<img class="image-user" src="'. $_SESSION['path_to_image'] .'" alt="Пользователь">';
+            } else {
+              echo '<img src="./static/svg/human-dark.svg" alt="icon-user">';
+            }
+            ?>
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
           </div>
