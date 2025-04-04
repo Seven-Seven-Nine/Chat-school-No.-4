@@ -104,7 +104,7 @@ main {
   min-height: 100px;
 
   & .image-plus:hover svg path {
-    stroke: black !important;
+    stroke: var(--button-hover-text-color) !important;
   }
 
   & .card {
@@ -116,6 +116,7 @@ main {
     padding: 15px;
     border: 1px solid var(--border-color);
     user-select: none;
+    overflow: auto;
     transition: box-shadow 200ms ease, background-color 300ms ease, border 200ms ease;
 
     &:hover {
@@ -125,15 +126,16 @@ main {
       border: none;
     }
 
-    & h3 {
-      height: 20%;
-    }
-
     & p {
-      height: 80%;
+      width: 100%;
+      max-height: 65%;
+      white-space: normal;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: left;
     }
 
-    & h3, p {
+    & h3 {
       width: 100%;
       text-align: center;
     }

@@ -38,7 +38,9 @@
 @media (prefers-color-scheme: light) {
   :root {
     color-scheme: light;
-    --body-bg: #f5f5f5;
+    --body-bg: rgb(250, 250, 250);
+
+    --accent-color: rgb(14, 120, 241);
 
     --text-color: black;
 
@@ -51,6 +53,9 @@
     --link-hover-color: rgb(225, 60, 247);
 
     --icon-hover-bg: rgba(168, 168, 168, 0.589);
+
+    --card-hover-bg: black;
+    --card-hover-color-text: white;
   }
 }
 

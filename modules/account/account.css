@@ -332,6 +332,8 @@ main {
   
             & h3, p {
               width: 100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
           }
@@ -349,6 +351,8 @@ main {
             & p {
               width: 100%;
               min-height: 100px;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
