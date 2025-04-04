@@ -349,10 +349,12 @@ main {
             margin: 20px 0;
   
             & p {
-              width: 100%;
-              min-height: 100px;
               overflow: hidden;
               text-overflow: ellipsis;
+            }
+
+            & .content {
+              width: 100%;
             }
           }
         }

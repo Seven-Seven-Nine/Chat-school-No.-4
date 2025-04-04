@@ -75,7 +75,7 @@ class News {
             <a href="/?module=edit_news&id_news='. $row['id_news'] .'">
               <div class="card flex flex-column flex-center">
                 <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-                <p class="flex flex-column flex-center">'. nl2br($row['text']) .'</p>
+                <div class="content-card">'. $row['text'] .'</div>
               </div>
             </a>
           ';
@@ -106,7 +106,9 @@ class News {
         echo '
           <div class="flex flex-column flex-center block-content block-news">
             <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-            <p>'. nl2br($row['text']) .'</p>
+            <div class="content">
+              '. $row['text'] .'
+            </div>
           </div>
         ';
       }

@@ -80,7 +80,9 @@ class Update {
         <a href="/?module=edit_update&id_update='. $row['id_update'] .'">
           <div class="card flex flex-column flex-center">
             <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-            <p class="flex flex-column flex-center">'. nl2br($row['text']) .'</p>
+            <div class="content-card">
+              '. $row['text'] .'
+            </div>
           </div>
         </a>
       ';
@@ -100,7 +102,7 @@ class Update {
       echo '
         <div class="flex flex-column flex-center block-content block-update">
           <h3>'. $row['title'] .' | '. $row['date'] .'</h3>
-          <p>'. nl2br($row['text']) .'</p>
+          <div class="content">'. $row['text'] .'</div>
         </div>
       ';
     }
