@@ -187,7 +187,7 @@ main {
       max-width: 450px;
       height: 100%;
       box-shadow: 0 0 10px var(--border-color);
-      background-color: var(--body-bg);
+      background-color: var(--color-menu);
       z-index: 3;
       overflow-y: auto;
   
@@ -414,6 +414,7 @@ main {
     & .block-left-menu-layer {
       & .block-left-menu {
         width: 100% !important;
+        max-width: none !important;
         box-shadow: none;
 
         & .menu-button-close {
@@ -428,7 +429,7 @@ main {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1494px) {
   main {
     & .block-left-menu-layer {
       & .block-information-data {

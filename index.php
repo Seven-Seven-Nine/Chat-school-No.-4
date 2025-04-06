@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./static/svg/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./static/styles/style.css">
+  <script type="module" src="./static/scripts/applyingSavedValues.js" defer></script>
   <title>Chat school No. 4</title>
 </head>
 <body>
