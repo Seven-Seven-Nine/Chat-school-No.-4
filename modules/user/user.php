@@ -41,13 +41,15 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
       echo '<img src="./static/svg/human-dark.svg" alt="Пользователь">';
     }
     ?>
-    <form id="form" class="form flex flex-column flex-start" action="/controllers/controller_handler.php?edit_user&id_user=<?php echo $_SESSION['id'] ?>" method="post" enctype="multipart/form-data">
+    <form class="form flex flex-column flex-start" action="/controllers/controller_handler.php?edit_user&id_user=<?php echo $_SESSION['id'] ?>" method="post" enctype="multipart/form-data">
       <input type="text" placeholder="Логин" id="login" name="login" value="<?php echo $_SESSION['login'] ?>" required>
       <input type="hidden" name="role" value="<?php echo $_SESSION['role'] ?>">
       <input type="text" placeholder="Почта" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" required>
       <input type="file" name="image" accept="image/*" title="Автар пользователя" required>
-      <button class="button-default" type="submit" id="btn-confirm">Изменить</button>
-      <button class="button-default" type="button" id="btn-change-password">Изменить пароль</button>
+      <div class="flex flex-row">
+        <button class="button-default" type="submit" id="btn-confirm">Сохранить</button>
+        <button class="button-default" type="button" id="btn-change-password">Изменить пароль</button>
+      </div>
     </form>
   </div>
 </main>

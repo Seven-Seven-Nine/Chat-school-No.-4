@@ -5,6 +5,7 @@
 @import url("./form.css");
 @import url("./flex.css");
 @import url("./notification.css");
+@import url("./blocks.css");
 
 * {
   transition: all 150ms ease;
