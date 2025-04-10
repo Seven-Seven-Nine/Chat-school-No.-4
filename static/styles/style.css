@@ -16,6 +16,7 @@
   :root {
     color-scheme: dark;
     --body-bg: #111;
+    --color-menu: rgb(20, 20, 20);
 
     --accent-color: rgb(14, 120, 241);
 

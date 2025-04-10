@@ -12,6 +12,11 @@ function bindEvent() {
   document.getElementById('icon-btn-left-menu').onclick = () => handlerIconLeftMenu();
   document.getElementById('icon-btn-right-menu').onclick = () => handlerIconRightMenuChat();
 
+  if (document.getElementById('list-btn-add-chat')) {
+    document.getElementById('list-btn-add-chat').onclick = () => handlerBtnAddChat();
+  }
+  document.getElementById('icon-btn-add-chat').onclick = () => handlerBtnAddChat();
+
   document.getElementById('btn-icon-notification-left-menu').onclick = () => handlerIconWindowNotification();
   document.getElementById('btn-icon-close-left-menu').onclick = () => handlerCloseLeftMenu();
 
@@ -61,6 +66,10 @@ function handlerIconWindowNotification() {
 
 function handlerIconRightMenuChat() {
   alert('Кнопка открытия правого меню чата.');
+}
+
+function handlerBtnAddChat() {
+  moduleTransition(module, 'add_chat');
 }
 
 function handlerBtnAdminPanel() {

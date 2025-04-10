@@ -5,6 +5,7 @@ session_start();
 require_once './UserController.php';
 require_once './NewsController.php';
 require_once './UpdateController.php';
+require_once './ChatController.php';
 
 if (isset($_GET['create_user'])) {
   UserController::create();
@@ -49,3 +50,7 @@ if (isset($_GET['edit_update'])) {
 if (isset($_GET['delete_update'])) {
   UpdateController::delete_update();
 } 
+
+if (isset($_GET['add_chat'])) {
+  ChatController::add_chat();
+}

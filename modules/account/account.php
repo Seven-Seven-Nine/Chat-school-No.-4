@@ -2,6 +2,33 @@
 if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION['token'])) {
   header('Location: /?module=error');
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Chat.php';
+
+if (isset(($_GET['result']))) {
+  switch ($_GET['result']) {
+    case 'successful_chat_addition':
+      echo '<p class="notification notification-green">Чат создан!</p>';
+      break;
+    default:
+      echo '<p class="notification notification-red">Неизвестный результат!</p>';
+      break;
+  }
+}
+
+if (isset($_GET['error'])) {
+  switch ($_GET['error']) {
+    case 'error_adding_chat':
+      echo '<p class="notification notification-red">Ошибка при создания чата!</p>';
+      break;
+    case 'error_saving_the_image':
+      echo '<p class="notification notification-red">Ошибка сохранения изображения!</p>';
+      break;
+    default:
+      echo '<p class="notification notification-red">Неизвестная ошибка!</p>';
+      break;
+  }
+}
 ?>
 <link rel="stylesheet" href="./modules/account/account.css">
 <main id="module" id="module" class="module open-module flex flex-row flex-center">
@@ -9,18 +36,12 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <div class="flex flex-column flex-center block-list-chats">
     <div class="flex flex-row flex-start block-icon-menu">
       <img title="Открыть левое меню" src="./static/svg/icon-menu-dark.svg" alt="icon-menu" class="icon-button" id="icon-btn-left-menu">
+      <img title="Добавить чат" class="icon-plus icon-button" src="./static/svg/icon-create-chat.svg" alt="Иконка добавить" id="icon-btn-add-chat">
     </div>
     <div class="flex flex-column flex-start block-chats">
-      <!-- Шаблон чата -->
-      <div class="flex flex-row flex-start block-chat">
-        <div class="flex flex-row flex-center block-icon-chat">
-          <img src="" alt="icon" class="icon-chat">
-        </div>
-        <div class="flex flex-column flex-center block-title-chat">
-          <h3>Название чата</h3>
-          <p>Последнее сообщение...</p>
-        </div>
-      </div>
+      <?php
+        Chat::display_list_chat($_SESSION['id']);
+      ?>
     </div>
   </div>
   <div class="flex flex-column flex-center block-data-chat">

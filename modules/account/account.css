@@ -68,6 +68,7 @@ main {
     & .block-icon-menu {
       width: 95%;
       height: 60px;
+      justify-content: space-between;
     }
   
     & .block-chats {
@@ -75,6 +76,10 @@ main {
       height: 100%;
       padding: 10px 20px;
       overflow-y: auto !important;
+
+      & a {
+        width: 100%;
+      }
   
       & .block-chat {
         user-select: none;
@@ -92,6 +97,10 @@ main {
         &:active {
           transform: scale(0.95);
         }
+
+        & .icon-plus {
+          width: 50px;
+        }
   
         & .block-icon-chat {
           width: 30%;
@@ -102,10 +111,7 @@ main {
             border-radius: 100px;
             width: 80px;
             height: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            object-fit: cover;
           }
         }
   
@@ -161,7 +167,7 @@ main {
     & .block-main-body-chat {
       width: 100%;
       height: 100%;
-      background-image: url("../../svg/logo-no-text-dark.svg");
+      background-image: url("../../static/svg/logo-no-text-dark.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 20%;
