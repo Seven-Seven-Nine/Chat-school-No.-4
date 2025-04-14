@@ -12,9 +12,6 @@ function bindEvent() {
   document.getElementById('icon-btn-left-menu').onclick = () => handlerIconLeftMenu();
   document.getElementById('icon-btn-right-menu').onclick = () => handlerIconRightMenuChat();
 
-  if (document.getElementById('list-btn-add-chat')) {
-    document.getElementById('list-btn-add-chat').onclick = () => handlerBtnAddChat();
-  }
   document.getElementById('icon-btn-add-chat').onclick = () => handlerBtnAddChat();
 
   document.getElementById('btn-icon-notification-left-menu').onclick = () => handlerIconWindowNotification();
@@ -65,7 +62,37 @@ function handlerIconWindowNotification() {
 }
 
 function handlerIconRightMenuChat() {
-  alert('Кнопка открытия правого меню чата.');
+  openFloatingMenu('block-menu-chat', 'closing-area-menu-chat');
+  closeFloatingMenu('block-menu-chat', 'closing-area-menu-chat');
+}
+
+/**
+ * @param {string} idFloatingMenu 
+ * @param {string} idClosingArea 
+ */
+function openFloatingMenu(idFloatingMenu, idClosingArea) {
+  const floatingMenu = document.getElementById(idFloatingMenu);
+  const closingArea = document.getElementById(idClosingArea);
+  floatingMenu.classList.remove('display-none');
+  floatingMenu.classList.add('open-floating-menu');
+  closingArea.classList.remove('display-none');
+}
+
+/**
+ * @param {string} idFloatingMenu 
+ * @param {string} idClosingArea 
+ */
+function closeFloatingMenu(idFloatingMenu, idClosingArea) {
+  const floatingMenu = document.getElementById(idFloatingMenu);
+  const closingArea = document.getElementById(idClosingArea);
+  closingArea.onclick = () => {
+    floatingMenu.classList.add('close-floating-menu');
+    setTimeout(() => {
+      floatingMenu.classList.add('display-none');
+      floatingMenu.classList.remove('close-floating-menu');
+    }, 200);
+    closingArea.classList.add('display-none');
+  }
 }
 
 function handlerBtnAddChat() {

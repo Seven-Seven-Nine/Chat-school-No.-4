@@ -28,6 +28,36 @@
     box-shadow: 0 0 15px red !important;
 }
 
+.button-menu {
+  background: none;
+  user-select: none;
+  margin: 10px 10px;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12pt;
+  width: 100%;
+  transition: background-color 500ms ease, color 400ms ease, transform 50ms ease, box-shadow 300ms ease, border-color 300ms ease, border 400ms ease;
+
+  &:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text-color);
+    border-color: var(--button-hover-border-color);
+    box-shadow: 0 0 15px var(--button-hover-bg);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.button-menu-delete:hover {
+  background-color: red !important;
+  box-shadow: 0 0 15px red !important;
+  color: white !important;
+  border-radius: 5px;
+}
+
 .icon-button {
   cursor: pointer;
   text-decoration: none;

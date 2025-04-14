@@ -6,6 +6,7 @@ require_once './UserController.php';
 require_once './NewsController.php';
 require_once './UpdateController.php';
 require_once './ChatController.php';
+require_once './MessageController.php';
 
 if (isset($_GET['create_user'])) {
   UserController::create();
@@ -53,4 +54,20 @@ if (isset($_GET['delete_update'])) {
 
 if (isset($_GET['add_chat'])) {
   ChatController::add_chat();
+}
+
+if (isset($_GET['get_data_chat'])) {
+  ChatController::get_data_chat();
+}
+
+if (isset($_GET['delete_chat'])) {
+  ChatController::delete_chat();
+}
+
+if (isset($_GET['send_message'])) {
+  MessageController::send_message();
+}
+
+if (isset($_GET['get_messages'])) {
+  MessageController::get_message();
 }

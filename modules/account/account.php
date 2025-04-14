@@ -31,7 +31,7 @@ if (isset($_GET['error'])) {
 }
 ?>
 <link rel="stylesheet" href="./modules/account/account.css">
-<main id="module" id="module" class="module open-module flex flex-row flex-center">
+<main id="module" id="module" class="module open-module flex flex-row flex-start">
   <!-- Основная вёрстка -->
   <div class="flex flex-column flex-center block-list-chats">
     <div class="flex flex-row flex-start block-icon-menu">
@@ -44,17 +44,42 @@ if (isset($_GET['error'])) {
       ?>
     </div>
   </div>
-  <div class="flex flex-column flex-center block-data-chat">
+  <div id="block-data-chat" class="flex flex-column flex-center block-data-chat">
     <div class="flex flex-row flex-center block-header-chat">
       <div class="flex flex-row flex-start block-title-chat">
-        <h2>Название чата</h2>
+        <h2 id="title-chat">Название чата</h2>
       </div>
       <div class="flex flex-row flex-end block-menu-chat">
         <img src="./static/svg/icon-menu-points-dark.svg" alt="icon-menu" class="icon-button" id="icon-btn-right-menu">
       </div>
     </div>
-    <div class="block-main-body-chat"></div>
+    <div class="block-main-body-chat">
+      <div id="messages-container" class="messages-container messages-container flex flex-column flex-start"></div>
+      <div class="flex flex-row flex-center input-message">
+        <textarea id="entering-message" placeholder="Сообщение"></textarea>
+        <button id="btn-send-message" class="button-default">></button>
+      </div>
+    </div>
   </div>
+
+  <!-- Меню для чата -->
+  <div>
+    <div id="closing-area-menu-chat" class="closing-area display-none"></div>
+    <div id="block-menu-chat" class="flex flex-column flex-start floating-menu menu-chat display-none">
+      <button id="btn-menu-chat-edit" class="button-menu" type="button">Редактировать чат</button>
+      <button id="btn-menu-chat-users" class="button-menu" type="button">Пользователи</button>
+      <button id="btn-menu-chat-delete" class="button-menu button-menu-delete" type="button">Удалить чат</button>
+    </div>
+  </div>
+
+  <!-- Окно подтверждения удаления чата -->
+  <!-- <div>
+    <div id="closing-area-confirm-deleting-chat" class="closing-area darkened-closing-area display-none"></div>
+    <div id="deletion-confirmation-window" class="flex flex-row flex-center floating-menu window-confirm-deletion display-none">
+      <button class="button-menu" type="button">Да</button>
+      <button class="button-menu button-menu-delete" type="button">Нет</button>
+    </div>
+  </div> -->
 
   <!-- Второй слой вёрстки для левого меню -->
   <div id="block-left-menu-layer" class="flex flex-row flex-start block-left-menu-layer">
@@ -155,3 +180,4 @@ if (isset($_GET['error'])) {
   </div>
 </main>
 <script type="module" src="./modules/account/account.js" defer></script>
+<script type="module" src="./modules/account/chat.js" defer></script>

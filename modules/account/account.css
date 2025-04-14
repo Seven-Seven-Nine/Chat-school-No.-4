@@ -56,6 +56,28 @@
   }
 }
 
+@keyframes open-floating-menu {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes close-floating-menu {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
 main {
   height: 100vh;
 
@@ -139,9 +161,11 @@ main {
   
   /* Блок чата */
   & .block-data-chat {
+    opacity: 0;
     width: 100%;
     height: 100%;
     padding: 10px 20px;
+    transition: opacity 200ms ease;
   
     & .block-header-chat {
       border-bottom: 1px solid var(--border-color);
@@ -167,14 +191,100 @@ main {
     & .block-main-body-chat {
       width: 100%;
       height: 100%;
-      background-image: url("../../static/svg/logo-no-text-dark.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 20%;
-      filter: brightness(40%);
+      overflow: auto;
+
+      & .messages-container {
+        width: 100%;
+        height: 85%;
+        overflow-y: scroll;
+        align-items: flex-start;
+        padding: 10px 50px 10px 10px;
+
+        & .message {
+          width: auto;
+          padding: 15px;
+          border-radius: 10px;
+          border: 1px solid var(--border-color);
+          margin: 20px 0;
+          user-select: none;
+          animation: open-floating-menu 500ms ease;
+
+          &:hover {
+            background-color: var(--icon-hover-bg);
+          }
+
+          & p {
+            overflow-wrap: anywhere;
+            word-break: break-all;
+            hyphens: auto;
+          }
+        }
+      }
+
+      & .input-message {
+        width: 100%;
+        height: 15%;
+
+        & textarea {
+          width: 50%;
+          font-size: 12pt;
+          padding: 10px;
+          outline: none;
+          height: 80%;
+          margin: 10px 50px;
+          border-radius: 5px;
+          border: 1px solid var(--border-color);
+          background: none;
+          resize: none;
+        }
+      }
     }
   }
   
+  .display-none {
+    display: none;
+  }
+
+  .closing-area {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .darkened-closing-area {
+    background-color: rgba(0, 0, 0, 0.274);
+  }
+
+  .floating-menu {
+    padding: 20px;
+    position: fixed;
+    border-radius: 10px;
+    background-color: var(--color-menu);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+  }
+
+  .open-floating-menu {
+    animation: open-floating-menu 250ms ease forwards;
+  }
+
+  .close-floating-menu {
+    animation: close-floating-menu 200ms ease forwards;
+  }
+
+  .menu-chat {
+    top: 5%;
+    right: 5%;
+  }
+
+  .window-confirm-deletion {
+    top: 40%;
+    left: 40%;
+  }
+
   /* Блок слоя левого меню */
   & .block-left-menu-layer {
     display: none;
