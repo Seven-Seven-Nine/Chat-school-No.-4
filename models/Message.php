@@ -45,6 +45,7 @@ class Message {
       `messages`.`id_message`, 
       `messages`.`id_chat`, 
       `users`.`login`,
+      `users`.`path_to_image`,
       `messages`.`text`, 
       `messages`.`date` 
     FROM 

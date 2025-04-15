@@ -24,6 +24,7 @@
         'user' => require_once './modules/user/user.php',
         'settings' => require_once './modules/settings/settings.php',
         'add_chat' => require_once './modules/add_chat/add_chat.php',
+        'edit_chat' => require_once './modules/edit_chat/edit_chat.php',
         default => require_once './modules/module_error/module_error.php',
       };
     } else {

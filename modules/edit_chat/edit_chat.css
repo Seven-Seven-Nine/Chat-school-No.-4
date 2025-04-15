@@ -1,0 +1,9 @@
+.block-arrow-back {
+  width: 100%;
+
+  & p {
+    font-size: 34pt;
+    margin: 15px;
+    padding: 0px 15px;
+  }
+}

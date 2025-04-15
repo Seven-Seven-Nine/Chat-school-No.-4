@@ -219,9 +219,19 @@ main {
           background-color: #51515126;
           margin: 20px 0;
           user-select: none;
+          align-items: flex-start;
 
           &:hover {
             background-color: var(--icon-hover-bg);
+          }
+
+          & .user-image {
+            width: 70px;
+            height: 70px;
+            box-shadow: 0 0 10px var(--shadow-color);
+            object-fit: cover;
+            border-radius: 5px;
+            margin: 20px 20px 0 0;
           }
 
           & p {

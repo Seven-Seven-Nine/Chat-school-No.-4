@@ -168,10 +168,14 @@ function renderMessages(messages) {
     safeText = safeText.replace(/\r?\n/g, '<br>');
 
     messageElement.innerHTML = `
-      <div class="message">
-        <p>${message.login} | ${message.date}</p>
-        <p>${safeText}</p>
-        <span class="display-none">${message.id_message}</span>
+      <div class="message flex flex-row">
+        <div class="flex flex-column flex-start">
+          <img class="user-image" src="${message.path_to_image}" alt="image">
+        </div>
+        <div>
+          <p>${message.login} | ${message.date}</p>
+          <p>${safeText}</p>
+        </div>
       </div>
     `;
     messagesContainer.appendChild(messageElement);
@@ -377,7 +381,7 @@ function openFloatingMenu(idFloatingMenu, idClosingArea) {
 }
 
 function handlerBtnEditChat() {
-  moduleTransition(document.getElementById('module'), 'edit_chat');
+  moduleTransition(document.getElementById('module'), 'edit_chat&id_chat=' + window.localStorage.getItem('active-chat').slice(5));
 }
 
 /**
