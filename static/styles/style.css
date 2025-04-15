@@ -24,6 +24,8 @@
 
     --border-color: white;
 
+    --shadow-color: rgba(255, 255, 255, 0.493);
+
     --button-hover-bg: white;
     --button-hover-border-color: white;
     --button-hover-text-color: black;
@@ -48,6 +50,8 @@
     --text-color: rgb(0, 0, 0);
 
     --border-color: rgb(0, 0, 0);
+
+    --shadow-color: rgba(0, 0, 0, 0.493);
 
     --button-hover-bg: rgb(0, 140, 255);
     --button-hover-border-color: rgb(0, 140, 255);

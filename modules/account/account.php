@@ -40,7 +40,7 @@ if (isset($_GET['error'])) {
     </div>
     <div class="flex flex-column flex-start block-chats">
       <?php
-        Chat::display_list_chat($_SESSION['id']);
+        Chat::display_merged_chats($_SESSION['id']);
       ?>
     </div>
   </div>
@@ -66,20 +66,39 @@ if (isset($_GET['error'])) {
   <div>
     <div id="closing-area-menu-chat" class="closing-area display-none"></div>
     <div id="block-menu-chat" class="flex flex-column flex-start floating-menu menu-chat display-none">
-      <button id="btn-menu-chat-edit" class="button-menu" type="button">Редактировать чат</button>
+      <button id="btn-menu-info-chat" class="button-menu" type="button">Чат</button>
       <button id="btn-menu-chat-users" class="button-menu" type="button">Пользователи</button>
       <button id="btn-menu-chat-delete" class="button-menu button-menu-delete" type="button">Удалить чат</button>
     </div>
   </div>
 
-  <!-- Окно подтверждения удаления чата -->
-  <!-- <div>
-    <div id="closing-area-confirm-deleting-chat" class="closing-area darkened-closing-area display-none"></div>
-    <div id="deletion-confirmation-window" class="flex flex-row flex-center floating-menu window-confirm-deletion display-none">
-      <button class="button-menu" type="button">Да</button>
-      <button class="button-menu button-menu-delete" type="button">Нет</button>
+  <!-- Пользователи для чата -->
+  <div id="block-user-addition" class="block-user-addition display-none">
+    <div id="closing-area-user-addition" class="closing-area darkened-closing-area display-none"></div>
+    <div id="window-user-addition" class="window-user-addition">
+      <div class="search flex flex-row flex-center">
+        <input id="input-search-user" type="text" placeholder="Поиск...">
+        <img title="Поиск" src="/static/svg/icon-search-dark.svg" id="btn-search-user" class="icon-button" alt="Иконка поиска">
+      </div>
+      <div id="container-users" class="list-users flex flex-column flex-start"></div>
     </div>
-  </div> -->
+  </div>
+
+  <!-- Информация о чате -->
+  <div id="block-info-chat" class="block-info-chat display-none">
+    <div id="closing-area-chat" class="closing-area darkened-closing-area display-none"></div>
+    <div class="window-info-chat">
+      <div class="header-info-chat flex flex-row flex-start">
+        <img id="info-chat-image" class="image-chat" src="" alt="image chat">
+        <h2 id="info-chat-title">Название чата</h2>
+        <img id="btn-edit-chat" src="/static/svg/icon-edit-dark.svg" class="icon-button icon-edit-chat" alt="Иконка редактирования">
+      </div>
+      <div class="users-info-chat">
+        <h3>Пользователи:</h3>
+        <div class="container-users-chats" id="container-users-chats"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Второй слой вёрстки для левого меню -->
   <div id="block-left-menu-layer" class="flex flex-row flex-start block-left-menu-layer">

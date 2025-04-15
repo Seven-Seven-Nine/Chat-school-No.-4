@@ -116,4 +116,37 @@ class UserController {
       header('Location: /module=not_an_administrator');
     }
   }
+
+  public static function get_users(): void {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      try {
+        echo json_encode(User::get_users());
+      } catch (\Throwable $th) {
+        echo $th;
+      }
+    } else {
+      echo json_encode([
+        'error' => 'request method error'
+      ]);
+    }
+  }
+
+  public static function search_user(): void {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $data_json = file_get_contents('php://input');
+      $data = json_decode($data_json, true);
+
+      $login = $data['login'];
+      
+      try {
+        echo json_encode(User::search_user($login));
+      } catch (\Throwable $th) {
+        echo $th;
+      }
+    } else {
+      echo json_encode([
+        'error' => 'request method error'
+      ]);
+    }
+  }
 }

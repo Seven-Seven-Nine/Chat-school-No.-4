@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="90"
+   height="90"
+   viewBox="0 0 23.8125 23.8125"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="icon-plus-fill.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <style
+   id="style1">
+      @media (prefers-color-scheme: dark) {
+       path {
+         stroke: white !important;
+         fill: white !important;
+       }
+     }
+   </style>
+  <sodipodi:namedview
+   id="namedview1"
+   pagecolor="#212121"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:document-units="mm"
+   inkscape:zoom="5.7941076"
+   inkscape:cx="29.85792"
+   inkscape:cy="47.6346"
+   inkscape:window-width="1403"
+   inkscape:window-height="876"
+   inkscape:window-x="198"
+   inkscape:window-y="63"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="layer1" />
+  <defs
+   id="defs1" />
+  <g
+   inkscape:label="Слой 1"
+   inkscape:groupmode="layer"
+   id="layer1">
+    <path
+   d="m 23.00508,13.615299 h -9.099567 v 9.446877 H 9.9230059 V 13.615299 H 0.82343917 V 10.095874 H 9.9230059 V 0.71845897 H 13.905513 V 10.095874 h 9.099567 z"
+   id="text19"
+   style="font-size:44.0239px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;stroke:#000000;stroke-width:0.854975;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+   aria-label="+" />
+  </g>
+</svg>

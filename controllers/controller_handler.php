@@ -28,6 +28,14 @@ if (isset($_GET['delete_user'])) {
   UserController::delete_user();
 }
 
+if (isset($_GET['get_users'])) {
+  UserController::get_users();
+}
+
+if (isset($_GET['search_user'])) {
+  UserController::search_user();
+}
+
 if (isset($_GET['add_news'])) {
   NewsController::add_news();
 }
@@ -62,6 +70,14 @@ if (isset($_GET['get_data_chat'])) {
 
 if (isset($_GET['delete_chat'])) {
   ChatController::delete_chat();
+}
+
+if (isset($_GET['add_user_in_chat'])) {
+  ChatController::add_user_in_chat();
+}
+
+if (isset($_GET['get_info_chat'])) {
+  ChatController::get_info_chat();
 }
 
 if (isset($_GET['send_message'])) {

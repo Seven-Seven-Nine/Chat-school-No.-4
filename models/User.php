@@ -133,4 +133,86 @@ class User {
     $stmt->close();
     $connection->close();
   }
+
+  public static function get_users(): array {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('SELECT `login`, `path_to_image` FROM `users`');
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $users = [];
+
+    while ($row = $result->fetch_assoc()) {
+      $users[] = $row;
+    }
+
+    $stmt->close();
+    $connection->close();
+
+    return $users;
+  }
+
+  public static function get_id_user_by_login(string $login): string {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('SELECT `id_user` FROM `users` WHERE `login` = ?');
+    $stmt->bind_param('s', $login);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $id_user = '';
+
+    while ($row = $result->fetch_assoc()) {
+      $id_user = $row['id_user'];
+    }
+
+    $stmt->close();
+    $connection->close();
+
+    return $id_user;
+  }
+
+  public static function search_user(string $login): array {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('SELECT `login`, `path_to_image` FROM `users` WHERE `login` LIKE ?');
+    
+    $searchTerm = "%{$login}%";
+    $stmt->bind_param('s', $searchTerm);
+    
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $users = [];
+
+    while ($row = $result->fetch_assoc()) {
+      $users[] = $row;
+    }
+
+    $stmt->close();
+    $connection->close();
+
+    return $users;
+  }
+
+  public static function get_login_by_id(string $id): string {
+    $connection = get_connection_database();
+    $stmt = $connection->prepare('SELECT `login` FROM `users` WHERE `id_user` = ?');
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $login = '';
+
+    while ($row = $result->fetch_assoc()) {
+      $login = $row['login'];
+    }
+
+    $stmt->close();
+    $connection->close();
+
+    return $login;
+  }
 }

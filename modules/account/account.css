@@ -78,6 +78,18 @@
   }
 }
 
+@keyframes blackout {
+  0% {
+    background: none;
+  }
+  50% {
+    background: none;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.600);
+  }
+}
+
 main {
   height: 100vh;
 
@@ -204,10 +216,9 @@ main {
           width: auto;
           padding: 15px;
           border-radius: 10px;
-          border: 1px solid var(--border-color);
+          background-color: #51515126;
           margin: 20px 0;
           user-select: none;
-          animation: open-floating-menu 500ms ease;
 
           &:hover {
             background-color: var(--icon-hover-bg);
@@ -227,7 +238,7 @@ main {
 
         & textarea {
           width: 50%;
-          font-size: 12pt;
+          font-size: 14pt;
           padding: 10px;
           outline: none;
           height: 80%;
@@ -255,7 +266,7 @@ main {
   }
 
   .darkened-closing-area {
-    background-color: rgba(0, 0, 0, 0.274);
+    animation: blackout 600ms forwards ease;
   }
 
   .floating-menu {
@@ -265,6 +276,7 @@ main {
     background-color: var(--color-menu);
     border: 1px solid var(--border-color);
     z-index: 10;
+    box-shadow: 0 0 10px var(--shadow-color);
   }
 
   .open-floating-menu {
@@ -283,6 +295,154 @@ main {
   .window-confirm-deletion {
     top: 40%;
     left: 40%;
+  }
+
+  .block-user-addition {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    padding: 100px;
+    padding: 5% 10%;
+    backdrop-filter: blur(5px);
+
+    & .window-user-addition {
+      background-color: var(--color-menu);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 15;
+      overflow: auto;
+      padding: 20px 30px;
+      box-shadow: 0 0 10px var(--shadow-color);
+
+      & .search {
+        width: 100%;
+        height: 10%;
+
+        & input {
+          width: 70%;
+          border: none;
+          border-bottom: 1px solid var(--border-color);
+          font-size: 12pt;
+          margin: 0 20px;
+          height: 30px;
+          background: none;
+          outline: none;
+        }
+      }
+
+      & .list-users {
+        width: 100%;
+        height: 90%;
+        overflow: scroll;
+        padding: 10px 28px;
+
+        & .user {
+          width: 85%;
+          margin: 20px 10px;
+          padding: 10px;
+          border-bottom: 1px solid var(--border-color);
+          transition: transform 300ms ease;
+
+          & .user-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 100%;
+            border: 1px solid var(--border-color);
+            margin: 0 20px 0 0;
+          }
+
+          & img {
+            margin: 0 60px;
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+
+  & .block-info-chat {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    padding: 100px;
+    padding: 2% 10%;
+    backdrop-filter: blur(5px);
+
+    & .window-info-chat {
+      background-color: var(--color-menu);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 15;
+      overflow: auto;
+      padding: 20px 50px;
+      box-shadow: 0 0 10px var(--shadow-color);
+      overflow-y: auto;
+
+      & .header-info-chat {
+        width: 100%;
+
+        & .image-chat {
+          width: 200px;
+          height: 200px;
+          cursor: pointer;
+          object-fit: cover;
+          border-radius: 10px;
+          border: 1px solid var(--border-color);
+        }
+
+        & h2 {
+          margin: 0 50px;
+        }
+
+        & .icon-edit-chat {
+          position: absolute;
+          right: 3%;
+          top: 5%;
+        }
+      }
+
+      & .users-info-chat {
+        width: 100%;
+
+        & h3 {
+          margin: 60px 0 20px 0;
+        }
+
+        & .container-users-chats {
+          width: 100%;
+
+          & div {
+            margin: 40px 0;
+            padding: 10px;
+            border-radius: 10px;
+
+            &:hover {
+              background-color: var(--icon-hover-bg);
+            }
+
+            & span {
+              margin: 0 10px 0 0;
+            }
+            
+            & img {
+              width: 50px;
+              height: 50px;
+              margin: 0 13px 0 0;
+              object-fit: cover;
+              box-shadow: 0 0 10px var(--shadow-color);
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
   }
 
   /* Блок слоя левого меню */

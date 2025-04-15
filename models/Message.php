@@ -52,7 +52,9 @@ class Message {
     INNER JOIN 
       `users` ON `messages`.`id_user` = `users`.`id_user`
     WHERE 
-      `messages`.`id_chat` = ?;
+      `messages`.`id_chat` = ?
+    ORDER BY
+      `messages`.`id_message` ASC;
     ');
     $stmt->bind_param('s', $id_chat);
     $stmt->execute();
