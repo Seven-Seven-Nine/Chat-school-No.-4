@@ -13,6 +13,8 @@ class UserController {
 
       try {
         $user->save();
+        $user->get_all_data();
+        $user->create_session();
         header('Location: /?module=account');
       } catch (\Throwable $th) {
         header('Location: /?module=registration&error=user_is_registered');
