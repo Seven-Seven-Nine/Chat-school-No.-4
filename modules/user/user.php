@@ -35,7 +35,7 @@ if (!isset($_SESSION['login']) && !isset($_SESSION['role']) && !isset($_SESSION[
   <p class="role-user"><?php echo $_SESSION['role'] ?></p>
   <div class="user-data flex flex-row flex-center">
     <?php
-    if (isset($_SESSION['path_to_image'])) {
+    if (isset($_SESSION['path_to_image']) && $_SESSION['path_to_image'] != 'null') {
       echo '<img class="image_user" src="'. $_SESSION['path_to_image'] .'" alt="Пользователь">';
     } else {
       echo '<img src="./static/svg/human-dark.svg" alt="Пользователь">';

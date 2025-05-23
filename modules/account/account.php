@@ -174,11 +174,12 @@ if (isset($_GET['error'])) {
         <div class="flex flex-column flex-start left-block-information-data">
           <div class="flex flex-column flex-center block-content block-user">
             <?php
-            if (isset($_SESSION['path_to_image'])) {
+            if (isset($_SESSION['path_to_image']) && $_SESSION['path_to_image'] != 'null') {
               echo '<img class="image-user" src="'. $_SESSION['path_to_image'] .'" alt="Пользователь">';
             } else {
               echo '<img src="./static/svg/human-dark.svg" alt="icon-user">';
             }
+            echo '<p>$_SESSION[\'path_to_image\'] = '. $_SESSION['path_to_image'] .'</p>';
             ?>
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
