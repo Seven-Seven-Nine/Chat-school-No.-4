@@ -179,7 +179,6 @@ if (isset($_GET['error'])) {
             } else {
               echo '<img src="./static/svg/human-dark.svg" alt="icon-user">';
             }
-            echo '<p>$_SESSION[\'path_to_image\'] = '. $_SESSION['path_to_image'] .'</p>';
             ?>
             <p id="paragraph-login"><?php echo $_SESSION['login'] ?></p>
             <p id="paragraph-role"><?php if ($_SESSION['role'] == 'administrator') { echo 'Администратор'; } else { echo 'Пользователь'; } ?></p>
