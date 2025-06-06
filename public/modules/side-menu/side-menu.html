@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="./modules/side-menu/side-menu.css">
+<div class="side-menu-space flex flex-row">
+    <div id="black-space" class="black-space snow-black-space"></div>
+    <div id="side-menu" class="side-menu accent-border open-side-menu flex flex-column flex-start">
+        <button class="button-side-menu" type="button"><img src="/public/assets/icon-user.svg" alt="Иконка">Пользователь</button>
+        <button class="button-side-menu" type="button"><img src="/public/assets/icon-gear.svg" alt="Иконка">Настройки</button>
+        <button id="btn-exit" class="button-side-menu" type="button"><img src="/public/assets/icon-exit.svg" alt="Иконка">Выйти</button>
+        <p class="text-copyright">©Умбеталиев Данила</p>
+    </div>
+    <div id="information-panel" class="information-panel show-information-panel">
+        <div class="information-panel-header flex flex-row flex-center">
+            <div class="border panel top-panel accent-border flex flex-row flex-center">
+                <img id="icon-close" class="button-icon" src="/public/assets/icon-close.svg" alt="Иконка">
+            </div>
+        </div>
+        <div class="body-information-panel flex flex-row">
+            <div class="panel-space flex flex-column flex-center flex-start">
+                <div class="border panel bottom-panel accent-border flex flex-column flex-start">
+                    <img class="avatar" src="/public/assets/icon-user.svg" alt="Аватар пользователя">
+                    <p id="user-login"></p>
+                    <p id="user-email"></p>
+                </div>
+            </div>
+            <div class="panel-space flex flex-column flex-center flex-start"></div>
+        </div>
+    </div>
+</div>
+<script type="module" src="./modules/side-menu/side-menu.js"></script>

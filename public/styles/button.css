@@ -1,0 +1,92 @@
+.button-default {
+    border: 1px solid var(--border-color);
+    background: none;
+    user-select: none;
+    border-radius: 5px;
+    padding: 15px 35px;
+    margin: 20px 10px;
+    font-size: 14pt;
+    cursor: pointer;
+    transition: background-color 300ms ease, color 400ms ease, transform 50ms ease, box-shadow 100ms ease, border-color 300ms ease;
+}
+
+.button-default:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.button-default:active {
+    transform: scale(0.9);
+}
+
+.button-red:hover {
+    background-color: red !important;
+    color: white !important;
+    border-color: red !important;
+    box-shadow: 0 0 15px red !important;
+}
+
+.button-side-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    margin: 15px 10px;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14pt;
+    width: 80%;
+    transition: background-color 500ms ease, color 400ms ease, transform 50ms ease, box-shadow 300ms ease, border-color 300ms ease, border 400ms ease;
+}
+
+.button-side-menu:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.button-side-menu:active {
+    transform: scale(0.9);
+}
+
+.button-side-menu img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.button-menu-delete:hover {
+    background-color: red !important;
+    box-shadow: 0 0 15px red !important;
+    color: white !important;
+    border-radius: 5px;
+}
+
+.button-icon {
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 200ms normal ease, transform 50ms normal ease;
+}
+
+.button-icon:hover {
+    color: var(--text-color);
+    background-color: var(--icon-hover-color);
+}
+
+.button-icon:active {
+    transform: scale(0.9);
+}
+
+.button-changing-theme {
+    position: fixed;
+    top: 2%;
+    right: 2%;
+}

@@ -1,0 +1,74 @@
+@keyframes show-notification {
+    0% {
+        opacity: 0;
+        top: -20%;
+    }
+    100% {
+        opacity: 1;
+        top: 10%;
+    }
+}
+
+@keyframes hide-notification {
+    0% {
+        opacity: 1;
+        top: 10%;
+    }
+    100% {
+        opacity: 0;
+        top: -20%;
+    }
+}
+
+.notification {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.5% 2%;
+    max-width: 50%;
+    background: #0000005e;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 16pt;
+    cursor: pointer;
+    user-select: none;
+    z-index: 100;
+    animation: show-notification 600ms ease;
+}
+
+.notification:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.notification:active {
+    transition: transform 50ms ease;
+    transform: translateX(-50%) scale(0.95);
+}
+
+.hide-notification {
+    animation: hide-notification 900ms forwards ease;
+}
+
+.notification-red {
+    border-color: red;
+    color: white;
+    box-shadow: 0 0 20px red;
+    background: #ff0000a1;
+}
+
+.notification-green {
+    border-color: green;
+    box-shadow: 0 0 20px green;
+    background: #00ff62af;
+}
+
+.notification-blue {
+    border-color: blue;
+    color: white;
+    box-shadow: 0 0 20px blue;
+    background: #0066ffaf;
+}

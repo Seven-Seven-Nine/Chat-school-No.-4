@@ -1,0 +1,15 @@
+<div class="module open-module flex flex-column flex-center">
+    <img id="icon-change-theme" class="button-icon button-changing-theme" src="/public/assets/icon-themes.svg" alt="Иконка">
+    <div class="flex flex-column flex-center">
+        <img id="logo" src="./assets/logo-dark.svg" alt="Логотип" class="logo" id="logo">
+    </div>
+    <form class="flex flex-column flex-start form" method="post">
+      <input type="text" placeholder="Логин" id="input-login" required>
+      <input type="email" placeholder="Почта" id="input-email" required>
+      <input type="password" placeholder="Пароль" id="input-password" required>
+      <input type="password" placeholder="Повторите пароль" id="input-re-password" required>
+      <button class="button-default" type="button" id="btn-confirm">Создать аккаунт</button>
+    </form>
+    <p class="link" id="link-authorization">Авторизация</p>
+</div>
+<script type="module" src="./modules/registration/registration.js"></script>

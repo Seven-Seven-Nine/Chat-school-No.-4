@@ -1,0 +1,88 @@
+@import url("./information-panel.css");
+
+.side-menu-space {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+}
+
+@keyframes snow-black-space {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-black-space {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.black-space {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(5px);
+    z-index: 21;
+}
+
+.snow-black-space {
+    animation: snow-black-space 500ms ease;
+}
+
+.hide-black-space {
+    animation: hide-black-space 700ms forwards ease;
+}
+
+@keyframes open-side-menu {
+    0% {
+        position: relative;
+        left: -100%;
+    }
+    100% {
+        position: relative;
+        left: 0;
+    }
+}
+
+@keyframes close-side-menu {
+    0% {
+        position: relative;
+        left: 0;
+    }
+    100% {
+        position: relative;
+        left: -100%;
+    }
+}
+
+.side-menu {
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid var(--border-color);
+    background-color: var(--panel-color);
+    z-index: 22;
+}
+
+.open-side-menu {
+    animation: open-side-menu 500ms ease;
+}
+
+.close-side-menu {
+    animation: close-side-menu 600ms forwards ease;
+}
+
+.text-copyright {
+    position: absolute;
+    top: 90%;
+}

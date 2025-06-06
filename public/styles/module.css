@@ -1,0 +1,35 @@
+@keyframes open-module {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes close-module {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.module {
+    width: 100%;
+    height: auto;
+    padding: 1%;
+}
+
+.open-module {
+    animation: open-module 300ms ease;
+}
+
+.close-module {
+    animation: close-module 300ms ease;
+}

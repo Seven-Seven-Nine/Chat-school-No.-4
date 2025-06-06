@@ -1,0 +1,81 @@
+.black-space-modal-window {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(5px);
+    z-index: 101;
+}
+
+@keyframes snow-black-space-modal-window {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-black-space-modal-window {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.snow-black-space-modal-window {
+    animation: snow-black-space-modal-window 300ms ease;
+}
+
+.hide-black-space-modal-window {
+    animation: hide-black-space-modal-window 400ms ease;
+}
+
+.modal-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transition: border-color 400ms ease;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 1% 5%;
+    background-color: var(--body-color);
+    backdrop-filter: blur(5px);
+    z-index: 102;
+}
+
+.modal-window:hover {
+    border-color: var(--accent-color);
+}
+
+@keyframes snow-modal-window {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+}
+
+.snow-modal-window {
+    animation: snow-modal-window 400ms ease;
+}
+
+@keyframes hide-modal-window {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%) scale(0.8);
+    }
+}
+
+.hide-modal-window {
+    animation: hide-modal-window 200ms forwards ease;
+}

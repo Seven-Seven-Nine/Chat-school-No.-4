@@ -1,0 +1,25 @@
+@keyframes download-lane {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.download-lane {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    box-shadow: 0 0 5px var(--accent-color);
+    background-color: var(--accent-color);
+}
+
+.download-lane-animation {
+    animation: download-lane 500ms ease;
+}

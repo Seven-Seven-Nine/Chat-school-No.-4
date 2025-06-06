@@ -1,0 +1,51 @@
+@keyframes appearance-logo {
+    0% {
+        opacity: 0.1;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes animation-loading-lane {
+    0% {
+        opacity: 0.1;
+        width: 0;
+    }
+    50% {
+        opacity: 0.1;
+        width: 0;
+    }
+    100% {
+        opacity: 1;
+        width: 100%;
+    }
+}
+
+.screen-saver {
+    width: 100%;
+    height: 100%;
+}
+
+.screen-saver img {
+    width: 50%;
+    height: 50%;
+    animation: appearance-logo 500ms ease;
+}
+
+.container-screen-saver-download-lane {
+    width: 60%;
+    text-align: left;
+    margin-top: 1%;
+}
+
+.screen-saver-download-lane {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    background-color: var(--color-screen-saver-download-lane);
+    box-shadow: 0 0 10px var(--color-screen-saver-download-lane);
+    animation: animation-loading-lane 1000ms ease;
+}
