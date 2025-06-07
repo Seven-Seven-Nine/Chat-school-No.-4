@@ -4,7 +4,7 @@
     max-width: 500px;
     height: 100%;
     padding: 1%;
-    border-right: 1px solid var(--border-color);
+    border-right: var(--size-border) solid var(--border-color);
     overflow-y: auto;
 }
 

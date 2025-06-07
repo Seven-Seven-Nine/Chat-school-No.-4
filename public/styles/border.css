@@ -1,8 +1,3 @@
-.border {
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-}
-
 .accent-border {
     transition: border-color 400ms ease;
 }

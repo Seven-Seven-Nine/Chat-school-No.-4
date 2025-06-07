@@ -1,5 +1,6 @@
 :root {
-    --accent-color: rgb(93, 15, 196);
+    --accent-color: rgb(111, 0, 255);
+    --size-border: 2px;
 }
 
 .light-theme {

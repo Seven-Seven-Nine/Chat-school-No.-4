@@ -1,5 +1,5 @@
 .button-default {
-    border: 1px solid var(--border-color);
+    border: var(--size-border) solid var(--border-color);
     background: none;
     user-select: none;
     border-radius: 5px;

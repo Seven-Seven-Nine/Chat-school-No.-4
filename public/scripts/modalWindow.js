@@ -13,7 +13,6 @@ function snowModalConfirmationWindow(mainText, textConfirmationBtn = 'Да', tex
     blackSpaceModalWindow.classList.add('snow-black-space-modal-window');
 
     const modalWindow = document.createElement('div');
-    modalWindow.classList.add('border');
     modalWindow.classList.add('modal-window');
     modalWindow.classList.add('snow-modal-window');
     modalWindow.innerHTML = `

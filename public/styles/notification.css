@@ -37,6 +37,7 @@
     cursor: pointer;
     user-select: none;
     z-index: 100;
+    transition: transform 200ms ease;
     animation: show-notification 600ms ease;
 }
 
@@ -55,20 +56,21 @@
 
 .notification-red {
     border-color: red;
-    color: white;
     box-shadow: 0 0 20px red;
+    color: white;
     background: #ff0000a1;
 }
 
 .notification-green {
     border-color: green;
     box-shadow: 0 0 20px green;
-    background: #00ff62af;
+    color: white;
+    background: rgba(0, 128, 0, 0.692);
 }
 
 .notification-blue {
     border-color: blue;
-    color: white;
     box-shadow: 0 0 20px blue;
+    color: white;
     background: #0066ffaf;
 }

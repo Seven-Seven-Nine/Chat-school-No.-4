@@ -6,6 +6,14 @@ import { snowModalConfirmationWindow } from "./scripts/modalWindow.js";
 
 function eventBinding() {
     document.getElementById('btn-exit').onclick = () => snowModalConfirmationWindow('Выйти из аккаунта?', 'Да', 'Нет', () => exitAccount());
+    document.getElementById('btn-user').onclick = () => {
+        closeSideMenu();
+        changeModule('user');
+    };
+    document.getElementById('btn-settings').onclick = () => {
+        closeSideMenu();
+        changeModule('settings');
+    };
     document.getElementById('icon-close').onclick = () => closeSideMenu();
 }
 

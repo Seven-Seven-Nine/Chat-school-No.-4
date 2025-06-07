@@ -8,7 +8,7 @@
     width: 100%;
     height: 10%;
     min-height: 80px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: var(--size-border) solid var(--border-color);
 }
 
 .chat-name {

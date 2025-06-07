@@ -46,6 +46,8 @@
 .top-panel {
     width: 80%;
     height: 80px;
+    border: var(--size-border) solid var(--border-color);
+    border-radius: 5px;
 }
 
 .body-information-panel {
@@ -64,6 +66,8 @@
 .bottom-panel {
     width: 100%;
     margin: 2% 0;
+    border: var(--size-border) solid var(--border-color);
+    border-radius: 5px;
 }
 
 .avatar {

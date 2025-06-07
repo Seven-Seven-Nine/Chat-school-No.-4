@@ -12,7 +12,7 @@ input {
     outline: none;
     background: none;
     border: none;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: var(--size-border) solid var(--border-color);
     font-size: 14pt;
     transition: border-color 300ms ease, border-bottom 300ms ease, color 200ms ease;
     transition: border 200ms ease;
@@ -23,7 +23,7 @@ input:focus {
 }
 
 .error-input {
-    border-bottom: 1px solid red !important;
+    border-bottom: var(--size-border) solid red !important;
     transition: border-bottom 500ms ease, color 300ms ease, text-shadow 200ms ease !important;
 }
 
@@ -40,7 +40,7 @@ textarea {
     outline: none;
     background: none;
     border: none;
-    border: 1px solid var(--border-color);
+    border: var(--size-border) solid var(--border-color);
     font-size: 14pt;
     transition: border-color 300ms ease;
 }
