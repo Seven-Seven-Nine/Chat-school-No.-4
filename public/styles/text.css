@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, label {
   color: var(--text-color);
 }
 
@@ -18,16 +18,4 @@ h1, h2, h3, h4, h5, h6, p {
   color: red;
   text-shadow: 0 0 10px red;
   animation: text-error 500ms normal ease;
-}
-
-& .green-text {
-  color: lightgreen;
-}
-
-& .red-text {
-  color: rgb(255, 63, 63);
-}
-
-& .yellow-text   {
-  color: yellow;
 }

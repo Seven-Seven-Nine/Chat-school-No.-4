@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25.053" height="21.233" fill="none" version="1.1" viewBox="0 0 25.053 21.233" xmlns="http://www.w3.org/2000/svg">
+ <style>
+	@media (prefers-color-scheme: dark) {
+      path {
+            fill: white !important;
+      }
+   }
+  </style>
+ <path d="m10.617 0 3.5536 3.5536-2.6652 2.6652-1.9545 1.688 0.044419 0.17768 3.5536-0.17768h11.905v5.4193h-11.905l-3.5536-0.17768-0.044419 0.17768 1.9545 1.688 2.6652 2.6652-3.5536 3.5536-10.617-10.617z" fill="#000" stroke-width=".92543"/>
+</svg>

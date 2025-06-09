@@ -7,7 +7,7 @@
  * @param {string} textRejectBtn - текст кнопки отклонения (по умолчанию 'Нет').
  * @param {any} callback - callback для кнопки подтверждения. 
  */
-function snowModalConfirmationWindow(mainText, textConfirmationBtn = 'Да', textRejectBtn = 'Нет', callback) {
+function showModalConfirmationWindow(mainText, textConfirmationBtn = 'Да', textRejectBtn = 'Нет', callback) {
     const blackSpaceModalWindow = document.createElement('div');
     blackSpaceModalWindow.classList.add('black-space-modal-window');
     blackSpaceModalWindow.classList.add('snow-black-space-modal-window');
@@ -49,4 +49,4 @@ function hideModalWindow(modalWindow, blackSpaceModalWindow) {
     setTimeout(() => blackSpaceModalWindow.remove(), 300);
 }
 
-export { snowModalConfirmationWindow };
+export { showModalConfirmationWindow };

@@ -1,14 +1,29 @@
+@keyframes form {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 form {
-    width: 90%;
-    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
     padding: 20px;
     border-radius: 5px;
+    /* animation: form 700ms ease; */
 }
 
 input {
     margin: 30px 0;
-    width: 90%;
+    width: 450px;
     height: 40px;
+    color: var(--text-color);
     outline: none;
     background: none;
     border: none;
@@ -49,7 +64,11 @@ textarea:focus {
     border-color: var(--accent-color);
 }
 
-.double-field input {
-    width: 50%;
+.input-label {
+    text-align: left;
+}
+
+.input-label input {
+    width: 72%;
     margin: 30px 15px;
 }

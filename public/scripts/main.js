@@ -1,17 +1,18 @@
 'use strict';
 
-import { changeModule } from "./module.js";
-import { checkingAvailabilitySession } from "./requests.js";
 import { applyBrowserColorTheme } from "./colorTheme.js";
+import { applyModule } from "./module.js";
+import { checkingForUserSession } from "./requests.js";
 
-async function launch() {
-    applyBrowserColorTheme();
-
-    if (await checkingAvailabilitySession()) {
-        setTimeout(() => changeModule('account'), 1000);
-    } else {
-        setTimeout(() => changeModule('authorization'), 1000);
-    }
+function main() {
+    applyBrowserColorTheme(); 
+    setTimeout(async () => {
+        if (await checkingForUserSession()) {
+            applyModule('account');
+        } else {
+            applyModule('authorization');
+        }
+    }, 1000);
 }
 
-launch();
+main();

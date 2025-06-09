@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
-    <script type="module" src="./scripts/main.js" defer></script>
+    <script type="module" src="./scripts/main.js"></script>
     <title>Chat school No. 4</title>
 </head>
 <body>
-    <!-- <div id="download-lane" class="download-lane"></div> -->
     <div id="notification-container"></div>
     <div id="modal-window-container"></div>
     <main id="main">

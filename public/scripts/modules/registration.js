@@ -1,10 +1,10 @@
 'use strict';
 
-import { sendJSONRequest, saveSession } from "./scripts/requests.js";
-import { changeModule } from "./scripts/module.js";
-import { incorrectInput, correctInput } from "./scripts/validationForms.js";
-import { showNotification } from "./scripts/notifications.js";
-import { changeColorTheme } from "./scripts/colorTheme.js";
+import { changeColorTheme } from "../colorTheme.js";
+import { applyModule } from "../module.js";
+import { incorrectInput, correctInput } from "../validationForms.js";
+import { userRegistration } from "../requests.js";
+import { showNotification } from "../notifications.js";
 
 /** @type {HTMLInputElement} */ const inputLogin = document.getElementById('input-login');
 /** @type {HTMLInputElement} */ const inputEmail = document.getElementById('input-email');
@@ -14,10 +14,10 @@ import { changeColorTheme } from "./scripts/colorTheme.js";
 function eventBinding() {
     document.getElementById('logo').onclick = () => window.location.href = '/';
     document.getElementById('icon-change-theme').onclick = () => changeColorTheme();
-    document.getElementById('link-authorization').onclick = () => changeModule('authorization');
     document.getElementById('btn-confirm').onclick = () => validatorRegistrationForm();
+    document.getElementById('link-authorization').onclick = () => applyModule('authorization');
 
-    document.body.addEventListener('keydown', (event) => {
+    document.body.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             validatorRegistrationForm();
         }
@@ -60,39 +60,20 @@ function validatorRegistrationForm() {
     }
 
     if (formValidationResult.length === 4) {
-        sendingRequest();
+        registrationRequest();
     }
 }
 
-async function sendingRequest() {
-    const object = {
+async function registrationRequest() {
+    const userData = {
         'login': inputLogin.value,
         'email': inputEmail.value,
         'password': inputPassword.value
     };
-
-    const response = await sendJSONRequest(object, '/app/controllers/UserController.php?action=add_user');
-
-    if (response) {
-        requestProcessing(response);
-    } else {
-        console.error('Ответ от сервера не получен!');
-    }
-}
-
-function requestProcessing(response) {
-    if (response['result'] && response['result'] === 'the user is registered') {
-        const sessionObject = {
-            'login': inputLogin.value,
-            'role': 'user',
-            'email': inputEmail.value,
-        };
-        saveSession(sessionObject);
-        showNotification('Вход в аккаунт.', 'green');
-        changeModule('account');
-    }
-    if (response['error message']) {
-        showNotification(response['error message'], 'red');
+    
+    if (await userRegistration(userData)) {
+        showNotification('Вход в аккаунт!', 'green');
+        applyModule('account');
     }
 }
 

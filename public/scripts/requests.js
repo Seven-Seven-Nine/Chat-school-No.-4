@@ -1,3 +1,5 @@
+import { showNotification } from "./notifications.js";
+
 /**
  * Функция для отправки fetch-запроса с JSON по адресу.
  * @param {object} object - объект для конвертации в JSON.
@@ -22,63 +24,61 @@ async function sendJSONRequest(object, link, method = 'POST') {
             console.error(`Ошибка HTTP-запроса, статус: ${request.status}`);
         }
     } catch (error) {
-        console.error(`Ошибка отправки запроса для регистрации пользователя: ${error}`);
+        console.error(`Ошибка отправки fetch-запроса: ${error}`);
     }
 }
 
 /**
- * Функция отправки fetch-запроса для сохранения сессии.
- * Необходимо собрать объект с ключами и значениями для отправки на сервер.
- * Разрешённые ключи: login, role, email.
- * @param {object} object - объект для конвертации в JSON.
+ * Запрос на авторизацию пользователя, возвращает true, если пользователь успешно авторизовался.
+ * @param {object} JSON - объект с значениями ('login', 'password').
+ * @returns 
  */
-async function saveSession(object) {
-    const response = await sendJSONRequest(object, '/app/sessions/Session.php?action=save');
-    if (response['session result'] !== 'saved') {
-        throw new Error(`Ошибка сохранения сессии пользователя: ${response['session result']}.`);
-    }
+async function userAuthorization(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/user/authorization.php');
+    if (response['result'] && response['result'] === 'user authorization is successful') return true;
+    if (response['error']) showNotification(response['error message'], 'red');
+    return false;
 }
 
 /**
- * Функция для получения сессии текущего пользователя.
- * @returns возвращает объект с сессией пользователя.
+ * Запрос на регистрацию пользователя, возвращает true, если пользователь успешно зарегистрировался.
+ * @param {string} JSON - объект с значениями ('login', 'email', 'password'). 
+ * @returns 
  */
-async function getSession() {
-    const response = await sendJSONRequest({}, '/app/sessions/Session.php?action=get_session');
-    if (response['session result'] === 'the user session does not exist') {
-        throw new Error('Сессия пользователя не существует.');
-    } else {
-        return response;
-    }
+async function userRegistration(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/user/registration.php');
+    if (response.result && response.result === 'authorization is successful') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
 }
 
 /**
- * Функция отправки fetch-запроса для проверки данных с сессией пользователя.
- * Необходимо собрать объект с ключами и значениями для отправки на сервер.
- * Разрешённые ключи: login, role, email.
- * @param {*} object 
- * @returns возвращает true, если данные совпадают с сессией.
+ * Запрос на проверку наличия сохранённой сессии пользователя, возвращает true, если найдена сессия пользователя.
  */
-async function checkSession(object) {
-    const response = await sendJSONRequest(object, '/app/sessions/Session.php?action=check_session');
-    if (response['session result'] !== 'the session is correct') {
-        throw new Error(`Ошибка проверки данных с сессией пользователя: ${response['session result']}.`);
-    } else {
-        return true;
-    }
+async function checkingForUserSession() {
+    const response = await sendJSONRequest({}, '/api/session/checking_for_session_availability.php');
+    if (response.result && response.result === 'the user\'s session was found') return true;
+    return false;
 }
 
 /**
- * Функция для проверки сохранённой сессии пользователя.
- * @returns возвращает true, если сессия пользователя найдена, false - не найдена.
+ * Запрос на удаление сессии пользователя.
+ * @returns 
  */
-async function checkingAvailabilitySession() {
-    const response = await sendJSONRequest({}, '/app/sessions/Session.php?action=checking_availability')
-    if (response['session result'] === 'the user session was found') {
-        return true;
-    } else {
-        return false;
-    }
+async function logout() {
+    const response = await sendJSONRequest({}, '/api/user/logout.php');
+    if (response.result && response.result === 'the session is destroyed') return true;
+    return false;
 }
 
-export { sendJSONRequest, saveSession, getSession, checkSession, checkingAvailabilitySession };
+/**
+ * Запрос на получение сохранённой сессии пользователя.
+ * @returns возвращает данные сессии в JSON.
+ */
+async function getUserSession() {
+    const response = await sendJSONRequest({}, '/api/session/get_user_session.php');
+    if (response.result && response.result === 'the session was successfully found in full') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+}
+
+export { sendJSONRequest, userAuthorization, userRegistration, checkingForUserSession, logout, getUserSession };
