@@ -27,7 +27,7 @@
 }
 
 .show-information-panel {
-    animation: show-information-panel 600ms ease;
+    animation: show-information-panel 500ms ease;
 }
 
 .hide-information-panel {
@@ -71,5 +71,14 @@
 }
 
 .avatar {
-    margin: 3% 1%
+    margin: 3% 1%;
+}
+
+.avatar-src {
+    margin: 3% 1%;
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
 }

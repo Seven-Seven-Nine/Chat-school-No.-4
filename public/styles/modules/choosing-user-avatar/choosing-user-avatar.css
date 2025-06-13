@@ -1,0 +1,66 @@
+.choosing-user-avatar-space {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+}
+
+@keyframes show-choosing-user-avatar {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-50%) translateX(-50%) scale(1.05);
+    }
+    70% {
+        opacity: 0.8;
+        transform: translateY(-50%) translateX(-50%) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(-50%) scale(1);
+    }
+}
+
+@keyframes hide-choosing-user-avatar {
+    0% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(-50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-50%) scale(0.5);
+    }
+}
+
+.choosing-user-avatar {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 22;
+    background-color: var(--body-color);
+    padding: 1%;
+    max-width: 50%;
+    min-width: 485px;
+    border: var(--size-border) solid var(--border-color);
+    border-radius: 5px;
+}
+
+.show-choosing-user-avatar {
+    animation: show-choosing-user-avatar 600ms ease;
+    transform-origin: center;
+}
+
+.hide-choosing-user-avatar {
+    animation: hide-choosing-user-avatar 200ms forwards ease;
+    transform-origin: center;
+}
+
+.avatar {
+    
+}

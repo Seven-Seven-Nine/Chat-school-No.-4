@@ -1,14 +1,3 @@
-@keyframes button-default {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 .button-default {
     border: var(--size-border) solid var(--border-color);
     background: none;
@@ -18,8 +7,7 @@
     margin: 20px 10px;
     font-size: 14pt;
     cursor: pointer;
-    /* animation: button-default 300ms ease; */
-    transition: background-color 300ms ease, color 400ms ease, transform 50ms ease, box-shadow 100ms ease, border-color 300ms ease;
+    transition: background-color 300ms ease, color 400ms ease, transform 50ms ease, box-shadow 200ms ease, border-color 300ms ease;
 }
 
 .button-default:hover {
@@ -106,11 +94,19 @@
 @keyframes  button-return {
     0% {
         opacity: 0;
-        left: -50%;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(0.8);
     }
     100% {
         opacity: 1;
-        left: 2%;
+        transform: scale(1);
     }
 }
 
@@ -118,5 +114,5 @@
     position: absolute;
     top: 3%;
     left: 2%;
-    animation: button-return 500ms ease;
+    animation: button-return 600ms ease;
 }

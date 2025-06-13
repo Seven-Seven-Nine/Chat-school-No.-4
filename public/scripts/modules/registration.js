@@ -17,7 +17,7 @@ function eventBinding() {
     document.getElementById('btn-confirm').onclick = () => validatorRegistrationForm();
     document.getElementById('link-authorization').onclick = () => applyModule('authorization');
 
-    document.body.addEventListener('keypress', (event) => {
+    document.getElementById('registration-module').addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             validatorRegistrationForm();
         }
@@ -59,9 +59,7 @@ function validatorRegistrationForm() {
         formValidationResult.push(true);
     }
 
-    if (formValidationResult.length === 4) {
-        registrationRequest();
-    }
+    if (formValidationResult.length === 4) registrationRequest();
 }
 
 async function registrationRequest() {

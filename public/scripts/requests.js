@@ -30,7 +30,7 @@ async function sendJSONRequest(object, link, method = 'POST') {
 
 /**
  * Запрос на авторизацию пользователя, возвращает true, если пользователь успешно авторизовался.
- * @param {object} JSON - объект с значениями ('login', 'password').
+ * @param {object} JSON - объект с ключами: 'login', 'password'.
  * @returns 
  */
 async function userAuthorization(JSON) {
@@ -42,7 +42,7 @@ async function userAuthorization(JSON) {
 
 /**
  * Запрос на регистрацию пользователя, возвращает true, если пользователь успешно зарегистрировался.
- * @param {string} JSON - объект с значениями ('login', 'email', 'password'). 
+ * @param {string} JSON - объект с ключами: 'login', 'email', 'password'. 
  * @returns 
  */
 async function userRegistration(JSON) {
@@ -72,6 +72,30 @@ async function logout() {
 }
 
 /**
+ * Запрос на обновления данных пользователя, возвращает true при успешном обновлении данных.
+ * @param {object} JSON - объект с ключами: 'login', 'role', 'email', 'path_to_avatar';
+ * @returns 
+ */
+async function updateUser(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/user/user-update.php');
+    if (response.result && response.result === 'the user\'s data has been updated') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на обновление пароля пользователя, возвращает true при успешном обновлении пароля.
+ * @param {*} JSON - объект с ключами: 'login', 'current_password', 'new_password';
+ * @returns
+ */
+async function passwordUpdate(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/user/password-update.php');
+    if (response.result && response.result === 'password has been successfully updated') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
  * Запрос на получение сохранённой сессии пользователя.
  * @returns возвращает данные сессии в JSON.
  */
@@ -81,4 +105,32 @@ async function getUserSession() {
     if (response.error) showNotification(response['error message'], 'red');
 }
 
-export { sendJSONRequest, userAuthorization, userRegistration, checkingForUserSession, logout, getUserSession };
+/**
+ * Отправить изображение на сервер, в formData обязательно должно быть одно изображение.
+ * Возвращает true при успешном сохранении изображения.
+ * @param {FormData} formData 
+ * @returns
+ */
+async function sendImage(formData) {
+    try {
+        const response = await fetch('/api/user/save-user-avatar.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const json = await response.json();
+            if (json.result && json.result === 'the file was saved successfully') return true;
+            if (json.error) showNotification(json['error message'], 'red');
+            return false;
+        } else {
+            console.error(`Ошибка HTTP-запроса для отправки изображения, статус: ${request.status}`);
+            return false;
+        }
+    } catch (error) {
+        console.error(`Ошибка отправки fetch-запроса для сохранения изображения: ${error}`);
+        return false;
+    }
+}
+
+export { sendJSONRequest, userAuthorization, userRegistration, checkingForUserSession, logout, updateUser, passwordUpdate, getUserSession, sendImage };

@@ -16,7 +16,7 @@ function eventBinding() {
     document.getElementById('link-registration').onclick = () => applyModule('registration');
     document.getElementById('link-password-recovery').onclick = () => applyModule('password-recovery');
 
-    document.body.addEventListener('keypress', (event) => {
+    document.getElementById('authorization-module').addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             validatorAuthorizationForm();
         }
@@ -42,9 +42,7 @@ function validatorAuthorizationForm() {
         formValidationResult.push(true);
     }
 
-    if (formValidationResult.length === 2) {
-        authorizationRequest();
-    }
+    if (formValidationResult.length === 2) authorizationRequest();
 }
 
 async function authorizationRequest() {

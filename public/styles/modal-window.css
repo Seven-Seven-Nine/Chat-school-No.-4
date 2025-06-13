@@ -56,7 +56,15 @@
 @keyframes snow-modal-window {
     0% {
         opacity: 0;
-        transform: translateX(-50%) translateY(-50%) scale(0.8);
+        transform: translateX(-50%) translateY(-50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(-50%) scale(1.05);
+    }
+    70% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%) scale(0.95);
     }
     100% {
         opacity: 1;
@@ -65,7 +73,7 @@
 }
 
 .snow-modal-window {
-    animation: snow-modal-window 400ms ease;
+    animation: snow-modal-window 600ms ease;
 }
 
 @keyframes hide-modal-window {

@@ -9,41 +9,6 @@
     z-index: 20;
 }
 
-@keyframes snow-black-space {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes hide-black-space {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-.black-space {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0 0 0 / 50%);
-    backdrop-filter: blur(5px);
-    z-index: 21;
-}
-
-.snow-black-space {
-    animation: snow-black-space 500ms ease;
-}
-
-.hide-black-space {
-    animation: hide-black-space 700ms forwards ease;
-}
-
 @keyframes open-side-menu {
     0% {
         position: relative;
@@ -75,11 +40,11 @@
 }
 
 .open-side-menu {
-    animation: open-side-menu 500ms ease;
+    animation: open-side-menu 400ms ease;
 }
 
 .close-side-menu {
-    animation: close-side-menu 600ms forwards ease;
+    animation: close-side-menu 500ms forwards ease;
 }
 
 .text-copyright {
