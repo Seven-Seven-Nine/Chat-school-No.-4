@@ -9,7 +9,7 @@ import { showNotification } from "./notifications.js";
  */
 async function sendJSONRequest(object, link, method = 'POST') {
     try {
-        const request = await fetch(link, {
+        const response = await fetch(link, {
             method: method,
             headers: {
                 'Content-Type': 'application/json'
@@ -17,11 +17,36 @@ async function sendJSONRequest(object, link, method = 'POST') {
             body: JSON.stringify(object)
         });
 
-        if (request.ok) {
-            const response = await request.json();
-            return response;
+        if (response.ok) {
+            const json = await response.json();
+            return json;
         } else {
-            console.error(`Ошибка HTTP-запроса, статус: ${request.status}`);
+            console.error(`Ошибка HTTP-запроса, статус: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(`Ошибка отправки fetch-запроса: ${error}`);
+    }
+}
+
+/**
+ * Отправка fetch-запроса с FormData по адресу.
+ * @param {FormData} formData - объекта FormData. 
+ * @param {string} link - адрес для отправки запроса.
+ * @param {string} method - http-метод (по умолчанию POST).
+ * @returns JSON-ответ от сервера.
+ */
+async function sendFormDataRequest(formData, link, method = 'POST') {
+    try {
+        const response = await fetch(link, {
+            method: method,
+            body: formData
+        });
+
+        if (response.ok) {
+            const json = await response.json();
+            return json;
+        } else {
+            console.error(`Ошибка HTTP-запроса для отправки изображения, статус: ${response.status}`);
         }
     } catch (error) {
         console.error(`Ошибка отправки fetch-запроса: ${error}`);
@@ -106,31 +131,51 @@ async function getUserSession() {
 }
 
 /**
- * Отправить изображение на сервер, в formData обязательно должно быть одно изображение.
+ * Запрос на сохранения пользовательского автара, возвращает true при успешном сохранении изображении
  * Возвращает true при успешном сохранении изображения.
- * @param {FormData} formData 
+ * @param {FormData} formData - объект FormData: 'file'.
  * @returns
  */
-async function sendImage(formData) {
-    try {
-        const response = await fetch('/api/user/save-user-avatar.php', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            const json = await response.json();
-            if (json.result && json.result === 'the file was saved successfully') return true;
-            if (json.error) showNotification(json['error message'], 'red');
-            return false;
-        } else {
-            console.error(`Ошибка HTTP-запроса для отправки изображения, статус: ${request.status}`);
-            return false;
-        }
-    } catch (error) {
-        console.error(`Ошибка отправки fetch-запроса для сохранения изображения: ${error}`);
-        return false;
-    }
+async function saveUserAvatar(formData) {
+    const response = await sendFormDataRequest(formData, '/api/user/save-user-avatar.php');
+    if (response.result && response.result === 'the file was saved successfully') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
 }
 
-export { sendJSONRequest, userAuthorization, userRegistration, checkingForUserSession, logout, updateUser, passwordUpdate, getUserSession, sendImage };
+/**
+ * Отправляет запрос для получения активных чатов пользователя, возвращает 'none' при ошибке или при отсутствии чатов, в успешном случае возвращает JSON с данными чата.
+ * @returns
+ */
+async function loadingChat() {
+    const response = await sendJSONRequest({}, '/api/chat/loading-chat.php');
+    if (response.result && response.result === 'chats found successfully') return response;
+    if (response.result && response.result === 'the user does not have any active chats') return 'none';
+    if (response.error) showNotification(response['error message'], 'red');
+    return 'none';
+}
+
+/**
+ * Запрос на создания чата, возвращает true при успешном создании чата или false.
+ * @param {FormData} formData - объект FormData: 'title', 'file'. 
+ */
+async function creatingChat(formData) {
+    const response = await sendFormDataRequest(formData, '/api/chat/creating-chat.php');
+    if (response.result && response.result === 'the chat was created successfully') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+export {
+    sendJSONRequest, 
+    userAuthorization, 
+    userRegistration,
+    checkingForUserSession, 
+    logout, 
+    updateUser, 
+    passwordUpdate, 
+    getUserSession, 
+    saveUserAvatar, 
+    loadingChat,
+    creatingChat
+};

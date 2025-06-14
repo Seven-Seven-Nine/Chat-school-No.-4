@@ -1,4 +1,39 @@
-.choosing-user-avatar-space {
+@keyframes snow-black-space {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-black-space {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.black-space {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(5px);
+    z-index: 21;
+}
+
+.snow-black-space {
+    animation: snow-black-space 500ms ease;
+}
+
+.hide-black-space {
+    animation: hide-black-space 500ms forwards ease;
+}
+
+.submodule-space {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,7 +42,7 @@
     z-index: 20;
 }
 
-@keyframes show-choosing-user-avatar {
+@keyframes show-submodule {
     0% {
         opacity: 0;
         transform: translateY(-50%) translateX(-50%) scale(0.5);
@@ -26,7 +61,7 @@
     }
 }
 
-@keyframes hide-choosing-user-avatar {
+@keyframes hide-submodule {
     0% {
         opacity: 1;
         transform: translateY(-50%) translateX(-50%) scale(1);
@@ -37,7 +72,7 @@
     }
 }
 
-.choosing-user-avatar {
+.submodule {
     position: relative;
     top: 50%;
     left: 50%;
@@ -51,12 +86,12 @@
     border-radius: 5px;
 }
 
-.show-choosing-user-avatar {
-    animation: show-choosing-user-avatar 600ms ease;
+.show-submodule {
+    animation: show-submodule 600ms ease;
     transform-origin: center;
 }
 
-.hide-choosing-user-avatar {
-    animation: hide-choosing-user-avatar 200ms forwards ease;
+.hide-submodule {
+    animation: hide-submodule 200ms forwards ease;
     transform-origin: center;
 }

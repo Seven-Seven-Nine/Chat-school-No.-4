@@ -2,7 +2,7 @@
 
 import { applyModule, deleteSpecificModuleScript } from "../module.js";
 import { showNotification } from "../notifications.js";
-import { getUserSession, sendImage } from "../requests.js";
+import { saveUserAvatar } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
 
 /** @type {HTMLInputElement} */ const inputFile = document.getElementById('input-file');
@@ -27,7 +27,7 @@ async function saveAvatar() {
     } else {
         const formData = new FormData();
         formData.append('image', file);
-        if (await sendImage(formData)) {
+        if (await saveUserAvatar(formData)) {
             closeChoosingUserAvatar();
             showNotification('Изображение сохранено.', 'green');   
             applyModule('user');

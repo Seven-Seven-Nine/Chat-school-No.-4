@@ -10,7 +10,7 @@
 @import url("./button.css");
 @import url("./notification.css");
 @import url("./modal-window.css");
-@import url("./black-space.css");
+@import url("./submodule.css");
 
 * {
     box-sizing: border-box;
