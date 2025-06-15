@@ -5,23 +5,22 @@
             <img id="icon-create-chat" class="button-icon" src="/public/assets/icon-add.svg" alt="Иконка">
         </div>
     </div>
-    <div class="chat-workspace">
+    <div id="chat-workspace" class="chat-workspace">
         <div class="chat-header flex flex-row">
-            <div class="chat-name"></div>
-            <img class="button-icon" src="/public/assets/icon-points-menu.svg" alt="Иконка">
+            <div id="chat-title" class="chat-name"></div>
+            <img id="icon-chat-menu" class="button-icon" src="/public/assets/icon-points-menu.svg" alt="Иконка">
         </div>
         <div class="chat-body">
-            <div class="chat-messages">
-                <div></div>
-            </div>
+            <div id="chat-messages" class="chat-messages"></div>
             <div class="chat-input-field flex flex-row flex-center">
                 <img class="button-icon" src="/public/assets/icon-attach.svg" alt="Икона">
-                <textarea class="main-chat-input" placeholder="..."></textarea>
-                <img class="button-icon" src="/public/assets/icon-send.svg" alt="Иконка">
+                <textarea id="main-chat-input" class="main-chat-input" placeholder="..."></textarea>
+                <img id="icon-push" class="button-icon" src="/public/assets/icon-send.svg" alt="Иконка">
             </div>
         </div>
     </div>
 </div>
 <div id="container-side-menu"></div>
+<div id="container-chat-menu"></div>
 <div id="container-chat-creation"></div>
 <link rel="stylesheet" href="/public/styles/modules/account/account.css">

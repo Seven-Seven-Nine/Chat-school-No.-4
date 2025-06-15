@@ -54,9 +54,9 @@ async function sendFormDataRequest(formData, link, method = 'POST') {
 }
 
 /**
- * Запрос на авторизацию пользователя, возвращает true, если пользователь успешно авторизовался.
+ * Запрос на авторизацию пользователя.
  * @param {object} JSON - объект с ключами: 'login', 'password'.
- * @returns 
+ * @returns возвращает true, если пользователь успешно авторизовался
  */
 async function userAuthorization(JSON) {
     const response = await sendJSONRequest(JSON, '/api/user/authorization.php');
@@ -66,9 +66,9 @@ async function userAuthorization(JSON) {
 }
 
 /**
- * Запрос на регистрацию пользователя, возвращает true, если пользователь успешно зарегистрировался.
+ * Запрос на регистрацию пользователя.
  * @param {string} JSON - объект с ключами: 'login', 'email', 'password'. 
- * @returns 
+ * @returns возвращает true, если пользователь успешно зарегистрировался
  */
 async function userRegistration(JSON) {
     const response = await sendJSONRequest(JSON, '/api/user/registration.php');
@@ -78,7 +78,8 @@ async function userRegistration(JSON) {
 }
 
 /**
- * Запрос на проверку наличия сохранённой сессии пользователя, возвращает true, если найдена сессия пользователя.
+ * Запрос на проверку наличия сохранённой сессии пользователя.
+ * @returns возвращает true, если найдена сессия пользователя
  */
 async function checkingForUserSession() {
     const response = await sendJSONRequest({}, '/api/session/checking_for_session_availability.php');
@@ -88,7 +89,7 @@ async function checkingForUserSession() {
 
 /**
  * Запрос на удаление сессии пользователя.
- * @returns 
+ * @returns возвращает true при удалении сессии.
  */
 async function logout() {
     const response = await sendJSONRequest({}, '/api/user/logout.php');
@@ -97,9 +98,9 @@ async function logout() {
 }
 
 /**
- * Запрос на обновления данных пользователя, возвращает true при успешном обновлении данных.
+ * Запрос на обновления данных пользователя.
  * @param {object} JSON - объект с ключами: 'login', 'role', 'email', 'path_to_avatar';
- * @returns 
+ * @returns возвращает true при успешном обновлении данных.
  */
 async function updateUser(JSON) {
     const response = await sendJSONRequest(JSON, '/api/user/user-update.php');
@@ -109,9 +110,9 @@ async function updateUser(JSON) {
 }
 
 /**
- * Запрос на обновление пароля пользователя, возвращает true при успешном обновлении пароля.
+ * Запрос на обновление пароля пользователя.
  * @param {*} JSON - объект с ключами: 'login', 'current_password', 'new_password';
- * @returns
+ * @returns возвращает true при успешном обновлении пароля.
  */
 async function passwordUpdate(JSON) {
     const response = await sendJSONRequest(JSON, '/api/user/password-update.php');
@@ -131,10 +132,9 @@ async function getUserSession() {
 }
 
 /**
- * Запрос на сохранения пользовательского автара, возвращает true при успешном сохранении изображении
- * Возвращает true при успешном сохранении изображения.
+ * Запрос на сохранения пользовательского автара.
  * @param {FormData} formData - объект FormData: 'file'.
- * @returns
+ * @returns возвращает true при успешном сохранении изображения.
  */
 async function saveUserAvatar(formData) {
     const response = await sendFormDataRequest(formData, '/api/user/save-user-avatar.php');
@@ -144,8 +144,8 @@ async function saveUserAvatar(formData) {
 }
 
 /**
- * Отправляет запрос для получения активных чатов пользователя, возвращает 'none' при ошибке или при отсутствии чатов, в успешном случае возвращает JSON с данными чата.
- * @returns
+ * Отправляет запрос для получения активных чатов пользователя.
+ * @returns возвращает 'none' при ошибке или при отсутствии чатов, в успешном случае возвращает JSON с данными чата
  */
 async function loadingChat() {
     const response = await sendJSONRequest({}, '/api/chat/loading-chat.php');
@@ -156,12 +156,73 @@ async function loadingChat() {
 }
 
 /**
- * Запрос на создания чата, возвращает true при успешном создании чата или false.
+ * Запрос на создания чата.
  * @param {FormData} formData - объект FormData: 'title', 'file'. 
+ * @returns возвращает true при успешном создании чата или false
  */
 async function creatingChat(formData) {
     const response = await sendFormDataRequest(formData, '/api/chat/creating-chat.php');
     if (response.result && response.result === 'the chat was created successfully') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на получение данных чата.
+ * @param {object} JSON - объект с ключом: 'id_chat'. 
+ * @returns возвращает json с данными чата, при успешном исходе
+ */
+async function getChatData(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-chat-data.php');
+    if (response.result && response.result === 'chat found successfully') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на удаление чата.
+ * @param {object} JSON - объект с ключом: 'id_chat'; 
+ * @returns возвращает true при успешном удалении чата
+ */
+async function deleteChat(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/delete-chat.php');
+    if (response.result && response.result === 'the chat was successfully deleted') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на отправку сообщения пользователя.
+ * @param {object} JSON - объект с ключами: 'id_chat', 'text'. 
+ * @returns возвращает true, если сообщение успешно отправлено
+ */
+async function sendMessage(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/add-message.php');
+    if (response.result && response.result === 'the message was successfully added') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на получения количества сообщений в базе данных.
+ * @param {object} JSON - объект с ключом: 'id_chat'. 
+ * @returns возвращает количество сообщений или false.
+ */
+async function getNumberChatMessages(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-number-chat-messages.php');
+    if (response.result && response.result === 'successfully receiving the number of chat messages') return response['number of messages'];
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на получение всех сообщений чата.
+ * @param {object} JSON - объект с ключом: 'id_chat'.
+ * @returns возвращает JSON с данными сообщения.
+ */
+async function getAllChatMessages(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-all-messages.php');
+    if (response.result && response.result === 'messages received successfully') return response;
     if (response.error) showNotification(response['error message'], 'red');
     return false;
 }
@@ -177,5 +238,10 @@ export {
     getUserSession, 
     saveUserAvatar, 
     loadingChat,
-    creatingChat
+    creatingChat,
+    getChatData,
+    deleteChat,
+    sendMessage,
+    getNumberChatMessages,
+    getAllChatMessages
 };

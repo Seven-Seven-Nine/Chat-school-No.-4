@@ -11,6 +11,7 @@ import { openChat } from "./account.js";
 /** @type {HTMLInputElement} */ const inputFile = document.getElementById('input-file');
 
 function eventBinding() {
+    document.getElementById('black-space').onclick = () => closeCreatingChat();
     document.getElementById('submodule-return-chat-creation-button').onclick = () => closeCreatingChat();
     document.getElementById('btn-confirm-creation-chat').onclick = () => validatorCreatingChatForm();
 }

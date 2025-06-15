@@ -1,7 +1,18 @@
+@keyframes open-chat-workspace {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .chat-workspace {
     width: 75%;
     height: 100%;
     padding: 0 4%;
+    display: none;
+    animation: open-chat-workspace 200ms ease;
 }
 
 .chat-header {
@@ -42,4 +53,39 @@
     height: 60px;
     padding: 1%;
     margin: 0 5%;
+}
+
+.message {
+    width: 100%;
+    padding: 1%;
+    margin: 3% 0;
+    border-radius: 5px;
+    background-color: #51515126;
+}
+
+.user-avatar-in-message {
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.user-avatar-block {
+    min-width: 12%;
+    height: 100%;
+}
+
+.message-data-block {
+    width: 100%;
+}
+
+.message-data-block p {
+    width: 100%;
+    text-align: left;
+}
+
+.user-login-message {
+    font-weight: bold;
+    font-size: 16pt;
+    margin: 0;
 }
