@@ -82,6 +82,7 @@
 .message-data-block p {
     width: 100%;
     text-align: left;
+    white-space: pre-line;
 }
 
 .user-login-message {

@@ -8,6 +8,7 @@ import { showModalConfirmationWindow } from "../modalWindow.js";
 
 function eventBinding() {
     document.getElementById('black-space').onclick = () => closeChatMenu();
+    document.getElementById('option-add-user').onclick = () => addUser();
     document.getElementById('option-delete').onclick = () => showModalConfirmationWindow('Удалить чат?', 'Да', 'Нет', async () => await requestDeleteChat());
 }
 
@@ -16,6 +17,11 @@ async function closeChatMenu() {
     changeStyleAnimationElement('chat-menu-submodule', 'show-submodule', 'hide-submodule');
     setTimeout(() => document.getElementById('container-chat-menu').textContent = '', 400);
     await deleteSpecificModuleScript('/public/scripts/modules/chat-menu.js');
+}
+
+async function addUser() {
+    await closeChatMenu();
+    setTimeout(async () => await applySubmodule('add-users', 'container-add-user'), 400);
 }
 
 async function requestDeleteChat() {

@@ -67,9 +67,15 @@ async function requestToReceiveChatMessages() {
             if (key === 'result' || isNaN(Number(key))) continue;
             const message = messageData[key];
             const messageContainer = document.createElement('div');
+            let pathToAvatar = '/public/assets/icon-user.svg';
+            let classList = '';
+            if (message.path_to_avatar !== 'none') {
+                pathToAvatar = message.path_to_avatar;
+                classList = 'user-avatar-in-message';
+            }
             messageContainer.innerHTML = `
                 <div class="user-avatar-block flex flex-row flex-center">
-                    <img class="user-avatar-in-message" src="${message.path_to_avatar}" alt="Аватар пользователя">
+                    <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
                 </div>
                 <div class="message-data-block flex flex-column flex-center">
                     <p class="user-login-message">${message.login} | ${message.date}</p>
@@ -80,9 +86,52 @@ async function requestToReceiveChatMessages() {
             messageContainer.classList.add('flex');
             messageContainer.classList.add('flex-row');
             messageContainer.classList.add('flex-start');
+
+            messageContainer.addEventListener('contextmenu', async (event) => {
+                event.preventDefault();
+                await messageMenu(message.id_message);
+            });
+
             chatMessages.appendChild(messageContainer);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+    }
+}
+
+async function updateMessageChat() {
+    chatMessages.textContent = '';
+    const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
+    for (const key in messageData) {
+        if (key === 'result' || isNaN(Number(key))) continue;
+        const message = messageData[key];
+        const messageContainer = document.createElement('div');
+        let pathToAvatar = '/public/assets/icon-user.svg';
+        let classList = '';
+        if (message.path_to_avatar !== 'none') {
+            pathToAvatar = message.path_to_avatar;
+            classList = 'user-avatar-in-message';
+        }
+        messageContainer.innerHTML = `
+            <div class="user-avatar-block flex flex-row flex-center">
+                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+            </div>
+            <div class="message-data-block flex flex-column flex-center">
+                <p class="user-login-message">${message.login} | ${message.date}</p>
+                <p>${message.text}</p>
+            </div>
+        `;
+        messageContainer.classList.add('message');
+        messageContainer.classList.add('flex');
+        messageContainer.classList.add('flex-row');
+        messageContainer.classList.add('flex-start');
+
+        messageContainer.addEventListener('contextmenu', async (event) => {
+            event.preventDefault();
+            await messageMenu(message.id_message);
+        });
+
+        chatMessages.appendChild(messageContainer);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 }
 
@@ -99,10 +148,15 @@ async function requestToSendMessage() {
     }
 }
 
+async function messageMenu(idMessage) {
+    window.localStorage.setItem('id_message', idMessage);
+    await applySubmodule('message-menu', 'container-message-menu');
+}
+
 if (document.getElementById('list-chats').children.length < 2) {
     getChats();
 }
 
 eventBinding();
 
-export { openChat };
+export { openChat, updateMessageChat };

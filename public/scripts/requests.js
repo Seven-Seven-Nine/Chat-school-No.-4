@@ -227,6 +227,77 @@ async function getAllChatMessages(JSON) {
     return false;
 }
 
+/**
+ * Функция получения данных пользователей.
+ * @returns возвращает JSON с данными пользователя.
+ */
+async function getDataAllUsers() {
+    const response = await sendJSONRequest({}, '/api/user/get-all-users.php');
+    if (response.result && response.result === 'user data has been successfully received') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос добавления пользователя в чат.
+ * @param {*} JSON - объект с ключами: 'login', 'id_chat'.
+ * @returns true - пользователь успешно добавлен, false - ошибка добавления пользователя.
+ */
+async function addUserChat(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/add-user-chat.php');
+    if (response.result && response.result === 'the user has been successfully added to the chat') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос поиска пользователей по логину.
+ * @param {object} JSON - объект с ключом: 'login'.
+ * @returns true - поиск завершён успешно, false - ошибка поиска пользователя.
+ */
+async function userSearch(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/user/user-search.php');
+    if (response.result && response.result === 'the search was successfully performed') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос получения данных сообщения по ID.
+ * @param {object} JSON - объект с ключом: 'id_message'.
+ * @returns возвращает JSON с данными сообщения.
+ */
+async function getMessageData(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-message-data.php');
+    if (response.result && response.result === 'these messages were successfully received') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос обновления текста сообщения.
+ * @param {object} JSON - объект с ключами: 'id_message', 'new_text'.
+ * @returns возвращает true при успешном обновлении текста сообщения.
+ */
+async function editMessage(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/edit-message.php');
+    if (response.result && response.result === 'the message has been successfully updated') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос удаления сообщения.
+ * @param {object} JSON - объект с ключом: 'id_message'.
+ * @returns возвращает true при успешном удаления сообщения.
+ */
+async function deleteMessage(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/delete-chat-message.php');
+    if (response.result && response.result === 'the message was successfully deleted') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
 export {
     sendJSONRequest, 
     userAuthorization, 
@@ -243,5 +314,11 @@ export {
     deleteChat,
     sendMessage,
     getNumberChatMessages,
-    getAllChatMessages
+    getAllChatMessages,
+    getDataAllUsers,
+    addUserChat,
+    userSearch,
+    getMessageData,
+    editMessage,
+    deleteMessage
 };
