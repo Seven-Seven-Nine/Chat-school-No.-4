@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `chats` (
   PRIMARY KEY (`id_chat`),
   KEY `FK_chat_users` (`id_user`),
   CONSTRAINT `FK_chat_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Дамп данных таблицы chat-school4.chats: ~0 rows (приблизительно)
+-- Дамп данных таблицы chat-school4.chats: ~4 rows (приблизительно)
 
 -- Дамп структуры для таблица chat-school4.chat_participants
 CREATE TABLE IF NOT EXISTS `chat_participants` (
@@ -50,16 +50,18 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `id_message` int(12) NOT NULL AUTO_INCREMENT,
   `id_chat` int(12) NOT NULL,
   `id_user` int(12) NOT NULL,
-  `text` text NOT NULL,
+  `text` text NOT NULL DEFAULT 'none',
   `date` date NOT NULL,
+  `path_to_file` varchar(250) NOT NULL DEFAULT 'none',
+  `file_name` varchar(250) NOT NULL DEFAULT 'none',
   PRIMARY KEY (`id_message`) USING BTREE,
   KEY `FK_messages_users` (`id_user`),
   KEY `FK_messages_chat` (`id_chat`),
   CONSTRAINT `FK_messages_chat` FOREIGN KEY (`id_chat`) REFERENCES `chats` (`id_chat`) ON DELETE CASCADE,
   CONSTRAINT `FK_messages_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=361 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Дамп данных таблицы chat-school4.messages: ~5 rows (приблизительно)
+-- Дамп данных таблицы chat-school4.messages: ~13 rows (приблизительно)
 
 -- Дамп структуры для таблица chat-school4.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -78,7 +80,7 @@ INSERT INTO `users` (`id_user`, `login`, `role`, `email`, `password`, `path_to_a
 	(33, 'test', 'user', 'test@mail.ru', '$2y$12$w8qlq6R5NEPRUmqopZ80UeFhyRJe1EWw9s2gWkpsfjLRNxZ7BnpX6', 'none'),
 	(58, 'test1', 'user', 'test1@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
 	(61, 'test3', 'user', 'test3@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
-	(62, 'admin', 'administrator', 'admin@mail.ru', '$2y$12$pzQe/PJxlYuXugIol34ToueJKaoA.j/djzh2wCirDJRgnHYRoW4Xa', 'none'),
+	(62, 'admin', 'administrator', 'admin@mail.ru', '$2y$12$pzQe/PJxlYuXugIol34ToueJKaoA.j/djzh2wCirDJRgnHYRoW4Xa', '/api/user-image/68505d715fd63_Снимок экрана 2025-05-11 214210.png'),
 	(63, 'test2', 'user', 'test2@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
 	(64, 'test4', 'user', 'test4@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none');
 
