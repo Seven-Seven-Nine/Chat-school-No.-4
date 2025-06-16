@@ -37,3 +37,9 @@ main {
     height: 100%;
     overflow: hidden;
 }
+
+@media (max-width: 720px) {
+    body {
+        font-size: 12pt;
+    }
+}

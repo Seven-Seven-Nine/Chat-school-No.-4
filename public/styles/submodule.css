@@ -95,3 +95,10 @@
     animation: hide-submodule 200ms forwards ease;
     transform-origin: center;
 }
+
+@media (max-width: 720px) {
+    .submodule {
+        min-width: 0;
+        max-width: 100%;
+    }
+}

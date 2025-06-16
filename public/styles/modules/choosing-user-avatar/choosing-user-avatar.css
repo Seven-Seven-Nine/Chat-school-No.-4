@@ -60,3 +60,10 @@
     animation: hide-choosing-user-avatar 200ms forwards ease;
     transform-origin: center;
 }
+
+@media (max-width: 720px) {
+    .choosing-user-avatar {
+        min-width: 0;
+        max-width: 100%;
+    }
+}

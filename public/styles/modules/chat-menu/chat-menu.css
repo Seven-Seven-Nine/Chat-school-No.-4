@@ -21,3 +21,9 @@
 .option-delete:hover p {
     color: white;
 }
+
+@media (max-width: 720px) {
+    .option {
+        font-size: 14pt;
+    }
+}

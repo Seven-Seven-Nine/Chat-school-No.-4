@@ -33,18 +33,30 @@ function chooseColorTheme(theme) {
 }
 
 function openColorScheme() {
+    if (screen.width < 720) {
+        document.getElementById('block-settings-options').style.display = 'none';
+        document.getElementById('block-settings').style.display = 'flex';
+    }
     changeStyleAnimationElement('color-scheme', 'hide-element', 'show-element', true);
     changeStyleAnimationElement('background', 'show-element', 'hide-element', false);
     changeStyleAnimationElement('animation-speed', 'show-element', 'hide-element', false);
 }
 
 function openBackground() {
+    if (screen.width < 720) {
+        document.getElementById('block-settings-options').style.display = 'none';
+        document.getElementById('block-settings').style.display = 'flex';
+    }
     changeStyleAnimationElement('color-scheme', 'show-element', 'hide-element', false);
     changeStyleAnimationElement('background', 'hide-element', 'show-element', true);
     changeStyleAnimationElement('animation-speed', 'show-element', 'hide-element', false);
 }
 
 function openAnimationSpeed() {
+    if (screen.width < 720) {
+        document.getElementById('block-settings-options').style.display = 'none';
+        document.getElementById('block-settings').style.display = 'flex';
+    }
     changeStyleAnimationElement('color-scheme', 'show-element', 'hide-element', false);
     changeStyleAnimationElement('background', 'show-element', 'hide-element', false);
     changeStyleAnimationElement('animation-speed', 'hide-element', 'show-element', true);

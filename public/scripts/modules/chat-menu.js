@@ -85,6 +85,7 @@ async function chatSettings() {
 async function requestDeleteChat() {
     if (await deleteChat({'id_chat': window.localStorage.getItem('id_chat')}))  {
         document.getElementById('chat-workspace').style.display = 'none';
+        if (screen.width < 720) document.getElementById('list-chats').style.display = 'block';
         await updatingChatList();
         await closeChatMenu();
     }

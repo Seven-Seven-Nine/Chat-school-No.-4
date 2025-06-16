@@ -59,5 +59,16 @@ function addAdminPanelBtn(userRole) {
     }
 }
 
+function addCloseButtonForSmartphones() {
+    if (screen.width < 720) {
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '<img class="button-close-side-menu" src="/public/assets/icon-close.svg" alt="Иконка">Закрыть';
+        closeBtn.classList.add('button-side-menu');
+        closeBtn.onclick = async () => await closeSideMenu();
+        document.getElementById('side-menu').appendChild(closeBtn);
+    }
+}
+
+addCloseButtonForSmartphones();
 eventBinding();
 showUserData();

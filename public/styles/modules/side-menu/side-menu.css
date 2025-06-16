@@ -51,3 +51,14 @@
     position: absolute;
     top: 90%;
 }
+
+@media (max-width: 720px) {
+    .side-menu {
+        width: 100%;
+        border-right: none;
+    }
+
+    .button-close-side-menu {
+        width: 20px !important;
+    }
+}

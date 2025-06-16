@@ -116,3 +116,9 @@
     left: 2%;
     animation: button-return 600ms ease;
 }
+
+@media (max-width: 720px) {
+    .button-default {
+        font-size: 12pt;
+    }
+}

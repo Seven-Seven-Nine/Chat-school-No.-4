@@ -58,6 +58,7 @@ async function openChat(idChat) {
     document.getElementById('chat-workspace').style.display = 'block';
     document.getElementById('chat-title').innerHTML = `<h2>${chatData.title}</h2>`;
     window.localStorage.setItem('id_chat', idChat);
+    if (screen.width < 720) document.getElementById('list-chats').style.display = 'none';
     clearInterval(intervalForReceivingMessages);
     await receiveChatMessages();
 }
@@ -240,6 +241,26 @@ function applyAnimationSpeed() {
     }
 }
 
+function addReturnButtonForSmartphones() {
+    if (!document.getElementById('btn-return-for-smartphone')) {
+        if (screen.width < 720) {
+            const iconReturnBtn = document.createElement('img');
+            iconReturnBtn.src = '/public/assets/icon-return.svg';
+            iconReturnBtn.id = 'btn-return-for-smartphone';
+            iconReturnBtn.alt = 'Иконка';
+            iconReturnBtn.classList.add('button-icon');
+        
+            iconReturnBtn.onclick = async () => {
+                document.getElementById('chat-workspace').style.display = 'none';
+                document.getElementById('list-chats').style.display = 'block';
+            }
+        
+            document.getElementById('chat-header').prepend(iconReturnBtn);
+        }
+    }
+}
+
+addReturnButtonForSmartphones();
 eventBinding();
 applyBackground();
 applyAnimationSpeed();

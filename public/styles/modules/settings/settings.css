@@ -95,3 +95,29 @@
     width: 100px;
     margin: 0 2%;
 }
+
+@media (max-width: 720px) {
+    .block-settings-options {
+        width: 100%;
+        border-right: none;
+        font-size: 14pt;
+    }
+    
+    .block-settings {
+        display: none;
+        width: 100%;
+    }
+
+    .theme {
+        height: 50%;
+    } 
+
+    #background {
+        flex-direction: column;
+    }
+
+    .background {
+        width: 90%;
+        margin: 2% 0;
+    } 
+}

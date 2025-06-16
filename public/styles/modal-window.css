@@ -90,3 +90,10 @@
 .hide-modal-window {
     animation: hide-modal-window var(--sped-animation-hide) forwards ease;
 }
+
+@media (max-width: 720px) {
+    .modal-window {
+        width: 85%;
+        max-width: 100%;
+    }
+}

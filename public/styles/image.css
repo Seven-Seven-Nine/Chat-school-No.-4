@@ -29,4 +29,9 @@
     .logo {
         width: 150px;
     }
+
+    .image-in-chat {
+        width: 250px;
+        height: 200px;
+    }
 }

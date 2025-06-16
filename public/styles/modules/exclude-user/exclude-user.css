@@ -30,3 +30,9 @@
     height: 80px;
     margin-right: 2%;
 }
+
+@media (max-width: 720px) {
+    #exclude-user-submodule h2 {
+        text-align: center;
+    }
+}

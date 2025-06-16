@@ -90,3 +90,34 @@
     font-size: 16pt;
     margin: 0;
 }
+
+@media (max-width: 720px) {
+    .chat-workspace {
+        width: 100%;
+        padding: 0;
+    }
+
+    .chat-input-field {
+        padding: 0;
+    } 
+
+    .chat-input-field img {
+        width: 60px;
+    }
+
+    .main-chat-input {
+        width: 70%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .user-avatar-block {
+        min-width: 15%;
+        margin-right: 3%;
+    }
+
+    .user-avatar-in-message {
+        width: 80px;
+        height: 60px;
+    }
+}
