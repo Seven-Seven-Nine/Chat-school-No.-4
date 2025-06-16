@@ -1,7 +1,7 @@
 'use strict';
 
 import { applySubmodule, deleteSpecificModuleScript } from "../module.js";
-import { deleteChat, loadingChat } from "../requests.js";
+import { deleteChat, excludingUserFromChat, getChatData, getUserSession, loadingChat } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
 import { openChat } from "./account.js";
 import { showModalConfirmationWindow } from "../modalWindow.js";
@@ -10,7 +10,6 @@ function eventBinding() {
     document.getElementById('black-space').onclick = async () => await closeChatMenu();
     document.getElementById('option-chat-settings').onclick = async () => await chatSettings();
     document.getElementById('option-add-user').onclick = async () => await addUser();
-    document.getElementById('option-delete').onclick = () => showModalConfirmationWindow('Удалить чат?', 'Да', 'Нет', async () => await requestDeleteChat());
 }
 
 async function closeChatMenu() {
@@ -25,6 +24,59 @@ async function addUser() {
     setTimeout(async () => await applySubmodule('add-users', 'container-add-user'), 400);
 }
 
+async function addOptionExcludeUser() {
+    const chatData = await getChatData({'id_chat': window.localStorage.getItem('id_chat')});
+    const userSession = await getUserSession();
+    if (chatData.user_login === userSession.login || userSession.role === 'administrator') {
+        const option = document.createElement('div');
+        option.classList.add('option');
+        option.classList.add('width-100');
+        option.classList.add('flex');
+        option.classList.add('flex-row');
+        option.classList.add('flex-center');
+        option.innerHTML = '<p>Исключить пользователя</p>';
+        option.onclick = async () => await excludeUser();
+        document.getElementById('chat-menu-submodule').insertBefore(option, document.getElementById('chat-menu-submodule').children[1]);
+    }
+}
+
+async function excludeUser() {
+    await closeChatMenu();
+    setTimeout(async () => await applySubmodule('exclude-user', 'container-exclude-user'), 400);
+}
+
+async function addOptionDeleteChat() {
+    const chatData = await getChatData({'id_chat': window.localStorage.getItem('id_chat')});
+    const userSession = await getUserSession();
+    if (chatData.user_login === userSession.login || userSession.role === 'administrator') {
+        const option = document.createElement('div');
+        option.classList.add('option');
+        option.classList.add('width-100');
+        option.classList.add('flex');
+        option.classList.add('flex-row');
+        option.classList.add('flex-center');
+        option.innerHTML = '<p>Удалить чат</p>';
+        option.onclick = async () => showModalConfirmationWindow('Удалить чат?', 'Да', 'Нет', async () => await requestDeleteChat());
+        document.getElementById('chat-menu-submodule').insertBefore(option, document.getElementById('chat-menu-submodule').children[3]);
+    }
+}
+
+async function addOptionExitOfChat() {
+    const chatData = await getChatData({'id_chat': window.localStorage.getItem('id_chat')});
+    const userSession = await getUserSession();
+    if (chatData.user_login !== userSession.login) {
+        const option = document.createElement('div');
+        option.classList.add('option');
+        option.classList.add('width-100');
+        option.classList.add('flex');
+        option.classList.add('flex-row');
+        option.classList.add('flex-center');
+        option.innerHTML = '<p>Выйти из чата</p>';
+        option.onclick = async () => showModalConfirmationWindow('Выйти из чата?', 'Да', 'Нет', async () => await requestExitOfChat());
+        document.getElementById('chat-menu-submodule').insertBefore(option, document.getElementById('chat-menu-submodule').children[4]);
+    }
+}
+
 async function chatSettings() {
     await closeChatMenu();
     setTimeout(async () => await applySubmodule('chat-settings', 'container-chat-settings'), 400);
@@ -35,6 +87,20 @@ async function requestDeleteChat() {
         document.getElementById('chat-workspace').style.display = 'none';
         await updatingChatList();
         await closeChatMenu();
+    }
+}
+
+async function requestExitOfChat() {
+    const userSession = await getUserSession();
+    const requestData = {
+        'id_chat': window.localStorage.getItem('id_chat'),
+        'login': userSession.login
+    };
+    
+    if (excludingUserFromChat(requestData)) {
+        await closeChatMenu();
+        await updatingChatList();
+        document.getElementById('chat-workspace').style.display = 'none';
     }
 }
 
@@ -79,4 +145,7 @@ async function updatingChatList() {
     }
 }
 
+addOptionExcludeUser();
+addOptionDeleteChat();
+addOptionExitOfChat();
 eventBinding();

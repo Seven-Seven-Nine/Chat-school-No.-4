@@ -301,6 +301,7 @@ async function deleteMessage(JSON) {
 /**
  * Запрос на изменение названия чата.
  * @param {object} JSON - объект с ключами: 'id_chat', 'new_title'.
+ * @returns возвращает true при изменении названия чата.
  */
 async function changeChatTitle(JSON) {
     const response = await sendJSONRequest(JSON, '/api/chat/change-chat-title.php');
@@ -312,10 +313,35 @@ async function changeChatTitle(JSON) {
 /**
  * Запрос на изменение изображения чата.
  * @param {FormData} formData - объект FormData с ключами: 'id_chat', 'image';
+ * @returns возвращает true при изменении изображения чата. 
  */
 async function changeChatImage(formData) {
     const response = await sendFormDataRequest(formData, '/api/chat/change-chat-image.php');
     if (response.result && response.result === 'the chat image has been successfully changed') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на получение данных пользователей чата.
+ * @param {object} JSON - объект с ключом: 'id_chat'.
+ * @returns возвращает JSON с данными пользователя чата.  
+ */
+async function getChatUsers(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-chat-users.php');
+    if (response.result && response.result === 'users found successfully') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на исключения пользователя из чата.
+ * @param {object} JSON - объект с ключами: 'id_chat', 'login'.
+ * @returns возвращает true при успешном удалении пользователя. 
+ */
+async function excludingUserFromChat(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/excluding-user-from-chat.php');
+    if (response.result && response.result === 'the user has been successfully deleted') return true;
     if (response.error) showNotification(response['error message'], 'red');
     return false;
 }
@@ -344,5 +370,7 @@ export {
     editMessage,
     deleteMessage,
     changeChatTitle,
-    changeChatImage
+    changeChatImage,
+    getChatUsers,
+    excludingUserFromChat
 };
