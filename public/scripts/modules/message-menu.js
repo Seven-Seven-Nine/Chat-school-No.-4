@@ -5,7 +5,7 @@ import { changeStyleAnimationElement } from "../template-element.js";
 import { showModalConfirmationWindow } from "../modalWindow.js";
 import { deleteMessage } from "../requests.js";
 import { showNotification } from "../notifications.js";
-import { updateMessageChat } from "./account.js";
+import { receiveChatMessages } from "./account.js";
 
 function eventBinding() {
     document.getElementById('black-space').onclick = async () => await closeChatMenu();
@@ -28,7 +28,7 @@ async function editMessage() {
 async function requestDeleteMessage() {
     if (await deleteMessage({'id_message': window.localStorage.getItem('id_message')})) {
         showNotification('Сообщение удалено.', 'green');
-        await updateMessageChat();
+        await receiveChatMessages();
         await closeChatMenu();
     }
 }

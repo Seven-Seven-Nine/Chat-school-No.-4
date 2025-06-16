@@ -145,50 +145,17 @@ async function updatingMessages() {
     }
 }
 
-async function updateMessageChat() {
-    chatMessages.textContent = '';
-    const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
-    for (const key in messageData) {
-        if (key === 'result' || isNaN(Number(key))) continue;
-        const message = messageData[key];
-        const messageContainer = document.createElement('div');
-        let pathToAvatar = '/public/assets/icon-user.svg';
-        let classList = '';
-        if (message.path_to_avatar !== 'none') {
-            pathToAvatar = message.path_to_avatar;
-            classList = 'user-avatar-in-message';
-        }
-        messageContainer.innerHTML = `
-            <div class="user-avatar-block flex flex-row flex-center">
-                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
-            </div>
-            <div class="message-data-block flex flex-column flex-center">
-                <p class="user-login-message">${message.login} | ${message.date}</p>
-                <p>${message.text}</p>
-            </div>
-        `;
-        messageContainer.classList.add('message');
-        messageContainer.classList.add('flex');
-        messageContainer.classList.add('flex-row');
-        messageContainer.classList.add('flex-start');
-
-        messageContainer.addEventListener('contextmenu', async (event) => {
-            event.preventDefault();
-            await messageMenu(message.id_message);
-        });
-
-        chatMessages.appendChild(messageContainer);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-}
-
 async function requestToSendMessage() {
     const mainInput = document.getElementById('main-chat-input');
     if (mainInput.value !== '') {
         mainInput.placeholder = '...';
         if (await sendMessage({'id_chat': window.localStorage.getItem('id_chat'), 'text': mainInput.value})) {
             mainInput.value = '';
-            await updatingMessages();
+            if (chatMessages.lastChild) {
+                await updatingMessages();
+            } else {
+                await receiveChatMessages();
+            }
         }
     } else {
         mainInput.placeholder = 'Введите сообщение!';
@@ -217,4 +184,4 @@ eventBinding();
 applyBackground();
 applyAnimationSpeed();
 
-export { openChat, updateMessageChat };
+export { openChat, updatingMessages, receiveChatMessages };
