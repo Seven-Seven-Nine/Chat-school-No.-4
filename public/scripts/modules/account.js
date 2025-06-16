@@ -8,9 +8,10 @@ const chatMessages = document.getElementById('chat-messages');
 let intervalForReceivingMessages;
 
 function eventBinding() {
-    document.getElementById('icon-side-menu').onclick = () => applySubmodule('side-menu', 'container-side-menu');
-    document.getElementById('icon-chat-menu').onclick = () => applySubmodule('chat-menu', 'container-chat-menu');
-    document.getElementById('icon-create-chat').onclick = () => applySubmodule('creating-chat', 'container-chat-creation');
+    document.getElementById('icon-side-menu').onclick = async () => await applySubmodule('side-menu', 'container-side-menu');
+    document.getElementById('icon-chat-menu').onclick = async () => await applySubmodule('chat-menu', 'container-chat-menu');
+    document.getElementById('icon-create-chat').onclick = async () => await applySubmodule('creating-chat', 'container-chat-creation');
+    document.getElementById('icon-attach-file').onclick = async () => await applySubmodule('attach-file', 'container-attach-file');
     document.getElementById('icon-push').onclick = () => requestToSendMessage();
 }
 
@@ -61,6 +62,12 @@ async function openChat(idChat) {
     await receiveChatMessages();
 }
 
+function isImageFile(filename) {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+    const lowerCaseFilename = filename.toLowerCase();
+    return imageExtensions.some(ext => lowerCaseFilename.endsWith(ext));
+}
+
 async function receiveChatMessages() {
     chatMessages.textContent = '';
     const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
@@ -75,15 +82,41 @@ async function receiveChatMessages() {
             classList = 'user-avatar-in-message';
         }
         messageContainer.id = message.id_message;
-        messageContainer.innerHTML = `
-            <div class="user-avatar-block flex flex-row flex-center">
-                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
-            </div>
-            <div class="message-data-block flex flex-column flex-center">
-                <p class="user-login-message">${message.login} | ${message.date}</p>
-                <p>${message.text}</p>
-            </div>
-        `;
+
+        if (message.path_to_file === 'none') {
+            messageContainer.innerHTML = `
+                <div class="user-avatar-block flex flex-row flex-center">
+                    <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                </div>
+                <div class="message-data-block flex flex-column flex-center">
+                    <p class="user-login-message">${message.login} | ${message.date}</p>
+                    <p>${message.text}</p>
+                </div>
+            `;
+        } else {
+            if (isImageFile(message.path_to_file)) {
+                messageContainer.innerHTML = `
+                    <div class="user-avatar-block flex flex-row flex-center">
+                        <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                    </div>
+                    <div class="message-data-block flex flex-column flex-center">
+                        <p class="user-login-message">${message.login} | ${message.date}</p>
+                        <img class="image-in-chat" src="${message.path_to_file}" alt="Изображение">
+                    </div>
+                `;
+            } else {
+                messageContainer.innerHTML = `
+                    <div class="user-avatar-block flex flex-row flex-center">
+                        <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                    </div>
+                    <div class="message-data-block flex flex-column flex-center">
+                        <p class="user-login-message">${message.login} | ${message.date}</p>
+                        <a class="link-file" href="${message.path_to_file}"><img src="/public/assets/icon-file.svg" alt="Иконка файла">${message.file_name}</a>
+                    </div>
+                `;
+            }
+        }
+
         messageContainer.classList.add('message');
         messageContainer.classList.add('flex');
         messageContainer.classList.add('flex-row');
@@ -120,15 +153,41 @@ async function updatingMessages() {
                     classList = 'user-avatar-in-message';
                 }
                 messageContainer.id = message.id_message;
-                messageContainer.innerHTML = `
-                    <div class="user-avatar-block flex flex-row flex-center">
-                        <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
-                    </div>
-                    <div class="message-data-block flex flex-column flex-center">
-                        <p class="user-login-message">${message.login} | ${message.date}</p>
-                        <p>${message.text}</p>
-                    </div>
-                `;
+                
+                if (message.path_to_file === 'none') {
+                    messageContainer.innerHTML = `
+                        <div class="user-avatar-block flex flex-row flex-center">
+                            <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                        </div>
+                        <div class="message-data-block flex flex-column flex-center">
+                            <p class="user-login-message">${message.login} | ${message.date}</p>
+                            <p>${message.text}</p>
+                        </div>
+                    `;
+                } else {
+                    if (isImageFile(message.path_to_file)) {
+                        messageContainer.innerHTML = `
+                            <div class="user-avatar-block flex flex-row flex-center">
+                                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                            </div>
+                            <div class="message-data-block flex flex-column flex-center">
+                                <p class="user-login-message">${message.login} | ${message.date}</p>
+                                <img class="image-in-chat" src="${message.path_to_file}" alt="Изображение">
+                            </div>
+                        `;
+                    } else {
+                        messageContainer.innerHTML = `
+                            <div class="user-avatar-block flex flex-row flex-center">
+                                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                            </div>
+                            <div class="message-data-block flex flex-column flex-center">
+                                <p class="user-login-message">${message.login} | ${message.date}</p>
+                                <a class="link-file" href="${message.path_to_file}"><img src="/public/assets/icon-file.svg" alt="Иконка файла">${message.file_name}</a>
+                            </div>
+                        `;
+                    }
+                }
+
                 messageContainer.classList.add('message');
                 messageContainer.classList.add('flex');
                 messageContainer.classList.add('flex-row');

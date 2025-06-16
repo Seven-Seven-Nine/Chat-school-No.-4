@@ -17,6 +17,14 @@
     background-size: cover;
 }
 
+.image-in-chat {
+    width: 550px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 2%;
+}
+
 @media (max-width: 720px) {
     .logo {
         width: 150px;

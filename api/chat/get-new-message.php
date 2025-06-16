@@ -15,7 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/api/database/database.php';
 function get_new_message(string | int $id_message, string | int $id_chat): void {
     try {
         $connection = get_connection_database();
-        $stmt = $connection->prepare('SELECT `id_message`, `id_chat`, `id_user`, `text`, `date` FROM `messages` WHERE `id_message` > ? AND `id_chat` = ? ORDER BY `id_message` ASC LIMIT 100');
+        $stmt = $connection->prepare('SELECT `id_message`, `id_chat`, `id_user`, `text`, `date`, `path_to_file`, `file_name` FROM `messages` WHERE `id_message` > ? AND `id_chat` = ? ORDER BY `id_message` ASC LIMIT 100');
         $stmt->bind_param('ss', $id_message, $id_chat);
         $stmt->execute();
 
@@ -42,6 +42,8 @@ function get_new_message(string | int $id_message, string | int $id_chat): void 
                     'login' => $login,
                     'path_to_avatar' => $path_to_avatar,
                     'text' => htmlspecialchars($message_row['text']),
+                    'path_to_file' => $message_row['path_to_file'],
+                    'file_name' => $message_row['file_name'],
                     'date' => $message_row['date']
                 ];
             }

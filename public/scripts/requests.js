@@ -358,6 +358,18 @@ async function excludingUserFromChat(JSON) {
     return false;
 }
 
+/**
+ * Запрос на исключения пользователя из чата.
+ * @param {FormData} formData - объект FormData с ключами: 'id_chat' `file`.
+ * @returns возвращает true при успешном сохранении файла. 
+ */
+async function attachFile(formData) {
+    const response = await sendFormDataRequest(formData, '/api/chat/attach-file.php');
+    if (response.result && response.result === 'the file was saved successfully') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
 export {
     sendJSONRequest, 
     userAuthorization, 
@@ -385,5 +397,6 @@ export {
     changeChatTitle,
     changeChatImage,
     getChatUsers,
-    excludingUserFromChat
+    excludingUserFromChat,
+    attachFile
 };
