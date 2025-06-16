@@ -58,7 +58,7 @@ async function openChat(idChat) {
     document.getElementById('chat-workspace').style.display = 'block';
     document.getElementById('chat-title').innerHTML = `<h2>${chatData.title}</h2>`;
     window.localStorage.setItem('id_chat', idChat);
-    clearInterval(intervalForReceivingMessages);
+    await clearInterval(intervalForReceivingMessages);
     await receiveChatMessages();
 }
 
@@ -98,49 +98,51 @@ async function receiveChatMessages() {
         chatMessages.appendChild(messageContainer);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    intervalForReceivingMessages = setInterval(async () => await updatingMessages(), 1500);
+    intervalForReceivingMessages = setInterval(async () => await updatingMessages(), 2000);
 }
 
 async function updatingMessages() {
     const lastMessage = chatMessages.lastChild;
-    const requestData = {
-        'id_message': lastMessage.id,
-        'id_chat': window.localStorage.getItem('id_chat')
-    };
-    const newMessageData = await getNewMessages(requestData);
-    if (newMessageData !== false) {
-        for (const key in newMessageData) {
-            if (key === 'result' || isNaN(Number(key))) continue;
-            const message = newMessageData[key];
-            const messageContainer = document.createElement('div');
-            let pathToAvatar = '/public/assets/icon-user.svg';
-            let classList = '';
-            if (message.path_to_avatar !== 'none') {
-                pathToAvatar = message.path_to_avatar;
-                classList = 'user-avatar-in-message';
+    if (lastMessage) {
+        const requestData = {
+            'id_message': lastMessage.id,
+            'id_chat': window.localStorage.getItem('id_chat')
+        };
+        const newMessageData = await getNewMessages(requestData);
+        if (newMessageData !== false) {
+            for (const key in newMessageData) {
+                if (key === 'result' || isNaN(Number(key))) continue;
+                const message = newMessageData[key];
+                const messageContainer = document.createElement('div');
+                let pathToAvatar = '/public/assets/icon-user.svg';
+                let classList = '';
+                if (message.path_to_avatar !== 'none') {
+                    pathToAvatar = message.path_to_avatar;
+                    classList = 'user-avatar-in-message';
+                }
+                messageContainer.id = message.id_message;
+                messageContainer.innerHTML = `
+                    <div class="user-avatar-block flex flex-row flex-center">
+                        <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+                    </div>
+                    <div class="message-data-block flex flex-column flex-center">
+                        <p class="user-login-message">${message.login} | ${message.date}</p>
+                        <p>${message.text}</p>
+                    </div>
+                `;
+                messageContainer.classList.add('message');
+                messageContainer.classList.add('flex');
+                messageContainer.classList.add('flex-row');
+                messageContainer.classList.add('flex-start');
+    
+                messageContainer.addEventListener('contextmenu', async (event) => {
+                    event.preventDefault();
+                    await messageMenu(message.id_message);
+                });
+    
+                chatMessages.appendChild(messageContainer);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-            messageContainer.id = message.id_message;
-            messageContainer.innerHTML = `
-                <div class="user-avatar-block flex flex-row flex-center">
-                    <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
-                </div>
-                <div class="message-data-block flex flex-column flex-center">
-                    <p class="user-login-message">${message.login} | ${message.date}</p>
-                    <p>${message.text}</p>
-                </div>
-            `;
-            messageContainer.classList.add('message');
-            messageContainer.classList.add('flex');
-            messageContainer.classList.add('flex-row');
-            messageContainer.classList.add('flex-start');
-
-            messageContainer.addEventListener('contextmenu', async (event) => {
-                event.preventDefault();
-                await messageMenu(message.id_message);
-            });
-
-            chatMessages.appendChild(messageContainer);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     }
 }
