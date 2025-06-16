@@ -1,8 +1,7 @@
 'use strict';
 
-import { applyBackground, applyColorTheme } from "../colorTheme.js";
+import { applyBackground } from "../colorTheme.js";
 import { applySubmodule } from "../module.js";
-import { showNotification } from "../notifications.js";
 import { getAllChatMessages, getChatData, getNewMessages, getNumberChatMessages, loadingChat, sendMessage } from "../requests.js";
 
 const chatMessages = document.getElementById('chat-messages');
@@ -58,7 +57,7 @@ async function openChat(idChat) {
     document.getElementById('chat-workspace').style.display = 'block';
     document.getElementById('chat-title').innerHTML = `<h2>${chatData.title}</h2>`;
     window.localStorage.setItem('id_chat', idChat);
-    await clearInterval(intervalForReceivingMessages);
+    clearInterval(intervalForReceivingMessages);
     await receiveChatMessages();
 }
 

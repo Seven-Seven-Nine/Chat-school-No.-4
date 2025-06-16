@@ -4,7 +4,7 @@ import { deleteSpecificModuleScript } from "../module.js";
 import { showNotification } from "../notifications.js";
 import { editMessage, getMessageData } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
-import { updateMessageChat } from "./account.js";
+import { receiveChatMessages } from "./account.js";
 
 function eventBinding() {
     document.getElementById('submodule-return-edit-message-button').onclick = async () => await closeEditMessage();
@@ -33,7 +33,7 @@ async function requestToEditMessage() {
 
     if (await editMessage(requestData)) {
         showNotification('Сообщение изменено.', 'green');
-        await updateMessageChat();
+        await receiveChatMessages();
         await closeEditMessage();
     }
 }

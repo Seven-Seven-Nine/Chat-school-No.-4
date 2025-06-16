@@ -5,7 +5,7 @@ import { showNotification } from "../notifications.js";
 import { creatingChat, loadingChat } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
 import { correctInput, incorrectInput } from "../validationForms.js";
-import { openChat, receiveChatMessages } from "./account.js";
+import { openChat } from "./account.js";
 
 /** @type {HTMLInputElement} */ const inputTitle = document.getElementById('input-title');
 /** @type {HTMLInputElement} */ const inputFile = document.getElementById('input-file');
@@ -51,8 +51,7 @@ async function requestCreateChat(file) {
     formData.append('image', file);
     if (await creatingChat(formData)) {
         await updatingChatList();
-        await receiveChatMessages();
-        closeCreatingChat();
+        await closeCreatingChat();
     }
 }
 
