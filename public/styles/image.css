@@ -16,3 +16,9 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+@media (max-width: 720px) {
+    .logo {
+        width: 150px;
+    }
+}

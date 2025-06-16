@@ -72,3 +72,13 @@ textarea:focus {
     width: 72%;
     margin: 30px 15px;
 }
+
+@media (max-width: 720px) {
+    form {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+    }
+}

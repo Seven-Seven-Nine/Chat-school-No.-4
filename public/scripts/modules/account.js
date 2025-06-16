@@ -99,7 +99,7 @@ async function requestToReceiveChatMessages() {
     }
 }
 
-let interval = setInterval(async () => await requestToReceiveChatMessages(), 200);
+let interval = setInterval(async () => await requestToReceiveChatMessages(), 1000);
 
 async function updateMessageChat() {
     chatMessages.textContent = '';

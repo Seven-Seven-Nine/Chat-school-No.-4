@@ -30,10 +30,7 @@ CREATE TABLE IF NOT EXISTS `chats` (
   CONSTRAINT `FK_chat_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Дамп данных таблицы chat-school4.chats: ~2 rows (приблизительно)
-INSERT INTO `chats` (`id_chat`, `id_user`, `title`, `path_to_image`) VALUES
-	(50, 33, 'Тестовый чат 1', '/api/chat-image/684fb20a88b49_bukva-Y.jpg'),
-	(51, 33, 'Тестовый чат 2', '/api/chat-image/684fb216c8da4_bukva-Y.jpg');
+-- Дамп данных таблицы chat-school4.chats: ~0 rows (приблизительно)
 
 -- Дамп структуры для таблица chat-school4.chat_participants
 CREATE TABLE IF NOT EXISTS `chat_participants` (
@@ -47,11 +44,6 @@ CREATE TABLE IF NOT EXISTS `chat_participants` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Дамп данных таблицы chat-school4.chat_participants: ~4 rows (приблизительно)
-INSERT INTO `chat_participants` (`id_chat`, `id_user`, `joined_at`) VALUES
-	(50, 33, '2025-06-16'),
-	(51, 33, '2025-06-16'),
-	(50, 62, '2025-06-16'),
-	(51, 62, '2025-06-16');
 
 -- Дамп структуры для таблица chat-school4.messages
 CREATE TABLE IF NOT EXISTS `messages` (
@@ -68,12 +60,6 @@ CREATE TABLE IF NOT EXISTS `messages` (
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Дамп данных таблицы chat-school4.messages: ~5 rows (приблизительно)
-INSERT INTO `messages` (`id_message`, `id_chat`, `id_user`, `text`, `date`) VALUES
-	(37, 50, 33, 'Первое сообщение тестового чата 1.', '2025-06-16'),
-	(38, 51, 33, 'Первое сообщение тестового чата 2.', '2025-06-16'),
-	(39, 50, 62, 'Второе сообщение тестового чата 1.', '2025-06-16'),
-	(40, 51, 62, 'Второе сообщение тестового чата 2.', '2025-06-16'),
-	(41, 50, 62, 'Третье сообщение тестового чата 1.', '2025-06-16');
 
 -- Дамп структуры для таблица chat-school4.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -89,10 +75,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Дамп данных таблицы chat-school4.users: ~6 rows (приблизительно)
 INSERT INTO `users` (`id_user`, `login`, `role`, `email`, `password`, `path_to_avatar`) VALUES
-	(33, 'test', 'user', 'test@mail.ru', '$2y$12$w8qlq6R5NEPRUmqopZ80UeFhyRJe1EWw9s2gWkpsfjLRNxZ7BnpX6', '/api/user-image/684d2d6bc54d6_vibrant-landscape-3840x2160-17436.jpg'),
+	(33, 'test', 'user', 'test@mail.ru', '$2y$12$w8qlq6R5NEPRUmqopZ80UeFhyRJe1EWw9s2gWkpsfjLRNxZ7BnpX6', 'none'),
 	(58, 'test1', 'user', 'test1@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
 	(61, 'test3', 'user', 'test3@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
-	(62, 'admin', 'administrator', 'admin@mail.ru', '$2y$12$pzQe/PJxlYuXugIol34ToueJKaoA.j/djzh2wCirDJRgnHYRoW4Xa', '/api/user-image/684c163ebbf2e_Снимок экрана 2025-05-11 214210.png'),
+	(62, 'admin', 'administrator', 'admin@mail.ru', '$2y$12$pzQe/PJxlYuXugIol34ToueJKaoA.j/djzh2wCirDJRgnHYRoW4Xa', 'none'),
 	(63, 'test2', 'user', 'test2@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none'),
 	(64, 'test4', 'user', 'test4@mail.ru', '$2y$12$FStDTYvqLp5Dp/s1YxK2fuGsr.IU204v/QuUGeW0WBVHh4sV6moL6', 'none');
 

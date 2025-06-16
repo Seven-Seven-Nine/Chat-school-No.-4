@@ -30,7 +30,7 @@ function delete_chat(string | int $id_chat): void {
         $stmt2->execute();
 
         $result_search = $stmt2->get_result();
-        if ($result_search->num_rows > 0) {
+        if ($result_search->num_rows > 0 || $_SESSION['role'] === 'administrator') {
             $stmt3 = $connection->prepare('DELETE FROM `chats` WHERE `id_chat` = ?');
             $stmt3->bind_param('s', $id_chat);
             $stmt3->execute();
