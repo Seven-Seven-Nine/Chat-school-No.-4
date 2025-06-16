@@ -73,7 +73,7 @@
 }
 
 .snow-modal-window {
-    animation: snow-modal-window 600ms ease;
+    animation: snow-modal-window var(--sped-animation-show) ease;
 }
 
 @keyframes hide-modal-window {
@@ -88,5 +88,5 @@
 }
 
 .hide-modal-window {
-    animation: hide-modal-window 200ms forwards ease;
+    animation: hide-modal-window var(--sped-animation-hide) forwards ease;
 }

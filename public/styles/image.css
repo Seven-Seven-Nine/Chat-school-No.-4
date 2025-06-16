@@ -2,3 +2,17 @@
     width: 200px;
     cursor: pointer;
 }
+
+.body-background-1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6)), url("/public/assets/background/background-1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.body-background-2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8)), url("/public/assets/background/background-2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,6 +1,9 @@
 :root {
     --accent-color: #6f00ff;
     --size-border: 2px;
+    --sped-animation-show: 500ms;
+    --sped-animation-hide: 300ms;
+    --speed-animation-module: 650ms;
 }
 
 .light-theme {

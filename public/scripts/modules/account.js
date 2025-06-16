@@ -1,5 +1,6 @@
 'use strict';
 
+import { applyBackground, applyColorTheme } from "../colorTheme.js";
 import { applySubmodule } from "../module.js";
 import { showNotification } from "../notifications.js";
 import { getAllChatMessages, getChatData, getNumberChatMessages, loadingChat, sendMessage } from "../requests.js";
@@ -98,6 +99,8 @@ async function requestToReceiveChatMessages() {
     }
 }
 
+let interval = setInterval(async () => await requestToReceiveChatMessages(), 200);
+
 async function updateMessageChat() {
     chatMessages.textContent = '';
     const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
@@ -157,6 +160,17 @@ if (document.getElementById('list-chats').children.length < 2) {
     getChats();
 }
 
+function applyAnimationSpeed() {
+    if (window.localStorage.getItem('speedShowModalWindow') && window.localStorage.getItem('speedHideModalWindow') && window.localStorage.getItem('speedModules')) {
+        const rootElement = document.documentElement;
+        rootElement.style.setProperty('--sped-animation-show', window.localStorage.getItem('speedShowModalWindow'));
+        rootElement.style.setProperty('--sped-animation-hide', window.localStorage.getItem('speedHideModalWindow'));
+        rootElement.style.setProperty('--speed-animation-module', window.localStorage.getItem('speedModules'));
+    }
+}
+
 eventBinding();
+applyBackground();
+applyAnimationSpeed();
 
 export { openChat, updateMessageChat };

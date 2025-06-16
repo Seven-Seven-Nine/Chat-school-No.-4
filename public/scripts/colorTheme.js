@@ -69,4 +69,19 @@ function changeColorTheme() {
     }
 }
 
-export { applyBrowserColorTheme, changeColorTheme, applyColorTheme };
+function applyBackground() {
+    if (window.localStorage.getItem('background') === 'background-1') {
+        document.body.classList.add('body-background-1');
+        document.body.classList.remove('body-background-2');
+        applyColorTheme('dark-theme');
+    } else if (window.localStorage.getItem('background') === 'background-2') {
+        document.body.classList.add('body-background-2');
+        document.body.classList.remove('body-background-1');
+        applyColorTheme('dark-theme');
+    } else {
+        document.body.classList.remove('body-background-2');
+        document.body.classList.remove('body-background-1');
+    }
+}
+
+export { applyBrowserColorTheme, changeColorTheme, applyColorTheme, applyBackground };

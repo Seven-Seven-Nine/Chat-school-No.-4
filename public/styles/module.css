@@ -1,7 +1,23 @@
 @keyframes open-module {
-    0% {
+    /* 0% {
         opacity: 0;
         transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    } */
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(0.95);
     }
     100% {
         opacity: 1;
@@ -28,9 +44,9 @@
 }
 
 .open-module {
-    animation: open-module 300ms ease;
+    animation: open-module var(--speed-animation-module) ease;
 }
 
 .close-module {
-    animation: close-module 300ms ease;
+    animation: close-module var(--speed-animation-module) ease;
 }
