@@ -228,6 +228,18 @@ async function getAllChatMessages(JSON) {
 }
 
 /**
+ * Запрос на получения новых сообщений.
+ * @param {object} JSON - объект с ключами: 'id_message', 'id_chat'.
+ * @returns возвращает JSON с данными новых сообщений, возвращает false, если новых сообщений нет.
+ */
+async function getNewMessages(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/get-new-message.php');
+    if (response.result && response.result === 'new messages found successfully') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
  * Функция получения данных пользователей.
  * @returns возвращает JSON с данными пользователя.
  */
@@ -363,6 +375,7 @@ export {
     sendMessage,
     getNumberChatMessages,
     getAllChatMessages,
+    getNewMessages,
     getDataAllUsers,
     addUserChat,
     userSearch,

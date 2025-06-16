@@ -3,9 +3,10 @@
 import { applyBackground, applyColorTheme } from "../colorTheme.js";
 import { applySubmodule } from "../module.js";
 import { showNotification } from "../notifications.js";
-import { getAllChatMessages, getChatData, getNumberChatMessages, loadingChat, sendMessage } from "../requests.js";
+import { getAllChatMessages, getChatData, getNewMessages, getNumberChatMessages, loadingChat, sendMessage } from "../requests.js";
 
 const chatMessages = document.getElementById('chat-messages');
+let intervalForReceivingMessages;
 
 function eventBinding() {
     document.getElementById('icon-side-menu').onclick = () => applySubmodule('side-menu', 'container-side-menu');
@@ -57,16 +58,60 @@ async function openChat(idChat) {
     document.getElementById('chat-workspace').style.display = 'block';
     document.getElementById('chat-title').innerHTML = `<h2>${chatData.title}</h2>`;
     window.localStorage.setItem('id_chat', idChat);
-    await requestToReceiveChatMessages();
+    clearInterval(intervalForReceivingMessages);
+    await receiveChatMessages();
 }
 
-async function requestToReceiveChatMessages() {
-    if (chatMessages.childElementCount !== await getNumberChatMessages({'id_chat': window.localStorage.getItem('id_chat')})) {
-        chatMessages.textContent = '';
-        const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
-        for (const key in messageData) {
+async function receiveChatMessages() {
+    chatMessages.textContent = '';
+    const messageData = await getAllChatMessages({'id_chat': window.localStorage.getItem('id_chat')});
+    for (const key in messageData) {
+        if (key === 'result' || isNaN(Number(key))) continue;
+        const message = messageData[key];
+        const messageContainer = document.createElement('div');
+        let pathToAvatar = '/public/assets/icon-user.svg';
+        let classList = '';
+        if (message.path_to_avatar !== 'none') {
+            pathToAvatar = message.path_to_avatar;
+            classList = 'user-avatar-in-message';
+        }
+        messageContainer.id = message.id_message;
+        messageContainer.innerHTML = `
+            <div class="user-avatar-block flex flex-row flex-center">
+                <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
+            </div>
+            <div class="message-data-block flex flex-column flex-center">
+                <p class="user-login-message">${message.login} | ${message.date}</p>
+                <p>${message.text}</p>
+            </div>
+        `;
+        messageContainer.classList.add('message');
+        messageContainer.classList.add('flex');
+        messageContainer.classList.add('flex-row');
+        messageContainer.classList.add('flex-start');
+
+        messageContainer.addEventListener('contextmenu', async (event) => {
+            event.preventDefault();
+            await messageMenu(message.id_message);
+        });
+
+        chatMessages.appendChild(messageContainer);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    intervalForReceivingMessages = setInterval(async () => await updatingMessages(), 1500);
+}
+
+async function updatingMessages() {
+    const lastMessage = chatMessages.lastChild;
+    const requestData = {
+        'id_message': lastMessage.id,
+        'id_chat': window.localStorage.getItem('id_chat')
+    };
+    const newMessageData = await getNewMessages(requestData);
+    if (newMessageData !== false) {
+        for (const key in newMessageData) {
             if (key === 'result' || isNaN(Number(key))) continue;
-            const message = messageData[key];
+            const message = newMessageData[key];
             const messageContainer = document.createElement('div');
             let pathToAvatar = '/public/assets/icon-user.svg';
             let classList = '';
@@ -74,6 +119,7 @@ async function requestToReceiveChatMessages() {
                 pathToAvatar = message.path_to_avatar;
                 classList = 'user-avatar-in-message';
             }
+            messageContainer.id = message.id_message;
             messageContainer.innerHTML = `
                 <div class="user-avatar-block flex flex-row flex-center">
                     <img class="${classList}" src="${pathToAvatar}" alt="Аватар пользователя">
@@ -98,8 +144,6 @@ async function requestToReceiveChatMessages() {
         }
     }
 }
-
-let interval = setInterval(async () => await requestToReceiveChatMessages(), 1000);
 
 async function updateMessageChat() {
     chatMessages.textContent = '';
@@ -144,7 +188,7 @@ async function requestToSendMessage() {
         mainInput.placeholder = '...';
         if (await sendMessage({'id_chat': window.localStorage.getItem('id_chat'), 'text': mainInput.value})) {
             mainInput.value = '';
-            await requestToReceiveChatMessages();
+            await updatingMessages();
         }
     } else {
         mainInput.placeholder = 'Введите сообщение!';

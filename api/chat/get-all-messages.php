@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/api/database/database.php';
 function get_all_messages(string | int $id_chat): void {
     try {
         $connection = get_connection_database();
-        $stmt = $connection->prepare('SELECT `id_message`, `id_user`, `text`, `date` FROM `messages` WHERE `id_chat` = ?');
+        $stmt = $connection->prepare('SELECT `id_message`, `id_user`, `text`, `date` FROM `messages` WHERE `id_chat` = ? ORDER BY `id_message` ASC LIMIT 100');
         $stmt->bind_param('s', $id_chat);
         $stmt->execute();
 

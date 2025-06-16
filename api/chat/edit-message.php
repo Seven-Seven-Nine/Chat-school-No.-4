@@ -30,7 +30,7 @@ function edit_message(string | int $id_message, string $new_text): void {
         $stmt2->execute();
 
         $result_search = $stmt2->get_result();
-        if ($result_search->num_rows > 0) {
+        if ($result_search->num_rows > 0 || $_SESSION['role'] === 'administrator') {
             $stmt3 = $connection->prepare('UPDATE `messages` SET `text` = ? WHERE `id_message` = ?');
             $stmt3->bind_param('ss', $new_text, $id_message);
             $stmt3->execute();
