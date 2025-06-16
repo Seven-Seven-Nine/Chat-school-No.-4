@@ -2,39 +2,27 @@
 
 import { deleteSpecificModuleScript } from "../module.js";
 import { showNotification } from "../notifications.js";
-import { creatingChat, loadingChat } from "../requests.js";
+import { changeChatImage, loadingChat } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
-import { correctInput, incorrectInput } from "../validationForms.js";
-import { openChat, updateMessageChat } from "./account.js";
 
-/** @type {HTMLInputElement} */ const inputTitle = document.getElementById('input-title');
 /** @type {HTMLInputElement} */ const inputFile = document.getElementById('input-file');
 
 function eventBinding() {
-    document.getElementById('black-space').onclick = () => closeCreatingChat();
-    document.getElementById('submodule-return-chat-creation-button').onclick = () => closeCreatingChat();
-    document.getElementById('btn-confirm-creation-chat').onclick = () => validatorCreatingChatForm();
+    document.getElementById('submodule-return-change-chat-image-button').onclick = async () => await closeChangeChatImage();
+    document.getElementById('black-space').onclick = async () => await closeChangeChatImage();
+    document.getElementById('btn-confirm-change-chat-image').onclick = () => validatorChangeChatImageForm();
 }
 
-async function closeCreatingChat() {
+async function closeChangeChatImage() {
     changeStyleAnimationElement('black-space', 'snow-black-space', 'hide-black-space');
-    changeStyleAnimationElement('chat-creation-submodule', 'show-submodule', 'hide-submodule');
-    setTimeout(() => document.getElementById('container-chat-creation').textContent = '', 400);
-    await deleteSpecificModuleScript('/public/scripts/modules/creating-chat.js');
+    changeStyleAnimationElement('change-chat-image-submodule', 'show-submodule', 'hide-submodule');
+    setTimeout(() => document.getElementById('container-change-chat-image').textContent = '', 400);
+    await deleteSpecificModuleScript('/public/scripts/modules/change-chat-image.js');
 }
 
-function validatorCreatingChatForm() {
+function validatorChangeChatImageForm() {
     let formValidationResult = [];
     const file = inputFile.files[0];
-
-    if (inputTitle.value.length < 3) {
-        incorrectInput(inputTitle, 'Короткий логин!');
-    } else if (inputTitle.value.length > 49) {
-        incorrectInput(inputTitle, 'Большой логин!');
-    } else {
-        correctInput(inputTitle, 'Логин');
-        formValidationResult.push(true);
-    }
 
     if (!file) {
         showNotification('Изображение не выбрано!', 'red');
@@ -42,17 +30,18 @@ function validatorCreatingChatForm() {
         formValidationResult.push(true);   
     }
 
-    if (formValidationResult.length === 2) requestCreateChat(file);
+    if (formValidationResult.length === 1) requestToChangeChatImage(file);
 }
 
-async function requestCreateChat(file) {
+async function requestToChangeChatImage(file) {
     const formData = new FormData();
-    formData.append('title', inputTitle.value);
+    formData.append('id_chat', window.localStorage.getItem('id_chat'));
     formData.append('image', file);
-    if (await creatingChat(formData)) {
+    if (await changeChatImage(formData)) {
+        showNotification('Изображение чата изменено.', 'green');
+        await closeChangeChatImage();
         await updatingChatList();
-        await updateMessageChat();
-        closeCreatingChat();
+        await closeChangeChatImage();
     }
 }
 

@@ -20,10 +20,21 @@ function get_chat_data(string | int $id_chat): void {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $user_login = '';
+                $stmt2 = $connection->prepare('SELECT `login` FROM `users` WHERE `id_user` = ?');
+                $stmt2->bind_param('s', $row['id_user']);
+                $stmt2->execute();
+
+                $result_search_user_login = $stmt2->get_result();
+                while ($row2 = $result_search_user_login->fetch_assoc()) {
+                    $user_login = $row2['login'];
+                }
+
                 echo json_encode([
                     'result' => 'chat found successfully',
                     'id_chat' => $row['id_chat'],
                     'id_user' => $row['id_user'],
+                    'user_login' => $user_login,
                     'title' => $row['title'],
                     'path_to_image' => $row['path_to_image']
                 ]);

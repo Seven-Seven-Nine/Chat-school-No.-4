@@ -1,15 +1,15 @@
 :root {
-    --accent-color: rgb(111, 0, 255);
+    --accent-color: #6f00ff;
     --size-border: 2px;
 }
 
 .light-theme {
     color-scheme: light;
-    --body-color: rgb(255, 255, 255);
-    --panel-color: rgba(255, 255, 255, 0.75);
+    --body-color: #ffffff;
+    --panel-color: #ffffffbf;
     --color-screen-saver-download-lane: black;
-    --border-color: black;
-    --text-color: black;
+    --border-color: #000000;
+    --text-color: #000000;
     --icon-hover-color: rgb(201, 201, 201);
 }
 
@@ -19,10 +19,10 @@
 
 .dark-theme {
     color-scheme: dark;
-    --body-color: rgb(15, 15, 15);
-    --panel-color: rgba(15, 15, 15, 0.7);
+    --body-color: #0f0f0f;
+    --panel-color: #0f0f0fb3;
     --color-screen-saver-download-lane: white;
-    --border-color: white;
-    --text-color: white;
+    --border-color: #ffffff;
+    --text-color: #ffffff;
     --icon-hover-color: rgb(44, 44, 44);
 }

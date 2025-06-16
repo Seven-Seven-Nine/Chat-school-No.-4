@@ -48,12 +48,13 @@ function defineColorTheme() {
 
 /**
  * Функция применения цветовой темы.
- * @param colorTheme - название темы ('dark-theme', 'light-theme')
+ * @param {string} colorTheme - название темы ('dark-theme', 'light-theme')
  */
 function applyColorTheme(colorTheme) {
     document.body.classList.remove('light-theme');
     document.body.classList.remove('dark-theme');
     document.body.classList.add(colorTheme);
+    window.localStorage.setItem('color-theme', colorTheme);
 }
 
 /**
@@ -63,11 +64,9 @@ function changeColorTheme() {
     const previousColorTheme = defineColorTheme();
     if (previousColorTheme === 'dark-theme') {
         applyColorTheme('light-theme');
-        window.localStorage.setItem('color-theme', 'light-theme');
     } else {
         applyColorTheme('dark-theme');
-        window.localStorage.setItem('color-theme', 'dark-theme');
     }
 }
 
-export { applyBrowserColorTheme, changeColorTheme };
+export { applyBrowserColorTheme, changeColorTheme, applyColorTheme };

@@ -1,0 +1,64 @@
+.settings {
+    height: 100%;
+}
+
+.block-settings-options {
+    padding: 1%;
+    border-right: 1px solid var(--border-color);
+    height: 100%;
+}
+
+.block-settings {
+    padding: 1%;
+    height: 100%;
+    padding: 2%;
+}
+
+.option {
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 200ms ease, opacity 100ms ease;
+    margin: 2% 0;
+    padding: 1% 0;
+    user-select: none;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: var(--icon-hover-color);
+}
+
+.option:active {
+    opacity: 0.5;
+}
+
+.input-color {
+    border: none;
+    width: 100px;
+    margin: 0 1%;
+}
+
+.color-option {
+    margin: 2% 0;
+}
+
+.theme {
+    width: 50%;
+    margin: 0 2%;
+    height: 80%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 250ms ease, transform 50ms ease;
+}
+
+.theme:hover {
+    background-color: var(--icon-hover-color);
+}
+
+.theme:active {
+    transform: scale(0.95);
+}
+
+.icon-theme {
+    width: 100px;
+}

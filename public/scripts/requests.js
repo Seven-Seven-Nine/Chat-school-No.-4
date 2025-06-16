@@ -298,6 +298,28 @@ async function deleteMessage(JSON) {
     return false;
 }
 
+/**
+ * Запрос на изменение названия чата.
+ * @param {object} JSON - объект с ключами: 'id_chat', 'new_title'.
+ */
+async function changeChatTitle(JSON) {
+    const response = await sendJSONRequest(JSON, '/api/chat/change-chat-title.php');
+    if (response.result && response.result === 'the chat title has been successfully changed') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+/**
+ * Запрос на изменение изображения чата.
+ * @param {FormData} formData - объект FormData с ключами: 'id_chat', 'image';
+ */
+async function changeChatImage(formData) {
+    const response = await sendFormDataRequest(formData, '/api/chat/change-chat-image.php');
+    if (response.result && response.result === 'the chat image has been successfully changed') return true;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
 export {
     sendJSONRequest, 
     userAuthorization, 
@@ -320,5 +342,7 @@ export {
     userSearch,
     getMessageData,
     editMessage,
-    deleteMessage
+    deleteMessage,
+    changeChatTitle,
+    changeChatImage
 };
