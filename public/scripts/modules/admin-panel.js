@@ -43,7 +43,9 @@ async function requestForNews() {
 }
 
 async function getNews() {
-    document.getElementById('list-news-cards').textContent = '';
+    if (document.getElementById('list-news-cards').children.length > 1) {
+        document.getElementById('list-news-cards').textContent = '';
+    }
     const newsData = await requestForNews();
     
     if (newsData) {
