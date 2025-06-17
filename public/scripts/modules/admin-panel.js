@@ -43,8 +43,8 @@ async function requestForNews() {
 }
 
 async function getNews() {
-    if (document.getElementById('list-news-cards').children.length > 1) {
-        document.getElementById('list-news-cards').textContent = '';
+    while (document.getElementById('list-news-cards').children.length > 1) {
+        document.getElementById('list-news-cards').removeChild(container.lastChild);
     }
     const newsData = await requestForNews();
     
