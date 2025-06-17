@@ -1,4 +1,31 @@
 <div class="module open-module flex flex-column flex-start">
     <img id="btn-return" class="button-icon button-return" src="/public/assets/icon-return.svg" alt="Иконка">
     <h2>Админ-панель</h2>
+    <!-- Навигация -->
+    <div class="block-navigation flex flex-row flex-center">
+        <img id="icon-news" class="button-icon" src="/public/assets/icon-news.svg" alt="Иконка">
+        <img id="icon-chats" class="button-icon" src="/public/assets/icon-fix.svg" alt="Иконка">
+        <img id="icon-users" class="button-icon" src="/public/assets/icon-user.svg" alt="Иконка">
+    </div>
+     <!-- Новости -->
+    <div id="block-news" class="width-100 flex flex-column flex-center">
+        <h3>Новости</h3>
+        <div id="list-news-cards" class="width-100 flex flex-row flex-center flex-wrap">
+            <div id="add-news" class="card-news card-add flex flex-column flex-center">
+                <p>+</p>
+            </div>
+        </div>
+    </div>
+    <!-- Чаты -->
+    <div id="block-chats" class="display-none width-100 flex flex-column flex-center">
+        <h3>Чаты</h3>
+        <div id="list-all-chats" class="width-100 flex flex-column flex-start"></div>
+    </div>
+    <!-- Пользователи -->
+    <div id="block-users" class="display-none width-100 flex flex-column flex-center">
+        <h3>Пользователи</h3>
+        <div id="list-all-users" class="width-100 flex flex-column flex-start"></div>
+    </div>
 </div>
+<div id="container-submodule-admin-panel"></div>
+<link rel="stylesheet" href="/public/styles/modules/admin-panel/admin-panel.css">

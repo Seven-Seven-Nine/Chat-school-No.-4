@@ -1,0 +1,84 @@
+.block-navigation {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+.block-navigation img {
+    margin: 10px 20px;
+    width: 60px;
+}
+
+.card-news {
+    width: 300px;
+    height: 400px;
+    border: var(--size-border) solid var(--border-color);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    margin: 10px 20px;
+    padding: 15px;
+    overflow-y: auto;
+    transition: background-color 200ms ease, color 100ms ease, transform 200ms ease;
+}
+
+.card-news h4 {
+    width: 100%;
+    text-align: center;
+}
+
+.card-news p {
+    width: 100%;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.card-add {
+    font-size: 50pt;
+    text-align: center;
+}
+
+.card-news:hover {
+    background-color: var(--border-color);
+    box-shadow: 0 0 10px var(--border-color);
+}
+
+.card-news:hover p {
+    color: var(--body-color);
+}
+
+.card-news:hover h4 {
+    color: var(--body-color);
+}
+
+.card-news:active {
+    transition: transform 20ms ease;
+    transform: scale(0.9);
+}
+
+.container-admin-chat {
+    width: 40%;
+    padding: 0 1%;
+    border-bottom: var(--size-border) solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
+    margin: 1% 0;
+}
+
+.container-admin-chat:hover {
+    border-color: var(--accent-color);
+}
+
+.container-admin-user {
+    width: 50%;
+    padding: 0 1%;
+    border-bottom: var(--size-border) solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
+    margin: 1% 0;
+}
+
+.container-admin-user:hover {
+    border-color: var(--accent-color);
+}

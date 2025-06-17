@@ -12,6 +12,7 @@ import { getUserSession, passwordUpdate } from "../requests.js";
 /** @type {HTMLInputElement} */ const newInputRePassword = document.getElementById('input-new-re-password');
 
 function eventBinding() {
+    document.getElementById('black-space').onclick = () => closeResetUserPassword();
     document.getElementById('btn-return-reset-user-password').onclick = () => closeResetUserPassword();
     document.getElementById('btn-confirm-reset-user-password').onclick = () => validatorResetUserPasswordForm();
 }

@@ -20,7 +20,7 @@ function eventBinding() {
     document.getElementById('option-color-scheme').onclick = () => openColorScheme();
     document.getElementById('option-background').onclick = () => openBackground();
     document.getElementById('option-animation-speed').onclick = () => openAnimationSpeed();
-    document.getElementById('option-restoring-settings').onclick = () => showModalConfirmationWindow('Восстановить настройки!', 'Да', 'Нет', () => restoringSettings());
+    document.getElementById('option-restoring-settings').onclick = () => showModalConfirmationWindow('Восстановить настройки по умолчанию?', 'Да', 'Нет', () => restoringSettings());
     document.getElementById('background-1').onclick = () => selectAnImage('background-1');
     document.getElementById('background-2').onclick = () => selectAnImage('background-2');
     document.getElementById('btn-save-speed-animation').onclick = () => saveAnimationSpeed();

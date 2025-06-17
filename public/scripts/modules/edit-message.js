@@ -16,7 +16,7 @@ async function closeEditMessage() {
     changeStyleAnimationElement('black-space', 'snow-black-space', 'hide-black-space');
     changeStyleAnimationElement('edit-message-submodule', 'show-submodule', 'hide-submodule');
     setTimeout(() => document.getElementById('container-edit-message').textContent = '', 400);
-    await deleteSpecificModuleScript('/public/scripts/modules/edit-message.js.js');
+    await deleteSpecificModuleScript('/public/scripts/modules/edit-message.js');
 }
 
 async function requestReceiveChatData() {

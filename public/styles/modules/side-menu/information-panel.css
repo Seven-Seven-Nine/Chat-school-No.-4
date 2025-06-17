@@ -83,6 +83,10 @@
     border: 2px solid var(--border-color);
 }
 
+.news-unit {
+    
+}
+
 @media (max-width: 720px) {
     .information-panel {
         display: none;

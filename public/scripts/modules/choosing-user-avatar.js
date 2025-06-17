@@ -8,6 +8,7 @@ import { changeStyleAnimationElement } from "../template-element.js";
 /** @type {HTMLInputElement} */ const inputFile = document.getElementById('input-file');
 
 function eventBinding() {
+    document.getElementById('black-space').onclick = () => closeChoosingUserAvatar();
     document.getElementById('btn-return-choosing-user-avatar').onclick = () => closeChoosingUserAvatar();
     document.getElementById('btn-confirm-choosing-user-avatar').onclick = () => saveAvatar();
 }

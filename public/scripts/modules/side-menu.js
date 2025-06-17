@@ -3,7 +3,7 @@
 import { showModalConfirmationWindow } from "../modalWindow.js";
 import { applyModule, deleteSpecificModuleScript } from "../module.js";
 import { showNotification } from "../notifications.js";
-import { getUserSession, logout } from "../requests.js";
+import { getUserSession, logout, sendJSONRequest } from "../requests.js";
 import { changeStyleAnimationElement } from "../template-element.js";
 
 function eventBinding() {
@@ -69,6 +69,40 @@ function addCloseButtonForSmartphones() {
     }
 }
 
+async function getNewsForInformationPanel() {
+    const newsData = await requestGetNewsForInformationPanel();
+    
+    if (newsData) {
+        for (const key in newsData) {
+            if (key === 'result' || isNaN(Number(key))) continue;
+            const news = newsData[key];
+            const newsUnit = document.createElement('div');
+            newsUnit.classList.add('news-unit');
+            newsUnit.classList.add('panel');
+            newsUnit.classList.add('bottom-panel');
+            newsUnit.classList.add('accent-border');
+            newsUnit.classList.add('flex');
+            newsUnit.classList.add('flex-column');
+            newsUnit.classList.add('flex-start');
+
+            newsUnit.innerHTML = `
+                <h4>${news.title}</h4>
+                <p>${news.text}</p>
+            `;
+
+            document.getElementById('news-for-information-panel').appendChild(newsUnit);
+        }
+    }
+}
+
+async function requestGetNewsForInformationPanel() {
+    const response = await sendJSONRequest({}, '/api/news/get-news.php');
+    if (response.result && response.result === 'news found successfully') return response;
+    if (response.error) showNotification(response['error message'], 'red');
+    return false;
+}
+
+getNewsForInformationPanel();
 addCloseButtonForSmartphones();
 eventBinding();
 showUserData();
